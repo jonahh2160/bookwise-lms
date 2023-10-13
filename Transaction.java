@@ -2,6 +2,7 @@ public class Transaction extends DateManager {
     Book book;
     User user;
     String dateBorrowed, dateReturned, dateDue;
+    double overdueFee = 0.25;
 
     public Transaction(User user, Book book, String dateBorrowed, String dateDue) {
         this.user = user;
@@ -56,10 +57,10 @@ public class Transaction extends DateManager {
     //this method officially completes the transaction, sets the dateReturned, sets the book's availability to true, and calculates overdue fees
     public void CompleteTransaction(String dateReturned) {
         setDateReturned(dateReturned);
-        //set book availability to true
+        //book.setAvailability(true);
         int daysOverdue = getDateDifference(this.dateDue,this.dateReturned);
         if (daysOverdue > 0) {
-            //add to user account balance (overdueFee*daysOverdue)
+            //user.accountBalance += overdueFee*daysOverdue;
         }
     }
 
