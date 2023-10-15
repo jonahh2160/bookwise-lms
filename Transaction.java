@@ -57,10 +57,10 @@ public class Transaction extends DateManager {
     //this method officially completes the transaction, sets the dateReturned, sets the book's availability to true, and calculates overdue fees
     public void CompleteTransaction(String dateReturned) {
         setDateReturned(dateReturned);
-        //book.setAvailability(true);
+        book.setAvailability(true);
         int daysOverdue = getDateDifference(this.dateDue,this.dateReturned);
         if (daysOverdue > 0) {
-            //user.accountBalance += overdueFee*daysOverdue;
+            user.addAccountBalance(-(daysOverdue*overdueFee));
         }
     }
 
