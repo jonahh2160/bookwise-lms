@@ -11,6 +11,8 @@ public class Transaction extends DateManager {
         this.dateBorrowed = dateBorrowed;
         this.dateDue = dateDue;
         this.dateReturned = "";
+
+        book.setAvailability(false);
     }
 
     //-------------------------------------------Basic getter/setter methods------------------------------------------------
