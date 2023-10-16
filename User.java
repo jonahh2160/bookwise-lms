@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class user {
+public class User {
 
 // Variables to be used for user class //
 static Scanner scn = new Scanner(System.in);
@@ -10,15 +10,15 @@ private String username = " ", password = " ";
 private String fullName = " ", firstName = " ", lastName = " ";
 private String emailAddress = " ", currentAddress = " ";
 private Double accountBalance = 0.00;
-user us; 
+User us; 
 
 // Initial constructor for user object before more details are entered //
-public user(String fullName){
+public User(String fullName){
     this.fullName = fullName;
 }
 
 // Full constructor to collect all additional information from a  user //
-public user(String fullName, String emailAddress, String currentAddress, Double accountBalance, String username, String password) {
+public User(String fullName, String emailAddress, String currentAddress, Double accountBalance, String username, String password) {
     this.fullName = fullName;
     separateFullName();
     this.emailAddress = emailAddress;
@@ -133,7 +133,7 @@ public void addMember() {
         
     System.out.println("Enter student's name.");
     name = scn.nextLine();
-    us = new user(name);
+    us = new User(name);
     us.enterDetails();
     member.add(us);    
 }
