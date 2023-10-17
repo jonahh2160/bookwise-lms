@@ -50,6 +50,10 @@ public class Book {
         return length;
     }
 
+    public int getPrimaryKey() {
+        return primaryKey;
+    }
+
     public boolean getAvailability() {
         return availablity;
     }
@@ -81,6 +85,10 @@ public class Book {
 
     public void setLength(int length) {
         this.length = length;
+    }
+
+    public void setPrimaryKey(int primaryKey) {
+        this.primaryKey = primaryKey;
     }
 
     public void setAvailability(boolean availablity) {
