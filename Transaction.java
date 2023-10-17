@@ -4,7 +4,7 @@ public class Transaction extends DateManager {
     Book book;
     User user;
     String dateBorrowed, dateReturned, dateDue;
-    int transactionID;
+    int primaryKey;
     double overdueFee = 0.25;
 
     public Transaction(User user, Book book, String dateBorrowed, String dateDue) {
@@ -18,22 +18,22 @@ public class Transaction extends DateManager {
     }
 
     //-------------------------------------------Basic getter/setter methods------------------------------------------------
-    public User GetUser() {
+    public User getUser() {
         return(user);
     }
-    public void SetUser(User user) {
+    public void setUser(User user) {
         this.user = user;
     }
-    public Book GetBook() {
+    public Book getBook() {
         return(book);
     }
-    public void SetBook(Book book) {
+    public void setBook(Book book) {
         this.book = book;
     }
-    public String GetDateBorrowed() {
+    public String getDateBorrowed() {
         return(dateBorrowed);
     }
-    public void SetDateBorrowed(String dateBorrowed) {
+    public void setDateBorrowed(String dateBorrowed) {
         this.dateBorrowed = dateBorrowed;
     }
     public String getDateDue() {
@@ -48,10 +48,17 @@ public class Transaction extends DateManager {
     public void setDateReturned(String dateReturned) {
         this.dateReturned = dateReturned;
     }
+    public int getPrimaryKey() {
+        return(primaryKey);
+    }
+    public void setPrimaryKey(int primaryKey) {
+        this.primaryKey = primaryKey;
+    }
+
     //---------------------------------------------------------end of basic getter/setter methods--------------------------------------
 
     //this method returns true or false whether the transaction is complete or not (book has been returned)
-    public boolean GetStatus() {
+    public boolean getStatus() {
         if (dateReturned != "") {
             return(true);
         } else {
@@ -60,7 +67,7 @@ public class Transaction extends DateManager {
     }
 
     //this method officially completes the transaction, sets the dateReturned, sets the book's availability to true, and calculates overdue fees
-    public void CompleteTransaction(String dateReturned) {
+    public void completeTransaction(String dateReturned) {
         setDateReturned(dateReturned);
         book.setAvailability(true);
         int daysOverdue = getDateDifference(this.dateDue,this.dateReturned);
