@@ -5,7 +5,7 @@ public class Book {
     // The ISBN of the book will double as its primary key
     private String title, author, publisher, genre;
     private long isbn;
-    private int year, length;
+    private int year, length, primaryKey;
     private boolean availablity = true;
 
     // Constructor

@@ -10,6 +10,7 @@ private String username = " ", password = " ";
 private String fullName = " ", firstName = " ", lastName = " ";
 private String emailAddress = " ", currentAddress = " ";
 private Double accountBalance = 0.00;
+private int primaryKey;
 User us; 
 
 // Initial constructor for user object before more details are entered //
