@@ -1,8 +1,10 @@
 
+
 public class Transaction extends DateManager {
     Book book;
     User user;
     String dateBorrowed, dateReturned, dateDue;
+    int transactionID;
     double overdueFee = 0.25;
 
     public Transaction(User user, Book book, String dateBorrowed, String dateDue) {
