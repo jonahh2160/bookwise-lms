@@ -1,15 +1,8 @@
 
-public abstract class Database {
+public interface Database {
 
-    public Database() {};
+    public void addEntry();
 
-    abstract void addEntry();
+    public void removeEntry();
 
-    abstract Book getBook(int id);
-    abstract User getUser(int id);
-    abstract Transaction getTransaction(int id);
-
-    abstract void editEntry();
-
-    abstract void removeEntry();
 }
