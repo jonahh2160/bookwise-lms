@@ -1,20 +1,13 @@
-import java.util.ArrayList;
 
 public abstract class Database {
-    ArrayList<Object> database;
 
-    public Database(Object object) {
-        ArrayList<Object> database = new ArrayList<Object>();
-    }
+    public Database() {};
 
-    public void addEntry(Object object) {
-        database.add(object);
-    }
+    abstract void addEntry();
 
-    public Object GetEntry(int entryID) {
-        Object object = database.get(entryID);
-        return(object);
-    }
+    abstract Book getBook(int id);
+    abstract User getUser(int id);
+    abstract Transaction getTransaction(int id);
 
     abstract void editEntry();
 
