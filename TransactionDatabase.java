@@ -2,7 +2,7 @@
 
 import java.util.ArrayList;
 
-public class TransactionDatabase implements Database {
+public class TransactionDatabase {
     ArrayList<Transaction> database = new ArrayList<Transaction>();
 
     //empty constructor
