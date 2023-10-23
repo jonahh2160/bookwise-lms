@@ -1,8 +1,13 @@
 
-public interface Database {
+abstract class Database {
 
-    public void addEntry();
+    abstract void addEntry();
 
-    public void removeEntry();
+    abstract void removeEntry();
+
+    public String createUUID() {
+
+        return("");
+    }
 
 }

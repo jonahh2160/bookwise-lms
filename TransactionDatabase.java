@@ -9,7 +9,7 @@ public class TransactionDatabase {
     public TransactionDatabase() {};
 
     //method for adding a transaction to the database
-    public void addTransaction(Transaction transaction) {
+    public void addEntry(Transaction transaction) {
         database.add(transaction);
         ///update external database here
     }
@@ -31,7 +31,7 @@ public class TransactionDatabase {
 
 
     //method for removing a transaction
-    public void removeTransaction(int primaryKey) {
+    public void removeEntry(int primaryKey) {
         for (int i = 0; i < database.size(); i++) {
             if (database.get(i).primaryKey == primaryKey) {
                 database.remove(i);
