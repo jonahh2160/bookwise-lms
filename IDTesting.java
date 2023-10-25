@@ -23,14 +23,14 @@ public static void main(String args[]) {
 
 /*mock up method for database abstract class
     //This method will create a new ID
-    public String createID() {
+    public String createID(ArrayList<E> database) {
         boolean success = false;
         String ID = "";
         //loop until a successful ID has been created
         while (success == false) {
             ID = ("" + rand.nextInt(999999999));
-            //make sure the ID is 9 digits long
-            while (ID.length() < 9) {
+            //make sure the ID is 7 digits long
+            while (ID.length() < 7) {
                 ID = "0" + ID;
             }
             //check the database to make sure the ID has not been used yet
