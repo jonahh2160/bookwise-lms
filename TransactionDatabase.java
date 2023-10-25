@@ -2,7 +2,7 @@
 
 import java.util.ArrayList;
 
-public class TransactionDatabase {
+public class TransactionDatabase extends Database {
     ArrayList<Transaction> database = new ArrayList<Transaction>();
 
     //empty constructor
@@ -15,7 +15,7 @@ public class TransactionDatabase {
     }
 
     //method for getting a transaction from the database using primary key
-    public Transaction getTransactionFromID(int primaryKey) {
+    public Transaction getTransactionFromID(String primaryKey) {
         for (int i = 0; i < database.size(); i++) {
             if (database.get(i).primaryKey == primaryKey) {
                 return(database.get(i));
@@ -31,7 +31,7 @@ public class TransactionDatabase {
 
 
     //method for removing a transaction
-    public void removeEntry(int primaryKey) {
+    public void removeEntry(String primaryKey) {
         for (int i = 0; i < database.size(); i++) {
             if (database.get(i).primaryKey == primaryKey) {
                 database.remove(i);

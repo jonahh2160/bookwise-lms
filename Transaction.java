@@ -3,8 +3,7 @@
 public class Transaction extends DateManager {
     Book book;
     User user;
-    String dateBorrowed, dateReturned, dateDue;
-    int primaryKey;
+    String dateBorrowed, dateReturned, dateDue, primaryKey;
     double overdueFee = 0.25;
 
     public Transaction(User user, Book book, String dateBorrowed, String dateDue) {
@@ -48,10 +47,10 @@ public class Transaction extends DateManager {
     public void setDateReturned(String dateReturned) {
         this.dateReturned = dateReturned;
     }
-    public int getPrimaryKey() {
+    public String getPrimaryKey() {
         return(primaryKey);
     }
-    public void setPrimaryKey(int primaryKey) {
+    public void setPrimaryKey(String primaryKey) {
         this.primaryKey = primaryKey;
     }
 
