@@ -16,8 +16,17 @@ public class BookDatabase extends Table<Book> {
     }
 
     // Edit an entry in the book array
-    public void setEntry() {
-
+    public void setEntry(Book book, String title, String author, String publisher, String genre,
+    long isbn, int year, int length, boolean availablity, String primaryKey) { 
+        if (title != null) {book.setTitle(title);}
+        if (author != null) {book.setAuthor(author);}
+        if (publisher != null) {book.setPublisher(publisher);}
+        if (genre != null) {book.setGenre(genre);}
+        if (isbn != -1) {book.setIsbn(isbn);}
+        if (year != -1) {book.setYear(year);}
+        if (length != -1) {book.setLength(length);}
+        book.setAvailability(availablity);
+        if (primaryKey != null) {book.setPrimaryKey(primaryKey);}
     }
 
     // Overriden such that the parent class can use the method; returns the primaryKey for a given index
