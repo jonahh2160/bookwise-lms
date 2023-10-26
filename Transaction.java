@@ -1,4 +1,4 @@
-//IG 10/13
+// IG 10/13
 
 public class Transaction extends DateManager {
     Book book;
