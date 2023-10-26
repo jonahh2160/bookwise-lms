@@ -19,7 +19,14 @@ public class TransactionDatabase extends Table<Transaction> {
 
     // This will implement the ability to edit entries
     @Override
-    public void setEntry(){};
+    public void setEntry(Transaction transaction, User user, Book book, String dateBorrowed, String dateDue, String dateReturned, String primaryKey){
+        if (user != null) {transaction.setUser(user);}
+        if (book != null) {transaction.setBook(book);}
+        if (dateBorrowed != null) {transaction.setDateBorrowed(dateBorrowed);}
+        if (dateDue != null) {transaction.setDateDue(dateDue);}
+        if (dateReturned != null) {transaction.setDateReturned(dateReturned);}
+        if (primaryKey != null) {transaction.setPrimaryKey(primaryKey);}
+    }
 
     // This will return the primary key at a given index in the database (mainly so that the parent class can access the primary key)
     @Override

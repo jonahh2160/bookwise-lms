@@ -31,7 +31,7 @@ public abstract class Table <T>{
     }
 
     // Abstract method for editing existing entries
-    abstract void setEntry();
+    abstract void setEntry(Transaction transaction, User user, Book book, String dateBorrowed, String dateDue, String dateReturned, String primaryKey);
 
     // Permanently removes the entry of a specified ID
     public void removeEntry(String primaryKey) {
