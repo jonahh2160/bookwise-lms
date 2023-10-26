@@ -20,7 +20,7 @@ public class User {
     }
 
     // A method which separates the full name entered from User into first and last name
-    private void separateFullName(String fullName) {
+    public void separateFullName(String fullName) {
         boolean spaceFound = false; 
         char c = ' ';
         
@@ -67,11 +67,11 @@ public class User {
         return accountBalance;
     }
 
-    public boolean getUserStatus() {
+    public boolean getActive() {
         return accountActive;
     }
 
-    public int getUserPerms() {
+    public int getPerms() {
         return perms;
     }
 
@@ -108,11 +108,11 @@ public class User {
         this.accountBalance = accountBalance;
     }
 
-    public void setUserStatus(boolean accountActive) {
+    public void setActive(boolean accountActive) {
         this.accountActive = accountActive;
     }
 
-    public void setUserPerms(int perms) {
+    public void setPerms(int perms) {
         this.perms = perms;
     }
 
