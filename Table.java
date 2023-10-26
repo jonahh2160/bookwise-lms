@@ -30,8 +30,8 @@ public abstract class Table <T>{
         return database.get(index);
     }
 
-    // Abstract method for editing existing entries
-    abstract void setEntry(Transaction transaction, User user, Book book, String dateBorrowed, String dateDue, String dateReturned, String primaryKey);
+    // NOTE: There is a setEntry method present in each child class
+    // Each child has different parameters
 
     // Permanently removes the entry of a specified ID
     public void removeEntry(String primaryKey) {
