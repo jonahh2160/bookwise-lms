@@ -1,6 +1,5 @@
-// JH 10/26
+// JH, IG 10/26
 // Attempt at passing something of type Object (using generics)
-// TODO: Solve primaryKey errors
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -31,7 +30,7 @@ public abstract class Table <T>{
         return database.get(index);
     }
 
-    // TODO: Add a method to edit existing entries
+    // Abstract method for editing existing entries
     abstract void setEntry();
 
     // Permanently removes the entry of a specified ID
@@ -45,8 +44,10 @@ public abstract class Table <T>{
         }
     }
 
+    // Fetches the primaryKey of a certain index
     abstract String getID(int index);
 
+    // Creates a unique 7 digit primaryKey
     public String generateID() {
         boolean success = false;
         String ID = "";
