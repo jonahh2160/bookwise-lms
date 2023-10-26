@@ -15,6 +15,8 @@ public static void main(String args[]) {
     bookDatabase.addEntry(myOtherBook);
     transactionDatabase.addEntry(myTransaction);
 
+    bookDatabase.removeEntry(bookDatabase.getEntry(1).getPrimaryKey());
+
     bookDatabase.display();
     transactionDatabase.display();
 }

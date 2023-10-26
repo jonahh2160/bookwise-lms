@@ -9,7 +9,7 @@ public class TransactionDatabase extends Table<Transaction> {
         database = new ArrayList<Transaction>();
     }
 
-    //method for adding a transaction to the database
+    // This will add an entry to the database using the parent method, and then give the new entry a unique ID
     @Override
     public void addEntry(Transaction entry) {
         super.addEntry(entry);
@@ -17,15 +17,17 @@ public class TransactionDatabase extends Table<Transaction> {
         ///update external database here
     }
 
+    // This will implement the ability to edit entries
     @Override
     public void setEntry(){};
 
+    // This will return the primary key at a given index in the database (mainly so that the parent class can access the primary key)
     @Override
     public String getID(int index) {
         return(database.get(index).primaryKey);
     }
 
-    //this method is for testing purposes
+    // This displays each primary key (for testing purposes)
     public void display() {
         for (int i=0;i<database.size();i++) {
             System.out.println("Transaction ID " + i + ": " + database.get(i).primaryKey);
