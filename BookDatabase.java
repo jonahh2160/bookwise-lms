@@ -1,14 +1,14 @@
-public class BookDatabase extends Database {
+// JH 10/26
+// TODO: Finish this class
+
+public class BookDatabase extends Table {
 
     public BookDatabase(Object Book) {
 
     }
 
-    public void editEntry() {
-
+    public void setEntry() {
     }
-
-    public void removeEntry() {
 
     }
 }

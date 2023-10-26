@@ -2,7 +2,6 @@
 
 public class Book {
     // Declaration of variables (attributes)
-    // The ISBN of the book will double as its primary key
     private String title, author, publisher, genre;
     private long isbn;
     private int year, length, primaryKey;
