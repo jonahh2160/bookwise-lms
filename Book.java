@@ -6,7 +6,7 @@ public class Book {
     private String title, author, publisher, genre;
     private long isbn;
     private int year, length;
-    private boolean availablity = true;
+    private boolean availablity;
 
     // Constructor
     public Book(String title, String author, String publisher, 
@@ -19,6 +19,7 @@ public class Book {
         this.isbn = isbn;
         this.year = year;
         this.length = length;
+        availablity = true;
     }
 
     // Getters
