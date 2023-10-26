@@ -7,9 +7,8 @@ import java.util.Random;
 // Instantiation of generic Type parameter
 // Keep in mind format: Table<Type> name = new Table<>(); 
 public abstract class Table <T>{
-    // TODO: Add an ArrayList of type T here to avoid passing one to each method(?)
-    Random rand = new Random();
     ArrayList<T> database;
+    Random rand = new Random();
     
     // Adds the passed entry to the database/table that which it belongs
     public void addEntry(T entry) {

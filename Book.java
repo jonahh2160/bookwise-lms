@@ -50,7 +50,7 @@ public class Book {
         return length;
     }
 
-    public int getPrimaryKey() {
+    public String getPrimaryKey() {
         return primaryKey;
     }
 
