@@ -8,6 +8,12 @@ public class BookDatabase extends Table<Book> {
         this.database = new ArrayList<Book>();
     }
 
+    @Override
+    public void addEntry(Book entry) {
+        super.addEntry(entry);
+        entry.setPrimaryKey(generateID());
+    }
+
     public void setEntry() {
 
     }

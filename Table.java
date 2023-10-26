@@ -13,7 +13,6 @@ public abstract class Table <T>{
     
     // Adds the passed entry to the database/table that which it belongs
     public void addEntry(T entry) {
-        entry.setPrimaryKey(generateID());
         database.add(entry);
         // Update exteral database here
     }
