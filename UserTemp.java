@@ -36,7 +36,7 @@ public class UserTemp {
         }
     }
  
-    //Getters
+    // Getters
     public String getFullName() {
         return fullName;
     }
@@ -77,7 +77,7 @@ public class UserTemp {
         return primaryKey;
     }
 
-    //Setters
+    // Setters
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
