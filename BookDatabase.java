@@ -1,5 +1,5 @@
 // JH 10/26
-// TODO: Finish this class
+// TODO: Ensure all methods work and are in the right order
 import java.util.ArrayList;
 
 public class BookDatabase extends Table<Book> {

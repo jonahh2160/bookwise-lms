@@ -25,7 +25,7 @@ public abstract class Table <T>{
         return null;
     }
 
-    // Overloaded method to get an entry with another query
+    // Overloaded method to get an entry with the array's index
     public T getEntry(int index) {
         return database.get(index);
     }
@@ -42,6 +42,11 @@ public abstract class Table <T>{
                 break;
             }
         }
+    }
+
+    // Overloaded method to remove an entry with the array's index
+    public void removeEntry(int index) {
+        database.remove(index);
     }
 
     // Fetches the primaryKey of a certain index
