@@ -9,17 +9,19 @@ import java.util.Random;
 public abstract class Table <T>{
     // TODO: Add an ArrayList of type T here to avoid passing one to each method(?)
     Random rand = new Random();
+    ArrayList<T> database;
     
     // Adds the passed entry to the database/table that which it belongs
-    public void addEntry(ArrayList<T> database, T entry) {
+    public void addEntry(T entry) {
+        entry.setPrimaryKey(generateID());
         database.add(entry);
         // Update exteral database here
     }
 
     // Returns the entry specified by passing its ID
-    public T getEntry(ArrayList<T> database, String primaryKey) {
+    public T getEntry(String primaryKey) {
         for (int i = 0; i < database.size(); i++) {
-            if (database.get(i).primaryKey == primaryKey) {
+            if (getID(i) == primaryKey) {
                 return (database.get(i));
             }
         }
@@ -27,7 +29,7 @@ public abstract class Table <T>{
     }
 
     // Overloaded method to get an entry with another query
-    public T getEntry(ArrayList<T> database, int index) {
+    public T getEntry(int index) {
         return database.get(index);
     }
 
@@ -35,9 +37,9 @@ public abstract class Table <T>{
     abstract void setEntry();
 
     // Permanently removes the entry of a specified ID
-    public void removeEntry(ArrayList<T> database, String primaryKey) {
+    public void removeEntry(String primaryKey) {
         for (int i = 0; i < database.size(); i++) {
-            if (database.get(i).primaryKey == primaryKey) {
+            if (getID(i) == primaryKey) {
                 database.remove(i);
                 // Update external database here
                 break;
@@ -45,13 +47,15 @@ public abstract class Table <T>{
         }
     }
 
-    public String generateID(ArrayList<T> database) {
+    abstract String getID(int index);
+
+    public String generateID() {
         boolean success = false;
         String ID = "";
 
         // Loop until a successful ID has been created
         while (success == false) {
-            ID = ("" + rand.nextInt(999999999));
+            ID = ("" + rand.nextInt(9999999));
 
             // Make sure the ID is 7 digits long
             while (ID.length() <7) {
@@ -60,7 +64,7 @@ public abstract class Table <T>{
 
             // Check the database to ensure a unique ID
             for (int i = 0; i < database.size(); i++) {
-                if (database.get(i).getPrimaryKey() == ID) {
+                if (getID(i) == ID) {
                     continue;
                 }
             }

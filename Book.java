@@ -2,9 +2,10 @@
 
 public class Book {
     // Declaration of variables (attributes)
+    public String primaryKey;
     private String title, author, publisher, genre;
     private long isbn;
-    private int year, length, primaryKey;
+    private int year, length;
     private boolean availablity = true;
 
     // Constructor
@@ -86,7 +87,7 @@ public class Book {
         this.length = length;
     }
 
-    public void setPrimaryKey(int primaryKey) {
+    public void setPrimaryKey(String primaryKey) {
         this.primaryKey = primaryKey;
     }
 
