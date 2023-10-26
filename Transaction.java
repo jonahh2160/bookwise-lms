@@ -72,7 +72,7 @@ public class Transaction extends DateManager {
         book.setAvailability(true);
         int daysOverdue = getDateDifference(this.dateDue,this.dateReturned);
         if (daysOverdue > 0) {
-            user.SetAccountBalance(user.GetAccountBalance() - (daysOverdue*overdueFee));
+            user.setAccountBalance(user.getAccountBalance() - (daysOverdue*overdueFee));
         }
     }
 
