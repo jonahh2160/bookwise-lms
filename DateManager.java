@@ -1,5 +1,4 @@
-
-
+//IG
 
 public class DateManager {
     //this integer array keeps track of how many days is in each month for calculations later
