@@ -1,9 +1,10 @@
 // IG 10/13
 
 public class Transaction extends DateManager {
-    Book book;
-    User user;
-    String dateBorrowed, dateReturned, dateDue, primaryKey;
+    private Book book;
+    private User user;
+    private String dateBorrowed, dateReturned, dateDue;
+    public String primaryKey;
     double overdueFee = 0.25;
 
     public Transaction(User user, Book book, String dateBorrowed, String dateDue) {
