@@ -32,5 +32,5 @@ public class UserDatabase extends Table<User> {
             System.out.println("User ID " + i + ": " + database.get(i).primaryKey);
         }
     }
-
+    
 }

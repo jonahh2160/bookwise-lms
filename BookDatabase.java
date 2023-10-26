@@ -32,5 +32,5 @@ public class BookDatabase extends Table<Book> {
             System.out.println("Book ID " + i + ": " + database.get(i).primaryKey);
         }
     }
-
+    
 }
