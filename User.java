@@ -4,33 +4,33 @@ import java.util.ArrayList;
 
 public class User {
 
-// Variables to be used for user class //
+// Variables to be used for User class //
 static Scanner scn = new Scanner(System.in);
-ArrayList<user> member = new ArrayList<>();
-private String username = " ", password = " ";
+ArrayList<User> member = new ArrayList<>();
+private String Username = " ", password = " ";
 private String fullName = " ", firstName = " ", lastName = " ";
 private String emailAddress = " ", currentAddress = " ";
 private Double accountBalance = 0.00;
-private int primaryKey;
+public String primaryKey;
 User us; 
 
-// Initial constructor for user object before more details are entered //
+// Initial constructor for User object before more details are entered //
 public User(String fullName){
     this.fullName = fullName;
 }
 
-// Full constructor to collect all additional information from a  user //
-public User(String fullName, String emailAddress, String currentAddress, Double accountBalance, String username, String password) {
+// Full constructor to collect all additional information from a  User //
+public User(String fullName, String emailAddress, String currentAddress, Double accountBalance, String Username, String password) {
     this.fullName = fullName;
     separateFullName();
     this.emailAddress = emailAddress;
     this.currentAddress = currentAddress;
     this.accountBalance = accountBalance;
-    this.username = username;
+    this.Username = Username;
     this.password = password;
 }
 
-// A method which separates the full name entered from user into first and last name //
+// A method which separates the full name entered from User into first and last name //
 private void separateFullName() {
         boolean spaceFound = false; 
         char c = ' ';
@@ -49,7 +49,7 @@ private void separateFullName() {
                                                       }
 }
 
-// Getter and Setter methods for all variables of a user //
+// Getter and Setter methods for all variables of a User //
 public String GetFullName() {
     return fullName;
 }
@@ -75,11 +75,11 @@ public void SetLastName(String newLastName) {
 }
 
 public String GetUsername() {
-    return username;
+    return Username;
 }
 
 public void SetUsername(String newUsername) {
-    username = newUsername;
+    Username = newUsername;
 }
 
 public String GetPassword() {
@@ -114,7 +114,7 @@ public void SetAccountBalance(Double newAccountBalance) {
     accountBalance = newAccountBalance;
 }
 
-// A method for collecting additional information from a user such as their email, password, username and address //
+// A method for collecting additional information from a User such as their email, password, Username and address //
 public void enterDetails(){
     System.out.println("Please enter your first and last name with a space.");
     fullName = scn.nextLine();
@@ -123,13 +123,13 @@ public void enterDetails(){
     emailAddress = scn.nextLine();
     System.out.println("Please enter a password with 10 characters, a capital letter and a number");
     password = scn.nextLine();
-    System.out.println("Please enter a username.");
-    username = scn.nextLine();
+    System.out.println("Please enter a Username.");
+    Username = scn.nextLine();
     System.out.println("Please enter you address.");
     currentAddress = scn.nextLine();
 }
 
-// A method for adding a new member to the user array //
+// A method for adding a new member to the User array //
 public void addMember() {
     String name;
         
@@ -140,8 +140,8 @@ public void addMember() {
     member.add(us);    
 }
 
-// A method for finding the index of a specific member in the user array //
-static int findMember(ArrayList<user> members, String fullName) {
+// A method for finding the index of a specific member in the User array //
+static int findMember(ArrayList<User> members, String fullName) {
         int returnVal = -1;
         
         for (int i =0; i < members.size(); i++ ) {
@@ -152,8 +152,8 @@ static int findMember(ArrayList<user> members, String fullName) {
         return returnVal;
 }
 
-// A method for removing a member in the user array //
-public void removeMember(ArrayList<user> members){
+// A method for removing a member in the User array //
+public void removeMember(ArrayList<User> members){
     String memberToDelete = " ";
     String answer = " ";
     int i;
@@ -178,8 +178,8 @@ public void removeMember(ArrayList<user> members){
         }
 }
 
-// A method for editing personal details on a specific member in the user array by asking which variable you would like to change //
-public void editMember(ArrayList<user> members) {
+// A method for editing personal details on a specific member in the User array by asking which variable you would like to change //
+public void editMember(ArrayList<User> members) {
     String memberToEdit = " ";
     String answer = " ";
     int i;
@@ -188,7 +188,7 @@ public void editMember(ArrayList<user> members) {
     i = findMember(members, memberToEdit);
     
     if (i != -1) {
-            System.out.println("Would you like to edit the user's name, email address, password, username, or current address?");
+            System.out.println("Would you like to edit the User's name, email address, password, Username, or current address?");
             answer = scn.nextLine();
           if ( answer.equals("name") ){
             System.out.println("What would you like to change the first, last or full name?");
@@ -219,8 +219,8 @@ public void editMember(ArrayList<user> members) {
                newPassword = scn.nextLine();
                members.get(i).SetPassword(newPassword);
            }
-          else if( answer.equals("username")) {
-               System.out.println("What would you like to change the username to?");
+          else if( answer.equals("Username")) {
+               System.out.println("What would you like to change the Username to?");
                newUsername = scn.nextLine();
                members.get(i).SetUsername(newUsername);
            }

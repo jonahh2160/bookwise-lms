@@ -23,6 +23,7 @@ public class BookDatabase extends Table<Book> {
         return(database.get(index).primaryKey);
     }
 
+    //this method is for testing purposes
     public void display() {
         for (int i=0;i<database.size();i++) {
             System.out.println("Book ID " + i + ": " + database.get(i).primaryKey);
