@@ -18,7 +18,6 @@ public class TransactionDatabase extends Table<Transaction> {
     }
 
     // This will implement the ability to edit entries
-    @Override
     public void setEntry(Transaction transaction, User user, Book book, String dateBorrowed, String dateDue, String dateReturned, String primaryKey){
         if (user != null) {transaction.setUser(user);}
         if (book != null) {transaction.setBook(book);}
