@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TransactionDatabase extends Table<Transaction> {
 
-    //empty constructor
+    // The constructor will intialize the database arraylist
     public TransactionDatabase() {
         database = new ArrayList<Transaction>();
     }
