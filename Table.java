@@ -52,6 +52,11 @@ public abstract class Table <T>{
     // Fetches the primaryKey of a certain index
     abstract String getID(int index);
 
+    // Returns the size of the database array
+    public int getSize() {
+        return(database.size());
+    }
+
     // Creates a unique 7 digit primaryKey
     public String generateID() {
         boolean success = false;
