@@ -5,6 +5,7 @@ public class TestFile {
 
 public static void main(String args[]) {
 
+/*
     BookDatabase bookDatabase = new BookDatabase();
     UserDatabase userDatabase = new UserDatabase();
     TransactionDatabase transactionDatabase = new TransactionDatabase();
@@ -25,6 +26,22 @@ public static void main(String args[]) {
     for (int i = 0; i < myList.size(); i++) {
         System.out.println(myList.get(i).getTitle());
     }
+*/
+
+    UserDatabase userDatabase = new UserDatabase();
+
+    User myUser = new User("Isaac Gunderson", "cha0sdrive", "qwerty", 2);
+    userDatabase.addEntry(myUser);
+
+    userDatabase.display();
+
+    UserLogin userLogin = new UserLogin(userDatabase);
+
+    System.out.println("SHOULD PRINT -1:" + userLogin.login("ssbtempest", "Blood is fuel"));
+    System.out.println();
+    System.out.println("SHOULD PRINT 0:" + userLogin.login("cha0sdrive", "Blood is fuel"));
+    System.out.println();
+    System.out.println("SHOULD PRINT 1:" + userLogin.login("cha0sdrive", "qwerty"));
 
 }
 
