@@ -16,7 +16,7 @@ public class Searcher {
         this.transactionDatabase = transactionDatabase;
     }
 
-    //------------------------------------------------ BOOK SEARCH METHODS ------------------------------------------------------
+    // BOOK SEARCH METHODS
 
     // Check each book to see if the information matches the search term, return an ArrayList of the searched books
     public ArrayList<Book> searchBook(int category, String term) {
@@ -53,7 +53,7 @@ public class Searcher {
         return(termParsed);
     }
 
-    // --------------------------------------------- USER SEARCH METHODS -----------------------------------------------------
+    // USER SEARCH METHODS
 
     // Check each user to see if the information matches the search term, return an ArrayList of the searched users
     public ArrayList<User> searchUser(int category, String term) {
@@ -88,8 +88,7 @@ public class Searcher {
         return(termParsed);
     }
 
-    // --------------------------------------------- TRANSACTION SEARCH METHODS -----------------------------------------------------
-
+    // TRANSACTION SEARCH METHODS
     // Check each transaction to see if the information matches the search term, return an ArrayList of the searched transactions
     public ArrayList<Transaction> searchTransaction(int category, String term) {
         // Make sure transaction list is empty before starting
