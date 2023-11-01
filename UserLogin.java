@@ -1,6 +1,5 @@
 // JH 11/1
-// Temporary(?) class that handles user login. Will use simple terminal input and response for now
-// Accesses user database and iterates through it, comparing Strings
+// Small class that handles user login
 // TODO: In the main method, be able to set a loggedIn boolean to true
 
 public class UserLogin {
@@ -11,24 +10,28 @@ public class UserLogin {
         this.userDatabase = userDatabase;
     }
 
+    // Single method to verify logins of users
     public int login(String username, String password) {
 
+        // Iterates through array of users
         for (int i = 0; i < userDatabase.getSize(); i++) {
 
+            // Checks each user to the inputted username
             if (username.equals(userDatabase.getEntry(i).getUsername())) {
-                // Continues if good username
+                // Good username
                 if (!password.equals(userDatabase.getEntry(i).getPassword())) {
-                    // Incorrect password
+                    // Bad password; password does not match user on file
                     return 0;
                 }
                 else {
-                    // Correct password
+                    // Good password; password matches user on file
                     return 1;
                 }
             }
 
         }
 
+        // Bad username; username could not be found
         return -1;
 
     }

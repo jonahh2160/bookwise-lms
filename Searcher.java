@@ -1,4 +1,4 @@
-//IG 10/31/2023
+// IG 10/31
 import java.util.ArrayList;
 
 public class Searcher {

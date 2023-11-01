@@ -5,12 +5,12 @@ public class TestFile {
 
 public static void main(String args[]) {
 
-/*
     BookDatabase bookDatabase = new BookDatabase();
     UserDatabase userDatabase = new UserDatabase();
     TransactionDatabase transactionDatabase = new TransactionDatabase();
     Searcher searcher = new Searcher(bookDatabase,userDatabase,transactionDatabase);
 
+    /*
     Book myBook = new Book("MyBook","Isaac","Jonah","Sci-Fi",87688575,2004,350);
     Book myOtherBook = new Book("My Other Book","Jonah Hamption","Michael Toon","Fantasy",88888,2021,58);
     Book myOtherOtherBook = new Book("The Princess Bride","Johnny Appleseed","Fruitcup","Fantasy",88888,2001,158);
@@ -26,9 +26,7 @@ public static void main(String args[]) {
     for (int i = 0; i < myList.size(); i++) {
         System.out.println(myList.get(i).getTitle());
     }
-*/
-
-    UserDatabase userDatabase = new UserDatabase();
+    */
 
     User myUser = new User("Isaac Gunderson", "cha0sdrive", "qwerty", 2);
     userDatabase.addEntry(myUser);
@@ -37,11 +35,15 @@ public static void main(String args[]) {
 
     UserLogin userLogin = new UserLogin(userDatabase);
 
-    System.out.println("SHOULD PRINT -1:" + userLogin.login("ssbtempest", "Blood is fuel"));
+    System.out.println("SHOULD PRINT -1: " + userLogin.login("ssbtempest", "Blood is fuel"));
     System.out.println();
-    System.out.println("SHOULD PRINT 0:" + userLogin.login("cha0sdrive", "Blood is fuel"));
+    System.out.println("SHOULD PRINT 0: " + userLogin.login("cha0sdrive", "Blood is fuel"));
     System.out.println();
-    System.out.println("SHOULD PRINT 1:" + userLogin.login("cha0sdrive", "qwerty"));
+    System.out.println("SHOULD PRINT 1: " + userLogin.login("cha0sdrive", "qwerty"));
+    System.out.println();
+    System.out.println("MORE TEST CASES: " + userLogin.login("", ""));
+    System.out.println();
+    
 
 }
 
