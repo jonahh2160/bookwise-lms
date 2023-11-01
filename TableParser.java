@@ -1,7 +1,7 @@
 // JH 11/1
 // Temporary(?) class that handles JSON parsing. Takes the JSON and inputs it into our database
 
-import org.json.*;
+// import here
 
 public class TableParser {
     BookDatabase bookDatabase;
