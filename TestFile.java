@@ -1,9 +1,12 @@
 // IG
+import java.io.IOException;
 import java.util.ArrayList;
+
+import org.json.simple.parser.ParseException;
 
 public class TestFile {
 
-public static void main(String args[]) {
+public static void main(String args[]) throws IOException, ParseException {
 
     BookDatabase bookDatabase = new BookDatabase();
     UserDatabase userDatabase = new UserDatabase();
@@ -44,6 +47,9 @@ public static void main(String args[]) {
     System.out.println("MORE TEST CASES: " + userLogin.login("", ""));
     System.out.println();
     
+    JsonReader jsonReader = new JsonReader(bookDatabase);
+
+    jsonReader.readJson();
 
 }
 
