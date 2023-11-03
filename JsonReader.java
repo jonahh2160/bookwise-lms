@@ -9,6 +9,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject; 
 import org.json.simple.parser.*; 
 
+import java.io.IOException;
+
 // This is a lot of chaos right now
 // Note: may need to turn 325BroSquad into a Maven project for json-simple-1.1.jar to work
 public class JsonReader {
@@ -16,9 +18,13 @@ public class JsonReader {
     BookDatabase bookDatabase;
 
     // parsing file "SampleJSON_BookResponse.json" 
-    Object obj = new JSONParser().parse(new FileReader("SampleJSON_BookResponse.json"));   
+    try {
+    Object obj = new JSONParser().parse(new FileReader("SampleJSON_BookResponse.json")); 
+    } catch (IOException e) {
+        System.out.println("Big Bad Eren :(");
+    }  
 
-    // typecasting obj to JSONObject 
+    // typecasting obj to JSONObject
     JSONObject jo = (JSONObject) obj; 
     
     // Constructor that passes a bookDatabase to here

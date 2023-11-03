@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "Referenced Libraries\\json-simple-1.1.jar"
+    ]
+}
