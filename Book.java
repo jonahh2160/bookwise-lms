@@ -9,9 +9,18 @@ public class Book {
     private boolean availablity;
 
     // Constructor
+    public Book(String title, String author, String genre, long isbn, int year) {
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.isbn = isbn;
+        this.year = year;
+        availablity = true;
+    }
+
+    // Full constructor
     public Book(String title, String author, String publisher, 
     String genre, long isbn, int year, int length) {
-        // TODO: make this constructor look less like vomit
         this.title = title;
         this.author = author;
         this.publisher = publisher;
