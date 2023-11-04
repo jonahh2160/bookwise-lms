@@ -44,7 +44,14 @@ public static void main(String args[]) {
     System.out.println("MORE TEST CASES: " + userLogin.login("", ""));
     System.out.println();
     
+    // testing the sorting
+    System.out.println("Sorted List: ");
+    Sorter sorter = new Sorter();
+    ArrayList<Book> sortedList = sorter.titleSorter(bookDatabase.getArray());
 
+    for (int i = 0;i < sortedList.size();i += 1) {
+        System.out.println(sortedList.get(i).getTitle());
+    }
 }
 
 }

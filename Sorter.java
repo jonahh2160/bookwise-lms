@@ -6,19 +6,19 @@ import java.util.Comparator;
 public class Sorter{
 
 //Book comparator objects using lambda expressions to compare properties of the object
-Comparator<Book> titleComparator = (t1, t2) -> t1.getTitle().compareTo(t2.getTitle());
-Comparator<Book> authorComparator = (a1, a2) -> a1.getAuthor().compareTo(a2.getAuthor());
-Comparator<Book> genreComparator = (g1, g2) -> g1.getGenre().compareTo(g2.getGenre());
-Comparator<Book> primaryKeyBookComparator = (k1, k2) -> k1.getPrimaryKey().compareTo(k2.getPrimaryKey());
+Comparator<Book> titleComparator = (t1, t2) -> t1.getTitle().toLowerCase().compareTo(t2.getTitle().toLowerCase());
+Comparator<Book> authorComparator = (a1, a2) -> a1.getAuthor().toLowerCase().compareTo(a2.getAuthor().toLowerCase());
+Comparator<Book> genreComparator = (g1, g2) -> g1.getGenre().toLowerCase().compareTo(g2.getGenre().toLowerCase());
+Comparator<Book> primaryKeyBookComparator = (k1, k2) -> k1.getPrimaryKey().toLowerCase().compareTo(k2.getPrimaryKey().toLowerCase());
 
 //User comparator objects using lambda expressions to compare properties of the object
-Comparator<User> fullNameComparator =(f1, f2) -> f1.getFullName().compareTo(f2.getFullName());
-Comparator<User> usernameComparator = (n1, n2) -> n1.getUsername().compareTo(n2.getUsername());
-Comparator<User> primaryKeyUserComparator = (p1, p2) -> p1.getPrimaryKey().compareTo(p2.getPrimaryKey());
+Comparator<User> fullNameComparator =(f1, f2) -> f1.getFullName().toLowerCase().compareTo(f2.getFullName().toLowerCase());
+Comparator<User> usernameComparator = (n1, n2) -> n1.getUsername().toLowerCase().compareTo(n2.getUsername().toLowerCase());
+Comparator<User> primaryKeyUserComparator = (p1, p2) -> p1.getPrimaryKey().toLowerCase().compareTo(p2.getPrimaryKey().toLowerCase());
 
 //Transaction comparator objects using lambda expression to compare properties of the object
-Comparator<Transaction> dateDueComparator = (d1, d2) -> d1.getDateDue().compareTo(d2.getDateDue());
-Comparator<Transaction> primaryKeyTransactionComparator = (v1, v2) -> v1.getPrimaryKey().compareTo(v2.getPrimaryKey());
+Comparator<Transaction> dateDueComparator = (d1, d2) -> d1.getDateDue().toLowerCase().compareTo(d2.getDateDue().toLowerCase());
+Comparator<Transaction> primaryKeyTransactionComparator = (v1, v2) -> v1.getPrimaryKey().toLowerCase().compareTo(v2.getPrimaryKey().toLowerCase());
 
 //Constructor
 public Sorter() {}
