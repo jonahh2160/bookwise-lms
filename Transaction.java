@@ -1,12 +1,15 @@
 // IG 10/13
+// Class for the Transaction object that contains its attributes
 
 public class Transaction extends DateManager {
+    // Declaration of variables
     private Book book;
     private User user;
     private String dateBorrowed, dateReturned, dateDue;
     public String primaryKey;
     double overdueFee = 0.25;
 
+    // Full constructor
     public Transaction(User user, Book book, String dateBorrowed, String dateDue) {
         this.user = user;
         this.book = book;
@@ -17,63 +20,72 @@ public class Transaction extends DateManager {
         book.setAvailability(false);
     }
 
-    //-------------------------------------------Basic getter/setter methods------------------------------------------------
-    public User getUser() {
-        return(user);
-    }
-    public void setUser(User user) {
-        this.user = user;
-    }
-    public Book getBook() {
-        return(book);
-    }
-    public void setBook(Book book) {
-        this.book = book;
-    }
-    public String getDateBorrowed() {
-        return(dateBorrowed);
-    }
-    public void setDateBorrowed(String dateBorrowed) {
-        this.dateBorrowed = dateBorrowed;
-    }
-    public String getDateDue() {
-        return(dateDue);
-    }
-    public void setDateDue(String dateDue) {
-        this.dateDue = dateDue;
-    }
-    public String getDateReturned() {
-        return(dateReturned);
-    }
-    public void setDateReturned(String dateReturned) {
-        this.dateReturned = dateReturned;
-    }
-    public String getPrimaryKey() {
-        return(primaryKey);
-    }
-    public void setPrimaryKey(String primaryKey) {
-        this.primaryKey = primaryKey;
-    }
-
-    //---------------------------------------------------------end of basic getter/setter methods--------------------------------------
-
-    //this method returns true or false whether the transaction is complete or not (book has been returned)
+    // Returns true if the book has been returned (transaction complete), else false
     public boolean getStatus() {
         if (dateReturned != "") {
-            return(true);
+            return (true);
         } else {
-            return(false);
+            return (false);
         }
     }
 
-    //this method officially completes the transaction, sets the dateReturned, sets the book's availability to true, and calculates overdue fees
+    // Officially completes the transaction by updating vars and calculating fees
     public void completeTransaction(String dateReturned) {
         setDateReturned(dateReturned);
         book.setAvailability(true);
-        int daysOverdue = getDateDifference(this.dateDue,this.dateReturned);
+        int daysOverdue = getDateDifference(this.dateDue, this.dateReturned);
         if (daysOverdue > 0) {
-            user.setAccountBalance(user.getAccountBalance() - (daysOverdue*overdueFee));
+            user.setAccountBalance(user.getAccountBalance() - (daysOverdue * overdueFee));
         }
     }
 
+    // Getters
+    public User getUser() {
+        return (user);
+    }
+
+    public Book getBook() {
+        return (book);
+    }
+
+    public String getDateBorrowed() {
+        return (dateBorrowed);
+    }
+
+    public String getDateDue() {
+        return (dateDue);
+    }
+
+    public String getDateReturned() {
+        return (dateReturned);
+    }
+
+    public String getPrimaryKey() {
+        return (primaryKey);
+    }
+
+    // Setters
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public void setDateBorrowed(String dateBorrowed) {
+        this.dateBorrowed = dateBorrowed;
+    }
+
+    public void setDateDue(String dateDue) {
+        this.dateDue = dateDue;
+    }
+
+    public void setDateReturned(String dateReturned) {
+        this.dateReturned = dateReturned;
+    }
+
+    public void setPrimaryKey(String primaryKey) {
+        this.primaryKey = primaryKey;
+    }
 }
