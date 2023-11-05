@@ -1,13 +1,12 @@
 // IG 10/12
-// 
+// Handles calculation and storage for day, month, and year
 
 public class DateManager {
     // This integer array keeps track of how many days is in each month for
     // calculations later
     int[] daysInMonth = { -1, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-    // This method will take a date string input ("month/day/year") and output the
-    // integer value for month
+    // Input date string of format ("month/day/year") returning int value for month
     public int GetMonth(String dateString) {
         int month = -1;
         String monthString = "";
@@ -22,8 +21,7 @@ public class DateManager {
         return (month);
     }
 
-    // This method will take a date string ("month/day/year") and return the integer
-    // value for the day
+    // Input date string of format ("month/day/year") returning int value for day
     public int GetDay(String dateString) {
         int day = -1;
         String dayString = "";
@@ -45,8 +43,7 @@ public class DateManager {
         return (day);
     }
 
-    // This method will take a date string ("month/day/year") and return the integer
-    // value for the year
+    // Input date string of format ("month/day/year") returning int value for year
     public int GetYear(String dateString) {
         int year = -1;
         String yearString = "";
@@ -68,8 +65,7 @@ public class DateManager {
         return (year);
     }
 
-    // This method will take a date string ("month/day/year") and return one integer
-    // displaying the total amount of days (used for calculating due dates etc.)
+    // Input dateString and display total amount of days (e.g. to calc due dates)
     private int getDateValue(String dateString) {
         int date = 0;
         int day = GetDay(dateString);
@@ -87,8 +83,7 @@ public class DateManager {
         return (date);
     }
 
-    // This method takes two date strings and will output an integer of the amount
-    // of days between the first and second date
+    // Pass two date strings to output an int equal to no. of days between them
     public int getDateDifference(String date1, String date2) {
         int dateValue1 = getDateValue(date1);
         int dateValue2 = getDateValue(date2);

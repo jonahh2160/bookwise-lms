@@ -1,8 +1,10 @@
 // IG 10/31
+// Handles object searches, returning a new array with the requested items
 
 import java.util.ArrayList;
 
 public class Searcher {
+    // Declaration of variables (lists/objects)
     BookDatabase bookDatabase;
     UserDatabase userDatabase;
     TransactionDatabase transactionDatabase;
@@ -109,6 +111,7 @@ public class Searcher {
     }
 
     // TRANSACTION SEARCH METHODS
+
     // Check each transaction to see if the information matches the search term,
     // return an ArrayList of the searched transactions
     public ArrayList<Transaction> searchTransaction(int category, String term) {
@@ -131,6 +134,7 @@ public class Searcher {
         // 0=UserUsername;1=BookTitle;2=DateDue;3=PrimaryKey
         String strCompare = "";
         // Get different term based on what category is given
+        // TODO: Try a switch statement here instead to optimize
         if (category == 0) {
             strCompare = transactionDatabase.getEntry(entry).getUser().getUsername().toLowerCase();
         }
@@ -152,5 +156,4 @@ public class Searcher {
         }
         return (termParsed);
     }
-
 }

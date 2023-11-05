@@ -1,5 +1,6 @@
-
 // IG
+// Test bench to test components as they are made
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -31,6 +32,7 @@ public class TestFile {
             System.out.println(myList.get(i).getTitle());
         }
 
+        // Testing login
         System.out.println("TESTING USER LOGIN -=-=-=-=-=-=-=-=-");
 
         User myUser = new User("Isaac Gunderson", "cha0sdrive", "qwerty", 2);
@@ -49,7 +51,7 @@ public class TestFile {
         System.out.println("MORE TEST CASES: " + userLogin.login("", ""));
         System.out.println();
 
-        // testing the sorting
+        // Testing sorting
         System.out.println("Sorted List: ");
         Sorter sorter = new Sorter();
         ArrayList<Book> sortedList = sorter.titleSorter(bookDatabase.getArray());
@@ -58,5 +60,4 @@ public class TestFile {
             System.out.println(sortedList.get(i).getTitle());
         }
     }
-
 }

@@ -64,5 +64,4 @@ public class JsonReader {
             System.out.println("Big Bad Eren :(");
         }
     }
-
 }

@@ -52,14 +52,14 @@ public abstract class Table<T> {
     // Fetches the primaryKey of a certain index
     abstract String getID(int index);
 
+    // Returns the array of the database
+    public ArrayList<T> getArray() {
+        return (database);
+    }
+
     // Returns the size of the database array
     public int getSize() {
         return (database.size());
-    }
-
-    // Returns the array of the database
-    public ArrayList<T> getArray() {
-        return(database);
     }
 
     // Creates a unique 7 digit primaryKey
