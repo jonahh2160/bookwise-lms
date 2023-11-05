@@ -57,6 +57,11 @@ public abstract class Table<T> {
         return (database.size());
     }
 
+    // Returns the array of the database
+    public ArrayList<T> getArray() {
+        return(database);
+    }
+
     // Creates a unique 7 digit primaryKey
     public String generateID() {
         boolean success = false;
