@@ -52,6 +52,10 @@ public static void main(String args[]) {
     for (int i = 0;i < sortedList.size();i += 1) {
         System.out.println(sortedList.get(i).getTitle());
     }
+
+    TestGui testGui = new TestGui();
+    testGui.MainPage();
+
 }
 
 }
