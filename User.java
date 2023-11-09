@@ -1,14 +1,16 @@
 // MT 10/15
+// Class for the User object that contains its attributes
 
 public class User {
+    // Declaration of variables
     public String primaryKey;
     private String fullName, firstName, lastName, username, password, emailAddress;
     private int perms;
     private double accountBalance;
     private boolean accountActive;
 
-    public User (String fullName, String username, String password, int perms) {
-        // TODO: Consider making this constructor less like vomit
+    // Full constructor
+    public User(String fullName, String username, String password, int perms) {
         this.fullName = fullName;
         this.username = username;
         this.password = password;
@@ -19,16 +21,16 @@ public class User {
         separateFullName(fullName);
     }
 
-    // A method which separates the full name entered from User into first and last name
+    // Separates the full name entered from User into first and last name
     public void separateFullName(String fullName) {
-        boolean spaceFound = false; 
+        boolean spaceFound = false;
         char c = ' ';
-        
+
         for (int i = 0; i < fullName.length(); i++) {
             c = fullName.charAt(i);
             if (spaceFound == false) {
                 if (c == ' ') {
-                    spaceFound = true;      
+                    spaceFound = true;
                 } else {
                     firstName += c;
                 }
@@ -37,7 +39,7 @@ public class User {
             }
         }
     }
- 
+
     // Getters
     public String getFullName() {
         return fullName;
@@ -118,5 +120,5 @@ public class User {
 
     public void setPrimaryKey(String primaryKey) {
         this.primaryKey = primaryKey;
-    } 
+    }
 }

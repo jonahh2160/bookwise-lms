@@ -1,4 +1,5 @@
 // JH 10/15
+// Class for the Book object that contains its attributes
 
 public class Book {
     // Declaration of variables (attributes)
@@ -19,8 +20,8 @@ public class Book {
     }
 
     // Full constructor
-    public Book(String title, String author, String publisher, 
-    String genre, long isbn, int year, int length) {
+    public Book(String title, String author, String publisher,
+            String genre, long isbn, int year, int length) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;

@@ -1,14 +1,14 @@
 // JH, IG 10/26
-// Attempt at passing something of type Object (using generics)
+// Class that provides methods for Database classes using generics
+
 import java.util.ArrayList;
 import java.util.Random;
 
-// Instantiation of generic Type parameter
-// Keep in mind format: Table<Type> name = new Table<>(); 
-public abstract class Table <T>{
+// Instantiation of generic Type parameter here
+public abstract class Table<T> {
     ArrayList<T> database;
     Random rand = new Random();
-    
+
     // Adds the passed entry to the database/table that which it belongs
     public void addEntry(T entry) {
         database.add(entry);
@@ -52,14 +52,14 @@ public abstract class Table <T>{
     // Fetches the primaryKey of a certain index
     abstract String getID(int index);
 
-    // Returns the size of the database array
-    public int getSize() {
-        return(database.size());
-    }
-
     // Returns the array of the database
     public ArrayList<T> getArray() {
-        return(database);
+        return (database);
+    }
+
+    // Returns the size of the database array
+    public int getSize() {
+        return (database.size());
     }
 
     // Creates a unique 7 digit primaryKey
@@ -72,7 +72,7 @@ public abstract class Table <T>{
             ID = ("" + rand.nextInt(9999999));
 
             // Make sure the ID is 7 digits long
-            while (ID.length() <7) {
+            while (ID.length() < 7) {
                 ID = "0" + ID;
             }
 
@@ -86,5 +86,4 @@ public abstract class Table <T>{
         }
         return ID;
     }
-
 }

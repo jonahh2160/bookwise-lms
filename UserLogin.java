@@ -1,7 +1,7 @@
 // JH 11/1
-// Small class that handles user login
-// TODO: In the main method, be able to set a loggedIn boolean to true
+// Small class that handles user logins
 
+// TODO: In the main method, be able to set a loggedIn boolean to true
 public class UserLogin {
     UserDatabase userDatabase;
 
@@ -22,18 +22,14 @@ public class UserLogin {
                 if (!password.equals(userDatabase.getEntry(i).getPassword())) {
                     // Bad password; password does not match user on file
                     return 0;
-                }
-                else {
+                } else {
                     // Good password; password matches user on file
                     return 1;
                 }
             }
-
         }
 
         // Bad username; username could not be found
         return -1;
-
     }
-  
 }
