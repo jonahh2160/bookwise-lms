@@ -18,7 +18,7 @@ public class SearchPageGui {
     private DefaultTableModel tableModel;
     private JTable table;
     private JScrollPane scrollPane;
-    private JButton bookButton, userButton, currentButton;
+    private JButton bookButton, userButton, editButton, currentButton;
     private InfoPageGui infoPage;
     final int tableX = 100;
     final int tableY = 100;
@@ -75,6 +75,10 @@ public class SearchPageGui {
         userButton.setSize(cellWidth*2,cellHeight);
         userButton.setLocation(tableX+tableWidth-(cellWidth*2),tableY-(cellHeight));
         bookButton.setVisible(false);
+        editButton = new JButton("Edit");
+        editButton.setSize(cellWidth*2,cellHeight);
+        editButton.setLocation(tableX+tableWidth,tableY-(cellHeight*3));
+        editButton.setVisible(true);
 
         currentButton = userButton;
 
@@ -189,6 +193,7 @@ public class SearchPageGui {
         });
         bookPanel.add(userButton);
         bookPanel.add(bookButton);
+        bookPanel.add(editButton);
 
         // Add this panel to the frame
         frame.add(bookPanel);

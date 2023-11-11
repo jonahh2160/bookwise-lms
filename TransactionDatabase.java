@@ -53,4 +53,26 @@ public class TransactionDatabase extends Table<Transaction> {
             System.out.println("Transaction ID " + i + ": " + database.get(i).primaryKey);
         }
     }
+
+    // Returns a list of transactions affiliated with a given book
+    public ArrayList<Transaction> getBookTransactions(Book book) {
+        ArrayList<Transaction> bookTransactions = new ArrayList<Transaction>();
+        for (int i=0;i<database.size();i++) {
+            if (database.get(i).getBook() == book) {
+                bookTransactions.add(database.get(i));
+            }
+        }
+        return(bookTransactions);
+    }
+
+    // Returns a list of transactions affiliated with a given user
+    public ArrayList<Transaction> getUserTransactions(User user) {
+        ArrayList<Transaction> userTransactions = new ArrayList<Transaction>();
+        for (int i=0;i<database.size();i++) {
+            if (database.get(i).getUser() == user) {
+                userTransactions.add(database.get(i));
+            }
+        }
+        return(userTransactions);
+    }
 }
