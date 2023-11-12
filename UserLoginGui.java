@@ -136,16 +136,4 @@ public class UserLoginGui {
         fr.add(pa);
         fr.setVisible(true);
     }
-
-    // TODO: Delete this main method for testing
-    public static void main(String[] args) {
-        UserDatabase userDatabase = new UserDatabase();
-        UserLoginGui userLoginGui = new UserLoginGui(userDatabase);
-
-        User user = new User("Jonah Hampton", "tempest", "qwerty", 0);
-        userDatabase.addEntry(user);
-
-        userLoginGui.logIn();
-    }
-
 }

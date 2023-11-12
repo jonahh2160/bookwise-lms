@@ -52,6 +52,15 @@ public class UserDatabase extends Table<User> {
         return (database.get(index).primaryKey);
     }
 
+    public User getUserByName(String username) {
+        for (int i = 0; i < database.size(); i++) {
+            if (username == database.get(i).getUsername()) {
+                return database.get(i);
+            }
+        }
+        return null;
+    }
+
     // Displays each primary key (for testing purposes)
     public void display() {
         for (int i = 0; i < database.size(); i++) {
