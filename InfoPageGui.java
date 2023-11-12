@@ -14,17 +14,19 @@ public class InfoPageGui {
     private DefaultTableModel transactionTableModel, infoTableModel;
     private JTable transactionTable, infoTable;
     private JScrollPane scrollPane, infoScrollPane;
+    private JButton editButton, closeButton;
+    private JLabel infoLabel, transactionLabel;
     final int tableX = 20;
-    final int tableY = 200;
+    final int tableY = 150;
     final int tableWidth = 480;
-    final int tableHeight = 220;
+    final int tableHeight = 270;
     final int infoX = 20;
     final int infoY = 50;
     final int infoWidth = 480;
     final int infoHeight = 37;
     final String[] transactionColumnNames = {"User","Book","Date Borrowed","Date Returned","ID"};
     final String[] bookColumnNames = {"Title","Author","Genre","ID","Available"};
-    final String[] userColumnNames = {"Name","Username","ID","Status"};
+    final String[] userColumnNames = {"Name","Username","ID","Status","Balance"};
     private String[] columnNames = bookColumnNames;
     private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
 
@@ -76,6 +78,22 @@ public class InfoPageGui {
         scrollPane.setBounds(tableX,tableY,tableWidth,tableHeight);
         scrollPane.setVisible(true);
 
+        //Buttons
+        closeButton = new JButton("Close");
+        closeButton.setSize(100,30);
+        closeButton.setLocation(510,390);
+        editButton = new JButton("Edit");
+        editButton.setSize(100,30);
+        editButton.setLocation(infoX + infoWidth+10,infoY);
+
+        //Lables
+        infoLabel = new JLabel("");
+        infoLabel.setLocation(infoX,infoY-20);
+        infoLabel.setSize(100,20);
+        transactionLabel = new JLabel("Transaction History:");
+        transactionLabel.setLocation(tableX,tableY-20);
+        transactionLabel.setSize(200,20);
+
     }
 
     private void refreshColumnNames() {
@@ -90,6 +108,7 @@ public class InfoPageGui {
 
     private void getBookInfo(Book book) {
         // Input book data into the cells
+        infoLabel.setText("Book Info:");
         columnNames = bookColumnNames;
         refreshColumnNames();
         infoTable.setValueAt(book.getTitle(),0,0);
@@ -104,12 +123,14 @@ public class InfoPageGui {
 
     private void getUserInfo(User user) {
         // Input user data into the cells
+        infoLabel.setText("User Info:");
         columnNames = userColumnNames;
         refreshColumnNames();
         infoTable.setValueAt(user.getFullName(),0,0);
         infoTable.setValueAt(user.getUsername(),0,1);
         infoTable.setValueAt(user.getPrimaryKey(),0,2);
         infoTable.setValueAt(String.valueOf(user.getActive()),0,3);
+        infoTable.setValueAt(user.getAccountBalance(),0,4);
         transactions.clear();
         transactions = transactionDatabase.getUserTransactions(user);
         getTransactionData(transactions);
@@ -132,6 +153,7 @@ public class InfoPageGui {
 
     public void bookInfoPage(Book book) {
         
+        infoPanel.removeAll();
         getBookInfo(book);
 
         // Add Info Pane
@@ -140,12 +162,21 @@ public class InfoPageGui {
         // Add transaction window
         infoPanel.add(scrollPane);
 
+        // Add buttons
+        infoPanel.add(editButton);
+        infoPanel.add(closeButton);
+
+        // Add labels
+        infoPanel.add(infoLabel);
+        infoPanel.add(transactionLabel);
+
         frame.add(infoPanel);
         frame.setVisible(true);
     }
 
     public void userInfoPage(User user) {
         
+        infoPanel.removeAll();
         getUserInfo(user);
 
         // Add Info Pane
@@ -153,6 +184,14 @@ public class InfoPageGui {
 
         // Add transaction window
         infoPanel.add(scrollPane);
+
+        // Add buttons
+        infoPanel.add(editButton);
+        infoPanel.add(closeButton);
+
+        // Add labels
+        infoPanel.add(infoLabel);
+        infoPanel.add(transactionLabel);
 
         frame.add(infoPanel);
         frame.setVisible(true);

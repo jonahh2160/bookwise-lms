@@ -18,9 +18,9 @@ public class SearchPageGui {
     private DefaultTableModel tableModel;
     private JTable table;
     private JScrollPane scrollPane;
-    private JButton bookButton, userButton, currentButton;
+    private JButton bookButton, userButton, currentButton, loginButton;
     private InfoPageGui infoPage;
-    final int tableX = 100;
+    final int tableX = 160;
     final int tableY = 100;
     final int tableWidth = 600;
     final int tableHeight = 384;
@@ -28,6 +28,7 @@ public class SearchPageGui {
     final String[] userColumnNames = {"Name","Username","ID","Status"};
     private String[] columnNames = bookColumnNames;
     private int cellWidth = tableWidth/columnNames.length;
+    private User userLoggedIn;
     final int cellHeight = 20;
     final int buttonWidth = cellWidth*2;
 
@@ -38,6 +39,7 @@ public class SearchPageGui {
         this.userDatabase = userDatabase;
         this.transactionDatabase = transactionDatabase;
         infoPage = new InfoPageGui(transactionDatabase);
+        userLoggedIn = null;
         
         // Create the JFrame
         frame = new JFrame("Library Management System");
@@ -75,9 +77,21 @@ public class SearchPageGui {
         userButton.setSize(cellWidth*2,cellHeight);
         userButton.setLocation(tableX+tableWidth-(cellWidth*2),tableY-(cellHeight));
         bookButton.setVisible(false);
+        loginButton = new JButton("Login");
+        loginButton.setSize(cellWidth,cellHeight*2);
+        loginButton.setLocation(960-cellWidth-20,10);
 
         currentButton = userButton;
 
+    }
+
+    // Getter/Setter for UserLoggedIn
+    public User getUser() {
+        return(userLoggedIn);
+    }
+    public void setUser(User user) {
+        userLoggedIn = user;
+        refreshPage();
     }
 
     // This method is called to refresh the page after searching, or after switching between books and users
@@ -99,6 +113,13 @@ public class SearchPageGui {
             table.getColumnModel().getColumn(i).setHeaderValue(columnNames[i]);
         }
         table.getTableHeader().repaint();
+
+        //refresh user
+        if (userLoggedIn == null) {
+            loginButton.setVisible(true);
+        } else {
+            loginButton.setVisible(false);
+        }
     }
 
     // This inputs the book data into the cells
@@ -187,8 +208,16 @@ public class SearchPageGui {
                 return;
             }
         });
+        loginButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
+
+
         bookPanel.add(userButton);
         bookPanel.add(bookButton);
+        bookPanel.add(loginButton);
 
         // Add this panel to the frame
         frame.add(bookPanel);
