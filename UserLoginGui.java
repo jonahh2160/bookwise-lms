@@ -9,8 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import javax.swing.table.*;
 
 public class UserLoginGui {
     // Objects of other classes
@@ -115,7 +113,7 @@ public class UserLoginGui {
                     laError.setForeground(Color.GREEN);
                     laError.setText("Login successful!");
                     searchPageGui.setUser(userDatabase.getUserByName(username));
-                    // TODO: Add a 5 second wait
+                    // TODO: Add a 3s wait or remove Login Successful code
                     fr.dispose();
                 }
             }
