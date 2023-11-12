@@ -18,7 +18,7 @@ public class SearchPageGui {
     private DefaultTableModel tableModel;
     private JTable table;
     private JScrollPane scrollPane;
-    private JButton bookButton, userButton, currentButton, loginButton;
+    private JButton bookButton, userButton, currentButton, loginButton, accountButton;
     private InfoPageGui infoPage;
     private UserLoginGui loginPage;
     final int tableX = 160;
@@ -83,6 +83,9 @@ public class SearchPageGui {
         loginButton = new JButton("Login");
         loginButton.setSize(cellWidth,cellHeight*2);
         loginButton.setLocation(960-cellWidth-20,10);
+        accountButton = new JButton("My Account");
+        accountButton.setSize(cellWidth,cellHeight*2);
+        accountButton.setLocation(960-cellWidth-20,540-(cellHeight*2)-50);
 
         currentButton = userButton;
 
@@ -140,8 +143,10 @@ public class SearchPageGui {
         //refresh user
         if (userLoggedIn == null) {
             loginButton.setText("Login");
+            accountButton.setEnabled(false);
         } else {
             loginButton.setText("Log Out");
+            accountButton.setEnabled(true);
         }
         
     }
@@ -242,11 +247,17 @@ public class SearchPageGui {
                 }
             }
         });
+        accountButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                infoPage.userInfoPage(userLoggedIn);
+            }
+        });
 
 
         bookPanel.add(userButton);
         bookPanel.add(bookButton);
         bookPanel.add(loginButton);
+        bookPanel.add(accountButton);
 
         // Add this panel to the frame
         frame.add(bookPanel);
