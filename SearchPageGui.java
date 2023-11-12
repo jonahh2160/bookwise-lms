@@ -121,7 +121,7 @@ public class SearchPageGui {
     }
 
     // This method is called to refresh the page after searching, or after switching between books and users
-    private void refreshPage() {
+    public void refreshPage() {
         // Reset cell width based on how many columns there are
         cellWidth = tableWidth/columnNames.length;
         // Refresh row and column count

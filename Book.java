@@ -6,7 +6,6 @@ public class Book {
     public String primaryKey;
     private String title, author, publisher, genre;
     private long isbn;
-    private int year, length;
     private boolean availablity;
 
     // Constructor
@@ -15,20 +14,6 @@ public class Book {
         this.author = author;
         this.genre = genre;
         this.isbn = isbn;
-        this.year = year;
-        availablity = true;
-    }
-
-    // Full constructor
-    public Book(String title, String author, String publisher,
-            String genre, long isbn, int year, int length) {
-        this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.genre = genre;
-        this.isbn = isbn;
-        this.year = year;
-        this.length = length;
         availablity = true;
     }
 
@@ -51,14 +36,6 @@ public class Book {
 
     public long getIsbn() {
         return isbn;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public int getLength() {
-        return length;
     }
 
     public String getPrimaryKey() {
@@ -88,14 +65,6 @@ public class Book {
 
     public void setIsbn(long isbn) {
         this.isbn = isbn;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
     }
 
     public void setPrimaryKey(String primaryKey) {
