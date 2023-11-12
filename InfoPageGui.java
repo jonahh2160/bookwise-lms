@@ -96,6 +96,14 @@ public class InfoPageGui {
         transactionLabel.setLocation(tableX,tableY-20);
         transactionLabel.setSize(200,20);
 
+        // Close button logic
+        closeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+            }
+        });
+
+
     }
 
     private void refreshColumnNames() {
@@ -161,14 +169,14 @@ public class InfoPageGui {
         // Add Info Pane
         infoPanel.add(infoScrollPane);
 
-        // Add transaction window
+        // Add transaction window and edit button
         if (searchPage.getUser() != null && searchPage.getUser().getPerms() > 0) {
             infoPanel.add(transactionLabel);
             infoPanel.add(scrollPane);
+            infoPanel.add(editButton);
         }
 
         // Add buttons
-        infoPanel.add(editButton);
         infoPanel.add(closeButton);
 
         // Add labels
@@ -186,16 +194,22 @@ public class InfoPageGui {
         // Add Info Pane
         infoPanel.add(infoScrollPane);
 
-        // Add transaction window
-        infoPanel.add(scrollPane);
+        // Add transaction window and edit button
+        if (searchPage.getUser() != null && (searchPage.getUser().getPerms() > 0 || searchPage.getUser() == user)) {
+            infoPanel.add(transactionLabel);
+            infoPanel.add(scrollPane);
+        }
 
-        // Add buttons
-        infoPanel.add(editButton);
+        // Add edit button
+        if (searchPage.getUser() != null && searchPage.getUser().getPerms() > 0) {
+            infoPanel.add(editButton);
+        }
+
+        // Add close button
         infoPanel.add(closeButton);
 
         // Add labels
         infoPanel.add(infoLabel);
-        infoPanel.add(transactionLabel);
 
         frame.add(infoPanel);
         frame.setVisible(true);
