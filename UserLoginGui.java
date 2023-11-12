@@ -52,7 +52,7 @@ public class UserLoginGui {
         // Setting up JFrame
         fr.setSize(frWidth, frHeight);
         fr.setLocationRelativeTo(null);
-        fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Setting up JPanel
         pa = new JPanel();
@@ -91,6 +91,11 @@ public class UserLoginGui {
 
     // Draws the full log in page when called by adding to the panel
     public void logIn() {
+        // Clearing fields
+        laError.setText("");
+        teUser.setText("");
+        tePass.setText("");
+
         // Doing logic for the Login button
         buLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

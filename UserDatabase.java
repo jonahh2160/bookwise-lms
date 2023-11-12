@@ -54,7 +54,7 @@ public class UserDatabase extends Table<User> {
 
     public User getUserByName(String username) {
         for (int i = 0; i < database.size(); i++) {
-            if (username == database.get(i).getUsername()) {
+            if (username.equals(database.get(i).getUsername())) {
                 return database.get(i);
             }
         }

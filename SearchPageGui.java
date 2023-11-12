@@ -20,6 +20,7 @@ public class SearchPageGui {
     private JScrollPane scrollPane;
     private JButton bookButton, userButton, currentButton, loginButton;
     private InfoPageGui infoPage;
+    private UserLoginGui loginPage;
     final int tableX = 160;
     final int tableY = 100;
     final int tableWidth = 600;
@@ -39,6 +40,7 @@ public class SearchPageGui {
         this.userDatabase = userDatabase;
         this.transactionDatabase = transactionDatabase;
         infoPage = new InfoPageGui(transactionDatabase);
+        loginPage = new UserLoginGui(userDatabase,this);
         userLoggedIn = null;
         
         // Create the JFrame
@@ -116,10 +118,11 @@ public class SearchPageGui {
 
         //refresh user
         if (userLoggedIn == null) {
-            loginButton.setVisible(true);
+            loginButton.setText("Login");
         } else {
-            loginButton.setVisible(false);
+            loginButton.setText("Log Out");
         }
+        
     }
 
     // This inputs the book data into the cells
@@ -210,7 +213,12 @@ public class SearchPageGui {
         });
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
+                if (loginButton.getText().equals("Login")) {
+                    loginPage.logIn();
+                } else {
+                    // TODO: dialouge box that says "Log Out Successful"
+                    setUser(null);
+                }
             }
         });
 
