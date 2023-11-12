@@ -9,7 +9,7 @@ public class ManagementPageGUI {
 //-------------------------------Edit Button Methods------------------------------------
        
 //Method to assign action event for the edit button in the case of editing the variables of a book;
-    private void changeBookInfo(Book book) {
+    public void changeBookInfo(Book book) {
 
         editButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -47,7 +47,7 @@ public class ManagementPageGUI {
         }
 
 //Method to assign action event for the edit button in the case of editing the variables of a user;
-    private void changeUserInfo(User user) {
+    public void changeUserInfo(User user) {
 
         editButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -84,7 +84,7 @@ public class ManagementPageGUI {
         }
 
 //Method to assign action event for the edit button in the case of editing the variables of a transaction;
-    private void changeTransactionInfo(Transaction transaction) {
+    public void changeTransactionInfo(Transaction transaction) {
 
         editButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

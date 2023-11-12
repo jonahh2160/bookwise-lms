@@ -16,6 +16,7 @@ public class InfoPageGui {
     private JScrollPane scrollPane, infoScrollPane;
     private JButton editButton, closeButton;
     private JLabel infoLabel, transactionLabel;
+    private ManagementPageGUI managementPage;
     final int tableX = 20;
     final int tableY = 150;
     final int tableWidth = 480;
@@ -34,6 +35,7 @@ public class InfoPageGui {
     public InfoPageGui(TransactionDatabase transactionDatabase, SearchPageGui searchPage) {
         this.transactionDatabase = transactionDatabase;
         this.searchPage = searchPage;
+        managementPage = new ManagementPageGUI();
         frame = new JFrame("Info Page");
         frame.setSize(640,480);
         frame.setLocationRelativeTo(null);
@@ -168,6 +170,13 @@ public class InfoPageGui {
 
         // Add Info Pane
         infoPanel.add(infoScrollPane);
+
+        // Edit button logic
+        editButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                managementPage.changeBookInfo(book);
+            }
+        });
 
         // Add transaction window and edit button
         if (searchPage.getUser() != null && searchPage.getUser().getPerms() > 0) {
