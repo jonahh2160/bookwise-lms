@@ -109,7 +109,7 @@ public class UserLoginGui {
                 if (loginValue == 1) {
                     laError.setForeground(Color.GREEN);
                     laError.setText("Login successful!");
-                    // TODO: Set boolean loggedIn to true
+                    searchPageGui.setUser(userDatabase.getUserByName(username));
                     // TODO: Add a 5 second wait
                     fr.dispose();
                 }
