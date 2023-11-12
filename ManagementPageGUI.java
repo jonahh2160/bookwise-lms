@@ -38,9 +38,9 @@ public class ManagementPageGUI {
                 if(answer == 3)
                 publisher = JOptionPane.showInputDialog("What would you like to change the publisher to? ");
                 book.setPublisher(publisher);
-               // if(answer == 4)
-               // isbn = JOptionPane.showInputDialog("What would you like to change the isbn to? ");
-                //book.setIsbn(isbn); 
+                if(answer == 4)
+                isbn = Long.parseLong(JOptionPane.showInputDialog("What would you like to change the isbn to? "));
+                book.setIsbn(isbn); 
                 
             }
           });
