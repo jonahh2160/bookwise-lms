@@ -39,7 +39,7 @@ public class SearchPageGui {
         this.bookDatabase = bookDatabase;
         this.userDatabase = userDatabase;
         this.transactionDatabase = transactionDatabase;
-        infoPage = new InfoPageGui(transactionDatabase);
+        infoPage = new InfoPageGui(transactionDatabase,this);
         loginPage = new UserLoginGui(userDatabase,this);
         userLoggedIn = null;
         
@@ -78,6 +78,7 @@ public class SearchPageGui {
         userButton = new JButton("Switch to Users");
         userButton.setSize(cellWidth*2,cellHeight);
         userButton.setLocation(tableX+tableWidth-(cellWidth*2),tableY-(cellHeight));
+        userButton.setEnabled(false);
         bookButton.setVisible(false);
         loginButton = new JButton("Login");
         loginButton.setSize(cellWidth,cellHeight*2);
@@ -93,6 +94,26 @@ public class SearchPageGui {
     }
     public void setUser(User user) {
         userLoggedIn = user;
+        if (user == null) {
+            userButton.setVisible(true);
+            userButton.setEnabled(false);
+            bookButton.setVisible(false);
+            currentButton = userButton;
+            columnNames = bookColumnNames;
+        } else {
+            if (user.getPerms() == 0) {
+                userButton.setVisible(true);
+                userButton.setEnabled(false);
+                bookButton.setVisible(false);
+                currentButton = userButton;
+                columnNames = bookColumnNames;
+            }
+            if (user.getPerms() == 1) {
+                userButton.setVisible(true);
+                userButton.setEnabled(true);
+                bookButton.setVisible(false);
+            }
+        }
         refreshPage();
     }
 
@@ -252,7 +273,7 @@ public class SearchPageGui {
         bookDatabase.addEntry(book6);
 
         User user1 = new User("Isaac Gunderson","jpgundi","1234",0);
-        User user2 = new User("Jonah Hampton","tempest","1234",0);
+        User user2 = new User("Jonah Hampton","tempest","1234",1);
         User user3 = new User("Michael Toon","mtoon","1234",0);
         userDatabase.addEntry(user1);
         userDatabase.addEntry(user2);

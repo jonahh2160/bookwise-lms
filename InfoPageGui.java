@@ -29,9 +29,11 @@ public class InfoPageGui {
     final String[] userColumnNames = {"Name","Username","ID","Status","Balance"};
     private String[] columnNames = bookColumnNames;
     private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+    private SearchPageGui searchPage;
 
-    public InfoPageGui(TransactionDatabase transactionDatabase) {
+    public InfoPageGui(TransactionDatabase transactionDatabase, SearchPageGui searchPage) {
         this.transactionDatabase = transactionDatabase;
+        this.searchPage = searchPage;
         frame = new JFrame("Info Page");
         frame.setSize(640,480);
         frame.setLocationRelativeTo(null);
@@ -160,7 +162,10 @@ public class InfoPageGui {
         infoPanel.add(infoScrollPane);
 
         // Add transaction window
-        infoPanel.add(scrollPane);
+        if (searchPage.getUser() != null && searchPage.getUser().getPerms() > 0) {
+            infoPanel.add(transactionLabel);
+            infoPanel.add(scrollPane);
+        }
 
         // Add buttons
         infoPanel.add(editButton);
@@ -168,7 +173,6 @@ public class InfoPageGui {
 
         // Add labels
         infoPanel.add(infoLabel);
-        infoPanel.add(transactionLabel);
 
         frame.add(infoPanel);
         frame.setVisible(true);
