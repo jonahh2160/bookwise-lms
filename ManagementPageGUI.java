@@ -4,21 +4,16 @@ import java.awt.event.ActionListener;
 
 public class ManagementPageGUI {
     
-    private JButton editButton, currentButton;
+private JButton editButton, currentButton;
 
-//-------------------------------Edit Button Methods------------------------------------
-       
 //Method to assign action event for the edit button in the case of editing the variables of a book;
     public void changeBookInfo(Book book) {
-
-        editButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
 
                 String title = " ";
                 String author =" ";
                 String genre = " ";
                 String publisher = " ";
-                long isbn;
+                long isbn = 0;
 
                 currentButton = editButton;
                 String[] responses = {"Title","Author","Genre","Publisher","ISBN","Cancel"};
@@ -41,16 +36,11 @@ public class ManagementPageGUI {
                 if(answer == 4)
                 isbn = Long.parseLong(JOptionPane.showInputDialog("What would you like to change the isbn to? "));
                 book.setIsbn(isbn); 
-                
             }
-          });
-        }
+          
 
 //Method to assign action event for the edit button in the case of editing the variables of a user;
     public void changeUserInfo(User user) {
-
-        editButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
 
                 String fullName = " ";
                 String username =" ";
@@ -80,19 +70,13 @@ public class ManagementPageGUI {
 				"Permission Management", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, memberLevel, memberLevel[0]);
                 user.setPerms(perms);
             }
-          });
-        }
 
 //Method to assign action event for the edit button in the case of editing the variables of a transaction;
     public void changeTransactionInfo(Transaction transaction) {
 
-        editButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
                 String dateBorrowed = " ";
                 String dateReturned =" ";
                 String dateDue = " ";
-
 
                 currentButton = editButton;
                 String[] responses = {"Date Borrowed","Date Returned","Date Due","Cancel"};
@@ -109,8 +93,5 @@ public class ManagementPageGUI {
                 if(answer == 2)
                 dateDue = JOptionPane.showInputDialog("What would you like to change the date due to? ");
                 transaction.setDateDue(dateDue);  
-            }
-          });
-    }
-        
+            }      
     }
