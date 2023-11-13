@@ -32,6 +32,7 @@ public class SearchPageGui {
     private User userLoggedIn;
     final int cellHeight = 20;
     final int buttonWidth = cellWidth*2;
+    private Color navyColor, darkNavyColor, goldColor;
 
     // Constructor that initializes the frame, panel, table model, scroll pane, table, and buttons
     public SearchPageGui(BookDatabase bookDatabase, UserDatabase userDatabase, TransactionDatabase transactionDatabase) {
@@ -43,6 +44,11 @@ public class SearchPageGui {
         loginPage = new UserLoginGui(userDatabase,this);
         userLoggedIn = null;
         
+        // Colors
+        navyColor = new Color(34,32,52);
+        darkNavyColor = new Color(24,23,43);
+        goldColor = new Color(208,201,46);
+
         // Create the JFrame
         frame = new JFrame("Library Management System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,6 +58,7 @@ public class SearchPageGui {
         // Create the JPanel
         bookPanel = new JPanel();
         bookPanel.setLayout(null);
+        bookPanel.setBackground(darkNavyColor);
 
         // Creating the table
         tableModel = new DefaultTableModel() {
@@ -63,29 +70,43 @@ public class SearchPageGui {
         table = new JTable(tableModel);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.getTableHeader().repaint();
+        table.setSelectionBackground(darkNavyColor);
+        table.setGridColor(navyColor);
+        table.setSelectionForeground(Color.WHITE);
+        table.getTableHeader().setBackground(navyColor);
+        table.getTableHeader().setForeground(Color.WHITE);
+        table.setForeground(darkNavyColor);
         // Creating the scroll pane to be able to scroll through table
         scrollPane = new JScrollPane(table);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setBounds(tableX,tableY,tableWidth,tableHeight);
         scrollPane.setVisible(true);
-        
+        scrollPane.getViewport().setBackground(navyColor);
+        scrollPane.getVerticalScrollBar().setForeground(goldColor);
+        scrollPane.getVerticalScrollBar().setBackground(navyColor);
 
         // Book/User buttons
         bookButton = new JButton("Switch to Books");
         bookButton.setSize(cellWidth*2,cellHeight);
         bookButton.setLocation(tableX+tableWidth-(cellWidth*2),tableY-(cellHeight));
+        bookButton.setVisible(false);
+        bookButton.setForeground(darkNavyColor);
         userButton = new JButton("Switch to Users");
         userButton.setSize(cellWidth*2,cellHeight);
         userButton.setLocation(tableX+tableWidth-(cellWidth*2),tableY-(cellHeight));
         userButton.setEnabled(false);
-        bookButton.setVisible(false);
+        userButton.setForeground(darkNavyColor);
         loginButton = new JButton("Login");
         loginButton.setSize(cellWidth,cellHeight*2);
         loginButton.setLocation(960-cellWidth-20,10);
+        loginButton.setBackground(goldColor);
+        loginButton.setForeground(navyColor);
         accountButton = new JButton("My Account");
         accountButton.setSize(cellWidth,cellHeight*2);
         accountButton.setLocation(960-cellWidth-20,540-(cellHeight*2)-50);
+        accountButton.setBackground(goldColor);
+        accountButton.setForeground(navyColor);
 
         currentButton = userButton;
 

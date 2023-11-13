@@ -18,7 +18,7 @@ public class BookDatabase extends Table<Book> {
 
     // Implements the ability to edit book entries
     public void setEntry(Book book, String title, String author, String publisher, String genre,
-            long isbn, int year, int length, boolean availablity, String primaryKey) {
+            long isbn, boolean availablity, String primaryKey) {
         if (title != null) {
             book.setTitle(title);
         }
@@ -33,12 +33,6 @@ public class BookDatabase extends Table<Book> {
         }
         if (isbn != -1) {
             book.setIsbn(isbn);
-        }
-        if (year != -1) {
-            book.setYear(year);
-        }
-        if (length != -1) {
-            book.setLength(length);
         }
         book.setAvailability(availablity);
         if (primaryKey != null) {
