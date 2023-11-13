@@ -19,10 +19,10 @@ public class ManagementPageGui {
         String title = book.getTitle();
         String author = book.getAuthor();
         String genre = book.getGenre();
-        String publisher = book.getPublisher();
-        long isbn = book.getIsbn();
+        int availability = 0;
+        String[] available = {"Unavailable","Available","Cancel"};
 
-        String[] responses = { "Title", "Author", "Genre", "Publisher", "ISBN", "Cancel" };
+        String[] responses = { "Title", "Author", "Genre","Availability", "Cancel" };
         int answer = JOptionPane.showOptionDialog(
                 null,
                 "Which field would you like to edit?",
@@ -38,11 +38,14 @@ public class ManagementPageGui {
             genre = JOptionPane.showInputDialog("What would you like to change the genre to? ");
             if (genre != null) {book.setGenre(genre);}
         } else if (answer == 3) {
-            publisher = JOptionPane.showInputDialog("What would you like to change the publisher to? ");
-            if (publisher != null) {book.setPublisher(publisher);}
-        } else if (answer == 4) {
-            isbn = Long.parseLong(JOptionPane.showInputDialog("What would you like to change the isbn to? "));
-            if (isbn != -1) {book.setIsbn(isbn);}
+            availability = JOptionPane.showOptionDialog(
+                    null,
+                    "Which permission level would you like to assign?",
+                    "Permission Management", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
+                    available, available[0]);
+            if (availability == 0) {book.setAvailability(false);} else if (availability == 1) {
+                book.setAvailability(true);
+            }
         }
 
         infoPage.bookInfoPage(book);
