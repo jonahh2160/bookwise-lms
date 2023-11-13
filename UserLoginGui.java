@@ -37,7 +37,8 @@ public class UserLoginGui {
     final int buY = tePassY + teHeight + 20;
     final int buCancelX = x + buWidth + 10;
     final int laErrorY = buY + 20;
-    // Colors
+
+    // Colors for program
     private Color navyColor = new Color(34, 32, 52);
     private Color darkNavyColor = new Color(24, 23, 43);
     private Color goldColor = new Color(208, 201, 46);
