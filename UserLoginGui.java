@@ -1,9 +1,5 @@
 // JH 11/11
 // Page that will handle login related matters
-// TODO: Figure out how permission levels will work
-// TODO: "My Account" button leading to your Info Page
-// TODO: Ability to log in
-// TODO: Ability to log out
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +15,8 @@ public class UserLoginGui {
     // Objects required for creating the log in page
     private JFrame fr = new JFrame("Library Management System - Log In");
     private JPanel pa;
-    private JTextField teUser, tePass;
+    private JTextField teUser;
+    private JPasswordField tePass;
     private JLabel laUser, laPass, laError;
     private JButton buLogin, buCancel;
 
@@ -60,10 +57,9 @@ public class UserLoginGui {
         teUser = new JTextField();
         teUser.setSize(teWidth, teHeight);
         teUser.setLocation(x, teUserY);
-        tePass = new JTextField();
+        tePass = new JPasswordField();
         tePass.setSize(teWidth, teHeight);
         tePass.setLocation(x, tePassY);
-        // TODO: Make password typing hide its text
 
         // Creating label parameters
         laUser = new JLabel("Username:");
@@ -113,7 +109,8 @@ public class UserLoginGui {
                     laError.setForeground(Color.GREEN);
                     laError.setText("Login successful!");
                     searchPageGui.setUser(userDatabase.getUserByName(username));
-                    // TODO: Add a 3s wait or remove Login Successful code
+                    // TODO: Solve bug where it pops up an extra time for every login
+                    JOptionPane.showMessageDialog(null, "Login successful!");
                     fr.dispose();
                 }
             }
