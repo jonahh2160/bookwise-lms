@@ -38,9 +38,9 @@ public class UserLoginGui {
     final int buCancelX = x + buWidth + 10;
     final int laErrorY = buY + 20;
     // Colors
-    private Color navyColor = new Color(34,32,52);
-    private Color darkNavyColor = new Color(24,23,43);
-    private Color goldColor = new Color(208,201,46);
+    private Color navyColor = new Color(34, 32, 52);
+    private Color darkNavyColor = new Color(24, 23, 43);
+    private Color goldColor = new Color(208, 201, 46);
 
     // Contructor to setup window and objects
     public UserLoginGui(UserDatabase userDatabase, SearchPageGui searchPageGui) {
@@ -88,14 +88,6 @@ public class UserLoginGui {
         laError = new JLabel("");
         laError.setSize(200, 40);
         laError.setLocation(x, laErrorY);
-    }
-
-    // Draws the full log in page when called by adding to the panel
-    public void logIn() {
-        // Clearing fields
-        laError.setText("");
-        teUser.setText("");
-        tePass.setText("");
 
         // Doing logic for the Login button
         buLogin.addActionListener(new ActionListener() {
@@ -126,6 +118,14 @@ public class UserLoginGui {
                 fr.dispose();
             }
         });
+    }
+
+    // Draws the full log in page when called by adding to the panel
+    public void logIn() {
+        // Clearing fields
+        laError.setText("");
+        teUser.setText("");
+        tePass.setText("");
 
         // Adding the objects to the panel
         pa.add(teUser);
