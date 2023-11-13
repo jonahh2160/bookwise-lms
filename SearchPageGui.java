@@ -36,6 +36,7 @@ public class SearchPageGui {
     private Color navyColor = new Color(34,32,52);
     private Color darkNavyColor = new Color(24,23,43);
     private Color goldColor = new Color(208,201,46);
+    private Color grayColor = new Color(150,150,150);
 
     // Constructor that initializes the frame, panel, table model, scroll pane, table, and buttons
     public SearchPageGui(BookDatabase bookDatabase, UserDatabase userDatabase, TransactionDatabase transactionDatabase) {
@@ -74,6 +75,7 @@ public class SearchPageGui {
         table.getTableHeader().setBackground(darkNavyColor);
         table.getTableHeader().setForeground(Color.WHITE);
         table.setForeground(darkNavyColor);
+        table.setBackground(grayColor);
         // Creating the scroll pane to be able to scroll through table
         scrollPane = new JScrollPane(table);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -199,6 +201,19 @@ public class SearchPageGui {
         }
     }
 
+    // This method will search and sort
+    private ArrayList<Book> bookSearchAndSort(String searchTerm) {
+        ArrayList<Book> books = new ArrayList<Book>();
+        books = searcher.searchBook(searchTerm);
+        return(books);
+    }
+    // This method will search and sort
+    private ArrayList<User> userSearchAndSort(String searchTerm) {
+        ArrayList<User> users = new ArrayList<User>();
+        users = searcher.searchUser(searchTerm);
+        return(users);
+    }
+
     // This method does all of the logic for the search page
     public void searchPage() {
         // Refresh the page
@@ -211,9 +226,9 @@ public class SearchPageGui {
         searchField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (currentButton == userButton) {
-                    getBookData(searcher.searchBook(searchField.getText()),tableModel,table);
+                    getBookData(bookSearchAndSort(searchField.getText()),tableModel,table);
                 } else {
-                    getUserData(searcher.searchUser(searchField.getText()),tableModel,table);
+                    getUserData(userSearchAndSort(searchField.getText()),tableModel,table);
                 }
                 return;
             }
