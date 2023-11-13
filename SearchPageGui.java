@@ -263,7 +263,7 @@ public class SearchPageGui {
                 if (loginButton.getText().equals("Login")) {
                     loginPage.logIn();
                 } else {
-                    // TODO: dialouge box that says "Log Out Successful"
+                    JOptionPane.showMessageDialog(null, "Logout successful!");
                     setUser(null);
                 }
             }

@@ -23,8 +23,7 @@ public class ManagementPageGui {
         long isbn = book.getIsbn();
 
         String[] responses = { "Title", "Author", "Genre", "Publisher", "ISBN", "Cancel" };
-        int answer = JOptionPane.showOptionDialog( // TODO need to fix this bug by instantiating an istance to refer for
-                                                   // closing methods
+        int answer = JOptionPane.showOptionDialog(
                 null,
                 "Which field would you like to edit?",
                 "Book Management", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, responses,
@@ -84,6 +83,8 @@ public class ManagementPageGui {
                     memberLevel, memberLevel[0]);
             if (perms < 2) {user.setPerms(perms);}
         }
+
+        // Refresh the info page
         infoPage.userInfoPage(user);
         searchPage.refreshPage();
     }
@@ -126,6 +127,7 @@ public class ManagementPageGui {
             }
         }
 
+        // refresh the info and search page with new information
         infoPage.refreshTransactions();
         if (infoPage.getType() == 0) {
             infoPage.bookInfoPage();
