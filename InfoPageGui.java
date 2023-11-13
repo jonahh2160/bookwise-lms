@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.table.*;
+import java.lang.Math;
 
 public class InfoPageGui {
     private JFrame frame;
@@ -142,7 +143,10 @@ public class InfoPageGui {
         infoTable.setValueAt(user.getUsername(),0,1);
         infoTable.setValueAt(user.getPrimaryKey(),0,2);
         infoTable.setValueAt(String.valueOf(user.getActive()),0,3);
-        infoTable.setValueAt(user.getAccountBalance(),0,4);
+        double balance = user.getAccountBalance();
+        String sign;
+        if (balance < 0) {sign = "-";} else {sign = "";};
+        infoTable.setValueAt(sign + "$" + Math.abs(balance),0,4);
         transactions.clear();
         transactions = transactionDatabase.getUserTransactions(user);
         getTransactionData(transactions);
