@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 public class UserLoginGui {
     // Objects of other classes
     private UserDatabase userDatabase;
-    private SearchPageGui searchPageGui;
     private UserLogin userLogin;
 
     // Objects required for creating the log in page
@@ -41,7 +40,6 @@ public class UserLoginGui {
     // Contructor to setup window and objects
     public UserLoginGui(UserDatabase userDatabase, SearchPageGui searchPageGui) {
         this.userDatabase = userDatabase;
-        this.searchPageGui = searchPageGui;
         this.userLogin = new UserLogin(this.userDatabase);
 
         // Setting up JFrame
