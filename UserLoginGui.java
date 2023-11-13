@@ -100,17 +100,15 @@ public class UserLoginGui {
                 if (loginValue == -1) {
                     laError.setForeground(Color.RED);
                     laError.setText("User does not exist!");
-                }
-                if (loginValue == 0) {
+                } else if (loginValue == 0) {
                     laError.setForeground(Color.RED);
                     laError.setText("Incorrect password!");
-                }
-                if (loginValue == 1) {
+                } else if (loginValue == 1) {
                     laError.setForeground(Color.GREEN);
                     laError.setText("Login successful!");
                     searchPageGui.setUser(userDatabase.getUserByName(username));
                     // TODO: Solve bug where it pops up an extra time for every login
-                    JOptionPane.showMessageDialog(null, "Login successful!");
+                    JOptionPane.showMessageDialog(fr, "Login successful!");
                     fr.dispose();
                 }
             }
