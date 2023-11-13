@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 public class UserLoginGui {
     // Objects of other classes
     private UserDatabase userDatabase;
-    private SearchPageGui searchPageGui;
     private UserLogin userLogin;
 
     // Objects required for creating the log in page
@@ -46,7 +45,6 @@ public class UserLoginGui {
     // Contructor to setup window and objects
     public UserLoginGui(UserDatabase userDatabase, SearchPageGui searchPageGui) {
         this.userDatabase = userDatabase;
-        this.searchPageGui = searchPageGui;
         this.userLogin = new UserLogin(this.userDatabase);
 
         // Setting up JFrame
@@ -92,6 +90,29 @@ public class UserLoginGui {
 
         // Doing logic for the Login button
         buLogin.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String username = teUser.getText();
+                String password = tePass.getText();
+                int loginValue = userLogin.login(username, password);
+
+                if (loginValue == -1) {
+                    laError.setForeground(Color.RED);
+                    laError.setText("User does not exist!");
+                } else if (loginValue == 0) {
+                    laError.setForeground(Color.RED);
+                    laError.setText("Incorrect password!");
+                } else if (loginValue == 1) {
+                    laError.setForeground(Color.GREEN);
+                    laError.setText("Login successful!");
+                    searchPageGui.setUser(userDatabase.getUserByName(username));
+                    JOptionPane.showMessageDialog(fr, "Login successful!");
+                    fr.dispose();
+                }
+            }
+        });
+
+        // Doing logic for Password field (copied from Login button)
+        tePass.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String username = teUser.getText();
                 String password = tePass.getText();
