@@ -164,7 +164,6 @@ public class InfoPageGui {
     }
 
     public void bookInfoPage(Book book) {
-        
         infoPanel.removeAll();
         getBookInfo(book);
 
@@ -174,7 +173,9 @@ public class InfoPageGui {
         // Edit button logic
         editButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                editButton.setEnabled(false);
                 managementPage.changeBookInfo(book);
+                editButton.setEnabled(true);
             }
         });
 
