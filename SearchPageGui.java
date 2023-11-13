@@ -32,7 +32,10 @@ public class SearchPageGui {
     private User userLoggedIn;
     final int cellHeight = 20;
     final int buttonWidth = cellWidth*2;
-    private Color navyColor, darkNavyColor, goldColor;
+    // Colors
+    private Color navyColor = new Color(34,32,52);
+    private Color darkNavyColor = new Color(24,23,43);
+    private Color goldColor = new Color(208,201,46);
 
     // Constructor that initializes the frame, panel, table model, scroll pane, table, and buttons
     public SearchPageGui(BookDatabase bookDatabase, UserDatabase userDatabase, TransactionDatabase transactionDatabase) {
@@ -43,11 +46,6 @@ public class SearchPageGui {
         infoPage = new InfoPageGui(transactionDatabase,this);
         loginPage = new UserLoginGui(userDatabase,this);
         userLoggedIn = null;
-        
-        // Colors
-        navyColor = new Color(34,32,52);
-        darkNavyColor = new Color(24,23,43);
-        goldColor = new Color(208,201,46);
 
         // Create the JFrame
         frame = new JFrame("Library Management System");
@@ -58,7 +56,7 @@ public class SearchPageGui {
         // Create the JPanel
         bookPanel = new JPanel();
         bookPanel.setLayout(null);
-        bookPanel.setBackground(darkNavyColor);
+        bookPanel.setBackground(navyColor);
 
         // Creating the table
         tableModel = new DefaultTableModel() {
@@ -70,10 +68,10 @@ public class SearchPageGui {
         table = new JTable(tableModel);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.getTableHeader().repaint();
-        table.setSelectionBackground(darkNavyColor);
+        //table.setSelectionBackground(darkNavyColor);
         table.setGridColor(navyColor);
-        table.setSelectionForeground(Color.WHITE);
-        table.getTableHeader().setBackground(navyColor);
+        //table.setSelectionForeground(Color.WHITE);
+        table.getTableHeader().setBackground(darkNavyColor);
         table.getTableHeader().setForeground(Color.WHITE);
         table.setForeground(darkNavyColor);
         // Creating the scroll pane to be able to scroll through table
@@ -82,7 +80,7 @@ public class SearchPageGui {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setBounds(tableX,tableY,tableWidth,tableHeight);
         scrollPane.setVisible(true);
-        scrollPane.getViewport().setBackground(navyColor);
+        scrollPane.getViewport().setBackground(darkNavyColor);
         scrollPane.getVerticalScrollBar().setForeground(goldColor);
         scrollPane.getVerticalScrollBar().setBackground(navyColor);
 
@@ -100,13 +98,13 @@ public class SearchPageGui {
         loginButton = new JButton("Login");
         loginButton.setSize(cellWidth,cellHeight*2);
         loginButton.setLocation(960-cellWidth-20,10);
-        loginButton.setBackground(goldColor);
+        //loginButton.setBackground(goldColor);
         loginButton.setForeground(navyColor);
         accountButton = new JButton("My Account");
         accountButton.setSize(cellWidth,cellHeight*2);
         accountButton.setLocation(960-cellWidth-20,540-(cellHeight*2)-50);
-        accountButton.setBackground(goldColor);
-        accountButton.setForeground(navyColor);
+        //accountButton.setBackground(goldColor);
+        accountButton.setForeground(darkNavyColor);
 
         currentButton = userButton;
 
@@ -265,7 +263,7 @@ public class SearchPageGui {
                 } else {
                     String[] options = {"Yes","No"};
                     int answer = JOptionPane.showOptionDialog(null,"Are you sure you want to log out?",
-                    "Logout", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options,options[0]);
+                    "Log Out", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options,options[0]);
                     if (answer == 0) {
                         JOptionPane.showMessageDialog(null, "Logout successful!");
                         setUser(null);

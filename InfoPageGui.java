@@ -35,6 +35,10 @@ public class InfoPageGui {
     private SearchPageGui searchPage;
     private Book book;
     private User user;
+    // Colors
+    private Color navyColor = new Color(34,32,52);
+    private Color darkNavyColor = new Color(24,23,43);
+    private Color goldColor = new Color(208,201,46);
 
     public InfoPageGui(TransactionDatabase transactionDatabase, SearchPageGui searchPage) {
         this.transactionDatabase = transactionDatabase;
@@ -48,6 +52,7 @@ public class InfoPageGui {
 
         infoPanel = new JPanel();
         infoPanel.setLayout(null);
+        infoPanel.setBackground(navyColor);
 
         // Creating info table
         infoTableModel = new DefaultTableModel() {
@@ -58,6 +63,8 @@ public class InfoPageGui {
         };
         infoTable = new JTable(infoTableModel);
         infoTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        infoTable.getTableHeader().setBackground(darkNavyColor);
+        infoTable.getTableHeader().setForeground(Color.WHITE);
         // Creating the scroll pane for info
         infoScrollPane = new JScrollPane(infoTable);
         infoScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -79,12 +86,15 @@ public class InfoPageGui {
             transactionTable.getColumnModel().getColumn(i).setHeaderValue(transactionColumnNames[i]);
         }
         transactionTable.getTableHeader().repaint();
+        transactionTable.getTableHeader().setBackground(darkNavyColor);
+        transactionTable.getTableHeader().setForeground(Color.WHITE);
         // Creating the scroll pane to be able to scroll through table
         scrollPane = new JScrollPane(transactionTable);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setBounds(tableX,tableY,tableWidth,tableHeight);
         scrollPane.setVisible(true);
+        scrollPane.getViewport().setBackground(darkNavyColor);
 
         //Buttons
         closeButton = new JButton("Close");
@@ -98,9 +108,11 @@ public class InfoPageGui {
         infoLabel = new JLabel("");
         infoLabel.setLocation(infoX,infoY-20);
         infoLabel.setSize(100,20);
+        infoLabel.setForeground(Color.WHITE);
         transactionLabel = new JLabel("Transaction History:");
         transactionLabel.setLocation(tableX,tableY-20);
         transactionLabel.setSize(200,20);
+        transactionLabel.setForeground(Color.WHITE);
 
         // Close button logic
         closeButton.addActionListener(new ActionListener() {

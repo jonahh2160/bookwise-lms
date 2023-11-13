@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 public class UserLoginGui {
     // Objects of other classes
     private UserDatabase userDatabase;
+    private SearchPageGui searchPageGui;
     private UserLogin userLogin;
 
     // Objects required for creating the log in page
@@ -36,10 +37,15 @@ public class UserLoginGui {
     final int buY = tePassY + teHeight + 20;
     final int buCancelX = x + buWidth + 10;
     final int laErrorY = buY + 20;
+    // Colors
+    private Color navyColor = new Color(34,32,52);
+    private Color darkNavyColor = new Color(24,23,43);
+    private Color goldColor = new Color(208,201,46);
 
     // Contructor to setup window and objects
     public UserLoginGui(UserDatabase userDatabase, SearchPageGui searchPageGui) {
         this.userDatabase = userDatabase;
+        this.searchPageGui = searchPageGui;
         this.userLogin = new UserLogin(this.userDatabase);
 
         // Setting up JFrame
@@ -50,6 +56,7 @@ public class UserLoginGui {
         // Setting up JPanel
         pa = new JPanel();
         pa.setLayout(null);
+        pa.setBackground(darkNavyColor);
 
         // Creating text field parameters
         teUser = new JTextField();
@@ -63,9 +70,11 @@ public class UserLoginGui {
         laUser = new JLabel("Username:");
         laUser.setSize(200, 40);
         laUser.setLocation(x, laUserY);
+        laUser.setForeground(Color.WHITE);
         laPass = new JLabel("Password:");
         laPass.setSize(200, 40);
         laPass.setLocation(x, laPassY);
+        laPass.setForeground(Color.WHITE);
 
         // Creating button parameters
         buLogin = new JButton("Login");
@@ -74,6 +83,19 @@ public class UserLoginGui {
         buCancel = new JButton("Cancel");
         buCancel.setSize(buWidth, buHeight);
         buCancel.setLocation(buCancelX, buY);
+
+        // Creating parameters for new error label
+        laError = new JLabel("");
+        laError.setSize(200, 40);
+        laError.setLocation(x, laErrorY);
+    }
+
+    // Draws the full log in page when called by adding to the panel
+    public void logIn() {
+        // Clearing fields
+        laError.setText("");
+        teUser.setText("");
+        tePass.setText("");
 
         // Doing logic for the Login button
         buLogin.addActionListener(new ActionListener() {
@@ -92,7 +114,7 @@ public class UserLoginGui {
                     laError.setForeground(Color.GREEN);
                     laError.setText("Login successful!");
                     searchPageGui.setUser(userDatabase.getUserByName(username));
-                    JOptionPane.showMessageDialog(null, "Login successful!");
+                    JOptionPane.showMessageDialog(fr, "Login successful!");
                     fr.dispose();
                 }
             }
@@ -104,19 +126,6 @@ public class UserLoginGui {
                 fr.dispose();
             }
         });
-
-        // Creating parameters for new error label
-        laError = new JLabel("");
-        laError.setSize(200, 40);
-        laError.setLocation(x, laErrorY);
-    }
-
-    // Draws the full log in page when called by adding to the panel
-    public void logIn() {
-        // Clearing fields
-        laError.setText("");
-        teUser.setText("");
-        tePass.setText("");
 
         // Adding the objects to the panel
         pa.add(teUser);
