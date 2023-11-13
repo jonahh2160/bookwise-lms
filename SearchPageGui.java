@@ -314,7 +314,6 @@ public class SearchPageGui {
         Transaction transaction1 = new Transaction(user1,book2,"09/07/2023","09/22/2023");
         transactionDatabase.addEntry(transaction1);
         mainPageGui.searchPage();
-        //mainPageGui.searchUserPage(userDatabase.getArray());
     }
 
 }

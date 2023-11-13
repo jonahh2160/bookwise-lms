@@ -26,7 +26,7 @@ public class InfoPageGui {
     final int infoY = 50;
     final int infoWidth = 480;
     final int infoHeight = 37;
-    final String[] transactionColumnNames = {"User","Book","Date Borrowed","Date Returned","ID"};
+    final String[] transactionColumnNames = {"User","Book","Date Borrowed","Date Due","Date Returned","ID"};
     final String[] bookColumnNames = {"Title","Author","Genre","ID","Available"};
     final String[] userColumnNames = {"Name","Username","ID","Status","Balance"};
     private String[] columnNames = bookColumnNames;
@@ -122,6 +122,18 @@ public class InfoPageGui {
             }
         });
 
+        // Logic for clicking on a transaction cell
+        transactionTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                int row = transactionTable.rowAtPoint(e.getPoint());
+                String id = String.valueOf(transactionTable.getValueAt(row,5));
+                if (searchPage.getUser() != null && searchPage.getUser().getPerms() > 0) {
+                    Transaction transaction = transactionDatabase.getEntry(id);
+                    managementPage.changeTransactionInfo(transaction);
+                }
+            }
+        });
+
     }
 
     // Resets the column names (for switching between books and users)
@@ -133,6 +145,22 @@ public class InfoPageGui {
             infoTable.getColumnModel().getColumn(i).setHeaderValue(columnNames[i]);
         }
         infoTable.getTableHeader().repaint();
+    }
+
+    public void refreshTransactions() {
+         transactions.clear();
+        if (currentType == 0) {
+            transactions = transactionDatabase.getBookTransactions(book);
+            getTransactionData(transactions);
+        } else {
+            transactions = transactionDatabase.getUserTransactions(user);
+            getTransactionData(transactions);
+        }
+    }
+
+    // Gets the current type (user or book)
+    public int getType() {
+        return (currentType);
     }
 
     // Gets the book's info and stores it in table
@@ -180,8 +208,9 @@ public class InfoPageGui {
             transactionTable.setValueAt(database.get(i).getUser().getUsername(),i,0);
             transactionTable.setValueAt(database.get(i).getBook().getTitle(),i,1);
             transactionTable.setValueAt(database.get(i).getDateBorrowed(),i,2);
-            transactionTable.setValueAt(database.get(i).getDateReturned(),i,3);
-            transactionTable.setValueAt(database.get(i).getPrimaryKey(),i,4);
+            transactionTable.setValueAt(database.get(i).getDateDue(),i,3);
+            transactionTable.setValueAt(database.get(i).getDateReturned(),i,4);
+            transactionTable.setValueAt(database.get(i).getPrimaryKey(),i,5);
         }
     }
 
@@ -216,6 +245,11 @@ public class InfoPageGui {
         frame.setVisible(true);
     }
 
+    // This method calls the book info page with the book it already has (for refreshing)
+    public void bookInfoPage() {
+        bookInfoPage(book);
+    }
+
     public void userInfoPage(User user) {
         this.user = user;
         currentType = 1;
@@ -246,6 +280,11 @@ public class InfoPageGui {
 
         frame.add(infoPanel);
         frame.setVisible(true);
+    }
+
+    // This method calls the user info page with the user it already has (for refreshing)
+    public void userInfoPage() {
+        userInfoPage(user);
     }
 
 }
