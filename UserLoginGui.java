@@ -77,19 +77,6 @@ public class UserLoginGui {
         buCancel.setSize(buWidth, buHeight);
         buCancel.setLocation(buCancelX, buY);
 
-        // Creating parameters for new error label
-        laError = new JLabel("");
-        laError.setSize(200, 40);
-        laError.setLocation(x, laErrorY);
-    }
-
-    // Draws the full log in page when called by adding to the panel
-    public void logIn() {
-        // Clearing fields
-        laError.setText("");
-        teUser.setText("");
-        tePass.setText("");
-
         // Doing logic for the Login button
         buLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -107,7 +94,6 @@ public class UserLoginGui {
                     laError.setForeground(Color.GREEN);
                     laError.setText("Login successful!");
                     searchPageGui.setUser(userDatabase.getUserByName(username));
-                    // TODO: Solve bug where it pops up an extra time for every login
                     JOptionPane.showMessageDialog(fr, "Login successful!");
                     fr.dispose();
                 }
@@ -120,6 +106,19 @@ public class UserLoginGui {
                 fr.dispose();
             }
         });
+
+        // Creating parameters for new error label
+        laError = new JLabel("");
+        laError.setSize(200, 40);
+        laError.setLocation(x, laErrorY);
+    }
+
+    // Draws the full log in page when called by adding to the panel
+    public void logIn() {
+        // Clearing fields
+        laError.setText("");
+        teUser.setText("");
+        tePass.setText("");
 
         // Adding the objects to the panel
         pa.add(teUser);
