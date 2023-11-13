@@ -94,7 +94,7 @@ public class UserLoginGui {
                     laError.setForeground(Color.GREEN);
                     laError.setText("Login successful!");
                     searchPageGui.setUser(userDatabase.getUserByName(username));
-                    JOptionPane.showMessageDialog(fr, "Login successful!");
+                    JOptionPane.showMessageDialog(null, "Login successful!");
                     fr.dispose();
                 }
             }
