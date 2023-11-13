@@ -31,7 +31,10 @@ public class InfoPageGui {
     final String[] userColumnNames = {"Name","Username","ID","Status","Balance"};
     private String[] columnNames = bookColumnNames;
     private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+    private int currentType = 0;
     private SearchPageGui searchPage;
+    private Book book;
+    private User user;
 
     public InfoPageGui(TransactionDatabase transactionDatabase, SearchPageGui searchPage) {
         this.transactionDatabase = transactionDatabase;
@@ -106,9 +109,22 @@ public class InfoPageGui {
             }
         });
 
+        // Edit button logic
+        editButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                editButton.setEnabled(false);
+                if (currentType == 0) {
+                    managementPage.changeBookInfo(book);
+                } else if (currentType == 1) {
+                    managementPage.changeUserInfo(user);
+                }
+                editButton.setEnabled(true);
+            }
+        });
 
     }
 
+    // Resets the column names (for switching between books and users)
     private void refreshColumnNames() {
         infoTableModel.setRowCount(1);
         infoTableModel.setColumnCount(0);
@@ -119,6 +135,7 @@ public class InfoPageGui {
         infoTable.getTableHeader().repaint();
     }
 
+    // Gets the book's info and stores it in table
     private void getBookInfo(Book book) {
         // Input book data into the cells
         infoLabel.setText("Book Info:");
@@ -134,6 +151,7 @@ public class InfoPageGui {
         getTransactionData(transactions);
     }
 
+    // Gets the user's info and stores it in table
     private void getUserInfo(User user) {
         // Input user data into the cells
         infoLabel.setText("User Info:");
@@ -167,21 +185,19 @@ public class InfoPageGui {
         }
     }
 
+    // Call this method to open a book info page
     public void bookInfoPage(Book book) {
+        this.book = book;
+        currentType = 0;
+        // Remove everything from panel before we add components
         infoPanel.removeAll();
+        // Put book info in table
         getBookInfo(book);
 
         // Add Info Pane
         infoPanel.add(infoScrollPane);
 
-        // Edit button logic
-        editButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                editButton.setEnabled(false);
-                managementPage.changeBookInfo(book);
-                editButton.setEnabled(true);
-            }
-        });
+        
 
         // Add transaction window and edit button
         if (searchPage.getUser() != null && searchPage.getUser().getPerms() > 0) {
@@ -201,19 +217,15 @@ public class InfoPageGui {
     }
 
     public void userInfoPage(User user) {
-        
+        this.user = user;
+        currentType = 1;
+        // Remove everything from panel before we add components
         infoPanel.removeAll();
+        // Put user info in table
         getUserInfo(user);
 
         // Add Info Pane
         infoPanel.add(infoScrollPane);
-
-        // Edit button logic
-        editButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                managementPage.changeUserInfo(user);
-            }
-        });
 
         // Add transaction window and edit button
         if (searchPage.getUser() != null && (searchPage.getUser().getPerms() > 0 || searchPage.getUser() == user)) {
