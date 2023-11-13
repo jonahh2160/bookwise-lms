@@ -263,8 +263,13 @@ public class SearchPageGui {
                 if (loginButton.getText().equals("Login")) {
                     loginPage.logIn();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Logout successful!");
-                    setUser(null);
+                    String[] options = {"Yes","No"};
+                    int answer = JOptionPane.showOptionDialog(null,"Are you sure you want to log out?",
+                    "Logout", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options,options[0]);
+                    if (answer == 0) {
+                        JOptionPane.showMessageDialog(null, "Logout successful!");
+                        setUser(null);
+                    }
                 }
             }
         });
