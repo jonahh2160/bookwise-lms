@@ -31,9 +31,6 @@ public class BookDatabase extends Table<Book> {
         if (genre != null) {
             book.setGenre(genre);
         }
-        if (isbn != -1) {
-            book.setIsbn(isbn);
-        }
         book.setAvailability(availablity);
         if (primaryKey != null) {
             book.setPrimaryKey(primaryKey);

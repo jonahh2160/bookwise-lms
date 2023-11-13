@@ -314,12 +314,12 @@ public class SearchPageGui {
         TransactionDatabase transactionDatabase = new TransactionDatabase();
 
         SearchPageGui mainPageGui = new SearchPageGui(bookDatabase, userDatabase, transactionDatabase);
-        Book book1 = new Book("MyBook", "Isaac", "Fantasy", 202039, 2003);
-        Book book2 = new Book("Another Book", "Michael", "Sci-Fi", 504039, 2022);
-        Book book3 = new Book("Yet Another One", "Jonah", "Fantasy", 706039, 2006);
-        Book book4 = new Book("MyBook", "Isaac", "Fantasy", 202039, 2003);
-        Book book5 = new Book("Another Book", "Michael", "Sci-Fi", 504039, 2022);
-        Book book6 = new Book("Yet Another One", "Jonah", "Fantasy", 706039, 2006);
+        Book book1 = new Book("MyBook", "Isaac", "Fantasy", 2003);
+        Book book2 = new Book("Another Book", "Michael", "Sci-Fi", 2022);
+        Book book3 = new Book("Yet Another One", "Jonah", "Fantasy", 2006);
+        Book book4 = new Book("MyBook", "Isaac", "Fantasy", 2003);
+        Book book5 = new Book("Another Book", "Michael", "Sci-Fi", 2022);
+        Book book6 = new Book("Yet Another One", "Jonah", "Fantasy", 2006);
         bookDatabase.addEntry(book1);
         bookDatabase.addEntry(book2);
         bookDatabase.addEntry(book3);

@@ -5,15 +5,13 @@ public class Book {
     // Declaration of variables (attributes)
     public String primaryKey;
     private String title, author, publisher, genre;
-    private long isbn;
     private boolean availablity;
 
     // Constructor
-    public Book(String title, String author, String genre, long isbn, int year) {
+    public Book(String title, String author, String genre, int year) {
         this.title = title;
         this.author = author;
         this.genre = genre;
-        this.isbn = isbn;
         availablity = true;
     }
 
@@ -32,10 +30,6 @@ public class Book {
 
     public String getGenre() {
         return genre;
-    }
-
-    public long getIsbn() {
-        return isbn;
     }
 
     public String getPrimaryKey() {
@@ -61,10 +55,6 @@ public class Book {
 
     public void setGenre(String genre) {
         this.genre = genre;
-    }
-
-    public void setIsbn(long isbn) {
-        this.isbn = isbn;
     }
 
     public void setPrimaryKey(String primaryKey) {
