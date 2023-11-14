@@ -10,6 +10,7 @@ import javax.swing.table.*;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.net.URL;
 import java.io.IOException;
 
 public class SearchPageGui {
@@ -45,6 +46,7 @@ public class SearchPageGui {
     // Images
     private BufferedImage lmsImage, searchImage;
     private JLabel lmsLabel, searchText;
+    private URL imgPath;
 
     // Constructor that initializes the frame, panel, table model, scroll pane,
     // table, and buttons
@@ -56,7 +58,7 @@ public class SearchPageGui {
         this.transactionDatabase = transactionDatabase;
         loginPage = new UserLoginGui(userDatabase, this);
         createPage = new CreateInstanceGui(bookDatabase, userDatabase, transactionDatabase, this);
-        infoPage = new InfoPageGui(bookDatabase, userDatabase, transactionDatabase, this,createPage);
+        infoPage = new InfoPageGui(bookDatabase, userDatabase, transactionDatabase, this, createPage);
         userLoggedIn = null;
 
         // Create the JFrame
@@ -72,15 +74,17 @@ public class SearchPageGui {
 
         // Creating the images
         try {
-            lmsImage = ImageIO.read(this.getClass().getResource("lmsicon.png"));
+            imgPath = getClass().getResource("lmsicon.png");
+            if (imgPath == null) {
+                System.out.println("Logo could not be found! Skipping...");
+            } else {
+                lmsImage = ImageIO.read(imgPath);
+                lmsLabel = new JLabel(new ImageIcon(lmsImage));
+                lmsLabel.setSize(136, 231);
+                lmsLabel.setLocation(10, 130);
+            }
         } catch (IOException ex) {
-            System.out.println("!!!!!!!!!!!!! ERROR: Can't find images!");
-            // TODO: Handle exception in some way
-            // What to do if you can't find files?
         }
-        lmsLabel = new JLabel(new ImageIcon(lmsImage));
-        lmsLabel.setSize(136, 231);
-        lmsLabel.setLocation(10, 130);
         searchText = new JLabel("🔍 Search:");
         searchText.setSize(200, 40);
         searchText.setLocation(tableX, tableY - 52);
@@ -354,7 +358,9 @@ public class SearchPageGui {
         bookPanel.add(manageButton);
 
         // Images
-        bookPanel.add(lmsLabel);
+        if (imgPath != null) {
+            bookPanel.add(lmsLabel);
+        }
         bookPanel.add(searchText);
 
         // Add this panel to the frame
