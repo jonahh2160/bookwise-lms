@@ -18,14 +18,15 @@ public class SearchPageGui {
     private DefaultTableModel tableModel;
     private JTable table;
     private JScrollPane scrollPane;
-    private JButton bookButton, userButton, currentButton, loginButton, accountButton;
+    private JButton bookButton, userButton, currentButton, loginButton, accountButton, manageButton;
     private InfoPageGui infoPage;
     private UserLoginGui loginPage;
+    private CreateInstanceGui createPage;
     final int tableX = 160;
     final int tableY = 100;
     final int tableWidth = 600;
     final int tableHeight = 384;
-    final String[] bookColumnNames = { "Title", "Author", "Genre", "ID", "Available" };
+    final String[] bookColumnNames = { "Title", "Author", "Genre","Year", "ID", "Available" };
     final String[] userColumnNames = { "Name", "Username", "ID", "Status" };
     private String[] columnNames = bookColumnNames;
     private int cellWidth = tableWidth / columnNames.length;
@@ -48,6 +49,7 @@ public class SearchPageGui {
         this.transactionDatabase = transactionDatabase;
         infoPage = new InfoPageGui(transactionDatabase, this);
         loginPage = new UserLoginGui(userDatabase, this);
+        createPage = new CreateInstanceGui(bookDatabase,userDatabase,transactionDatabase,this);
         userLoggedIn = null;
 
         // Create the JFrame
@@ -77,7 +79,6 @@ public class SearchPageGui {
         table.getTableHeader().setBackground(darkNavyColor);
         table.getTableHeader().setForeground(Color.WHITE);
         table.setForeground(darkNavyColor);
-        table.setBackground(grayColor);
         // Creating the scroll pane to be able to scroll through table
         scrollPane = new JScrollPane(table);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -101,12 +102,16 @@ public class SearchPageGui {
         userButton.setForeground(darkNavyColor);
         loginButton = new JButton("Login");
         loginButton.setSize(cellWidth, cellHeight * 2);
-        loginButton.setLocation(960 - cellWidth - 20, 10);
+        loginButton.setLocation(960 - cellWidth - 30, 540 - (cellHeight*2)-50);
         // loginButton.setBackground(goldColor);
         loginButton.setForeground(navyColor);
+        manageButton = new JButton("Manage");
+        manageButton.setEnabled(false);
+        manageButton.setSize(cellWidth,cellHeight*2);
+        manageButton.setLocation(960-cellWidth-30,10);
         accountButton = new JButton("My Account");
         accountButton.setSize(cellWidth, cellHeight * 2);
-        accountButton.setLocation(960 - cellWidth - 20, 540 - (cellHeight * 2) - 50);
+        accountButton.setLocation(960 - cellWidth - 30, 540 - (cellHeight * 2) - 50 - (cellHeight*2)-20);
         // accountButton.setBackground(goldColor);
         accountButton.setForeground(darkNavyColor);
 
@@ -169,9 +174,13 @@ public class SearchPageGui {
         if (userLoggedIn == null) {
             loginButton.setText("Login");
             accountButton.setEnabled(false);
+            manageButton.setEnabled(false);
         } else {
             loginButton.setText("Log Out");
             accountButton.setEnabled(true);
+            if (userLoggedIn.getPerms() > 0) {
+                manageButton.setEnabled(true);
+            } else {manageButton.setEnabled(false);};
         }
 
     }
@@ -186,8 +195,9 @@ public class SearchPageGui {
             table.setValueAt(database.get(i).getTitle(), i, 0);
             table.setValueAt(database.get(i).getAuthor(), i, 1);
             table.setValueAt(database.get(i).getGenre(), i, 2);
-            table.setValueAt(database.get(i).getPrimaryKey(), i, 3);
-            table.setValueAt(String.valueOf(database.get(i).getAvailability()), i, 4);
+            table.setValueAt(database.get(i).getYear(),i,3);
+            table.setValueAt(database.get(i).getPrimaryKey(), i, 4);
+            table.setValueAt(String.valueOf(database.get(i).getAvailability()), i, 5);
         }
     }
 
@@ -245,7 +255,7 @@ public class SearchPageGui {
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 int row = table.rowAtPoint(e.getPoint());
                 if (currentButton == userButton) {
-                    infoPage.bookInfoPage(bookDatabase.getEntry(table.getValueAt(row, 3).toString()));
+                    infoPage.bookInfoPage(bookDatabase.getEntry(table.getValueAt(row, 4).toString()));
                 } else {
                     infoPage.userInfoPage(userDatabase.getEntry(table.getValueAt(row, 2).toString()));
                 }
@@ -297,11 +307,17 @@ public class SearchPageGui {
                 infoPage.userInfoPage(userLoggedIn);
             }
         });
+        manageButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                createPage.createInstancePage();
+            }
+        });
 
         bookPanel.add(userButton);
         bookPanel.add(bookButton);
         bookPanel.add(loginButton);
         bookPanel.add(accountButton);
+        bookPanel.add(manageButton);
 
         // Add this panel to the frame
         frame.add(bookPanel);

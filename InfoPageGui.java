@@ -174,6 +174,9 @@ public class InfoPageGui {
     public int getType() {
         return (currentType);
     }
+    public JFrame getFrame() {
+        return(frame);
+    }
 
     // Gets the book's info and stores it in table
     private void getBookInfo(Book book) {

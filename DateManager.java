@@ -4,7 +4,7 @@
 public class DateManager {
     // This integer array keeps track of how many days is in each month for
     // calculations later
-    int[] daysInMonth = { -1, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    public int[] daysInMonth = { -1, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
     // Input date string of format ("month/day/year") returning int value for month
     public int GetMonth(String dateString) {
@@ -88,5 +88,19 @@ public class DateManager {
         int dateValue1 = getDateValue(date1);
         int dateValue2 = getDateValue(date2);
         return (dateValue2 - dateValue1);
+    }
+
+    // This method checks if a given date string is viable
+    public int checkDate(String date) {
+        int day = GetDay(date);
+        int month = GetMonth(date);
+        int year = GetYear(date);
+        if (day < 1 || month < 1 || month > 12 || year < 0) {
+            return(0);
+        }
+        if (day > daysInMonth[month]) {
+            return(0);
+        }
+        return(1);
     }
 }

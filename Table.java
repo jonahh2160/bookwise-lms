@@ -18,7 +18,7 @@ public abstract class Table<T> {
     // Returns the entry specified by passing its ID
     public T getEntry(String primaryKey) {
         for (int i = 0; i < database.size(); i++) {
-            if (getID(i) == primaryKey) {
+            if (getID(i).equals(primaryKey)) {
                 return (database.get(i));
             }
         }

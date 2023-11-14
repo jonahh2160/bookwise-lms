@@ -6,12 +6,14 @@ public class Book {
     public String primaryKey;
     private String title, author, publisher, genre;
     private boolean availablity;
+    private int year;
 
     // Constructor
     public Book(String title, String author, String genre, int year) {
         this.title = title;
         this.author = author;
         this.genre = genre;
+        this.year = year;
         availablity = true;
     }
 
@@ -40,6 +42,10 @@ public class Book {
         return availablity;
     }
 
+    public int getYear() {
+        return year;
+    }
+
     // Setters
     public void setTitle(String title) {
         this.title = title;
@@ -63,5 +69,9 @@ public class Book {
 
     public void setAvailability(boolean availablity) {
         this.availablity = availablity;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 }
