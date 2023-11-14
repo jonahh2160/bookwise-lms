@@ -23,7 +23,7 @@ public class SearchPageGui {
     private DefaultTableModel tableModel;
     private JTable table;
     private JScrollPane scrollPane;
-    private JButton bookButton, userButton, currentButton, loginButton, accountButton, manageButton;
+    private JButton bookButton, userButton, currentButton, loginButton, accountButton, manageButton, sortButton;
     private InfoPageGui infoPage;
     private UserLoginGui loginPage;
     private CreateInstanceGui createPage;
@@ -117,16 +117,19 @@ public class SearchPageGui {
         scrollPane.getVerticalScrollBar().setBackground(navyColor);
 
         // Book/User buttons
-        bookButton = new JButton("↻ Search Books ");
-        bookButton.setSize(cellWidth * 2, cellHeight);
-        bookButton.setLocation(tableX + tableWidth - (cellWidth * 2), tableY - (cellHeight));
+        bookButton = new JButton("↻ Books");
+        bookButton.setSize(cellWidth * 1+14, cellHeight);
+        bookButton.setLocation(tableX + tableWidth - (cellWidth * 1)-14, tableY - (cellHeight));
         bookButton.setVisible(false);
         bookButton.setForeground(darkNavyColor);
-        userButton = new JButton("↻ Search Users ");
-        userButton.setSize(cellWidth * 2, cellHeight);
-        userButton.setLocation(tableX + tableWidth - (cellWidth * 2), tableY - (cellHeight));
+        userButton = new JButton("↻ Users");
+        userButton.setSize(cellWidth * 1+14, cellHeight);
+        userButton.setLocation(tableX + tableWidth - (cellWidth * 1)-14, tableY - (cellHeight));
         userButton.setEnabled(false);
         userButton.setForeground(darkNavyColor);
+        sortButton = new JButton("↻ Sorting Title");
+        sortButton.setSize(cellWidth*2-6,cellHeight);
+        sortButton.setLocation(tableX+tableWidth-(cellWidth*3)-8,tableY-(cellHeight));
         loginButton = new JButton("Login");
         loginButton.setSize(cellWidth, cellHeight * 2);
         loginButton.setLocation(960 - cellWidth - 30, 540 - (cellHeight * 2) - 50);
@@ -274,7 +277,7 @@ public class SearchPageGui {
 
         // Search bar
         JTextField searchField = new JTextField("");
-        searchField.setSize(tableWidth - buttonWidth, cellHeight);
+        searchField.setSize(tableWidth - cellWidth*3-8, cellHeight);
         searchField.setLocation(tableX, tableY - (cellHeight));
         searchField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -353,6 +356,7 @@ public class SearchPageGui {
 
         bookPanel.add(userButton);
         bookPanel.add(bookButton);
+        bookPanel.add(sortButton);
         bookPanel.add(loginButton);
         bookPanel.add(accountButton);
         bookPanel.add(manageButton);
