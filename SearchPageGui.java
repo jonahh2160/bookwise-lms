@@ -26,7 +26,7 @@ public class SearchPageGui {
     final int tableY = 100;
     final int tableWidth = 600;
     final int tableHeight = 384;
-    final String[] bookColumnNames = { "Title", "Author", "Genre","Year", "ID", "Available" };
+    final String[] bookColumnNames = { "Title", "Author", "Genre", "Year", "ID", "Available" };
     final String[] userColumnNames = { "Name", "Username", "ID", "Status" };
     private String[] columnNames = bookColumnNames;
     private int cellWidth = tableWidth / columnNames.length;
@@ -49,7 +49,7 @@ public class SearchPageGui {
         this.transactionDatabase = transactionDatabase;
         infoPage = new InfoPageGui(bookDatabase, userDatabase, transactionDatabase, this);
         loginPage = new UserLoginGui(userDatabase, this);
-        createPage = new CreateInstanceGui(bookDatabase,userDatabase,transactionDatabase,this);
+        createPage = new CreateInstanceGui(bookDatabase, userDatabase, transactionDatabase, this);
         userLoggedIn = null;
 
         // Create the JFrame
@@ -102,16 +102,16 @@ public class SearchPageGui {
         userButton.setForeground(darkNavyColor);
         loginButton = new JButton("Login");
         loginButton.setSize(cellWidth, cellHeight * 2);
-        loginButton.setLocation(960 - cellWidth - 30, 540 - (cellHeight*2)-50);
+        loginButton.setLocation(960 - cellWidth - 30, 540 - (cellHeight * 2) - 50);
         // loginButton.setBackground(goldColor);
         loginButton.setForeground(navyColor);
         manageButton = new JButton("Manage");
         manageButton.setEnabled(false);
-        manageButton.setSize(cellWidth,cellHeight*2);
-        manageButton.setLocation(960-cellWidth-30,10);
+        manageButton.setSize(cellWidth, cellHeight * 2);
+        manageButton.setLocation(960 - cellWidth - 30, 10);
         accountButton = new JButton("My Account");
         accountButton.setSize(cellWidth, cellHeight * 2);
-        accountButton.setLocation(960 - cellWidth - 30, 540 - (cellHeight * 2) - 50 - (cellHeight*2)-20);
+        accountButton.setLocation(960 - cellWidth - 30, 540 - (cellHeight * 2) - 50 - (cellHeight * 2) - 20);
         // accountButton.setBackground(goldColor);
         accountButton.setForeground(darkNavyColor);
 
@@ -180,7 +180,10 @@ public class SearchPageGui {
             accountButton.setEnabled(true);
             if (userLoggedIn.getPerms() > 0) {
                 manageButton.setEnabled(true);
-            } else {manageButton.setEnabled(false);};
+            } else {
+                manageButton.setEnabled(false);
+            }
+            ;
         }
 
     }
@@ -195,9 +198,13 @@ public class SearchPageGui {
             table.setValueAt(database.get(i).getTitle(), i, 0);
             table.setValueAt(database.get(i).getAuthor(), i, 1);
             table.setValueAt(database.get(i).getGenre(), i, 2);
-            table.setValueAt(database.get(i).getYear(),i,3);
+            table.setValueAt(database.get(i).getYear(), i, 3);
             table.setValueAt(database.get(i).getPrimaryKey(), i, 4);
-            table.setValueAt(String.valueOf(database.get(i).getAvailability()), i, 5);
+            if (database.get(i).getAvailability()) {
+                table.setValueAt("✓", i, 5);
+            } else {
+                table.setValueAt("✗", i, 5);
+            }
         }
     }
 
@@ -211,7 +218,11 @@ public class SearchPageGui {
             table.setValueAt(database.get(i).getFullName(), i, 0);
             table.setValueAt(database.get(i).getUsername(), i, 1);
             table.setValueAt(database.get(i).getPrimaryKey(), i, 2);
-            table.setValueAt(String.valueOf(database.get(i).getActive()), i, 3);
+            if (database.get(i).getActive()) {
+                table.setValueAt("✓ Active", i, 3);
+            } else {
+                table.setValueAt("✗ Inactive", i, 3);
+            }
         }
     }
 
