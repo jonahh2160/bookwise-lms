@@ -28,6 +28,7 @@ public class CreateInstanceGui extends DateManager {
     private int buttonX = (frameWidth/2) - (buttonWidth/2);
     private int[] buttonY = {(frameHeight/2)-(buttonHeight/2)-buttonSep-30-buttonHeight,(frameHeight/2)-(buttonHeight/2)-30,(frameHeight/2)+(buttonHeight/2)+buttonSep-30};
     private int currentType = 0;
+    private InfoPageGui infoPage;
     // Colors
     private Color navyColor = new Color(34, 32, 52);
     private Color darkNavyColor = new Color(24, 23, 43);
@@ -145,6 +146,7 @@ public class CreateInstanceGui extends DateManager {
         });
     }
 
+    // This opens up the menu (choose user,book,transaction)
     public void createInstancePage() {
         panel.removeAll();
         te1.setText("");
@@ -161,7 +163,9 @@ public class CreateInstanceGui extends DateManager {
         frame.setVisible(true);
     }
 
+    // Page to create a book
     private void createBookPage() {
+        this.infoPage = null;
         currentType = 0;
         fr.setTitle("New Book");
         pa.removeAll();
@@ -183,7 +187,9 @@ public class CreateInstanceGui extends DateManager {
         fr.setVisible(true);
     }
 
+    // Page to create a new user
     private void createUserPage() {
+        this.infoPage = null;
         currentType = 1;
         fr.setTitle("New User");
         pa.removeAll();
@@ -205,7 +211,9 @@ public class CreateInstanceGui extends DateManager {
         fr.setVisible(true);
     }
 
+    // Page to create a new transaction
     private void createTransactionPage() {
+        this.infoPage = null;
         currentType = 2;
         fr.setTitle("New Transaction");
         pa.removeAll();
@@ -227,6 +235,57 @@ public class CreateInstanceGui extends DateManager {
         fr.setVisible(true);
     }
 
+    // A transaction page that starts with the user id already put in
+    public void createTransactionPage(User user, InfoPageGui infoPage) {
+        this.infoPage = infoPage;
+        currentType = 2;
+        fr.setTitle("New Transaction");
+        pa.removeAll();
+        label1.setText("User ID:");
+        label2.setText("Book ID:");
+        label3.setText("Date Borrowed (DD/MM/YYYY):");
+        label4.setText("Date Due (DD/MM/YYYY):");
+        pa.add(label1);
+        pa.add(label2);
+        pa.add(label3);
+        pa.add(label4);
+        te1.setText(user.getPrimaryKey());
+        pa.add(te1);
+        pa.add(te2);
+        pa.add(te3);
+        pa.add(te4);
+        pa.add(submitButton);
+
+        fr.add(pa);
+        fr.setVisible(true);
+    }
+
+    // A transaction page that starts with the book id already put in
+    public void createTransactionPage(Book book, InfoPageGui infoPage) {
+        this.infoPage = infoPage;
+        currentType = 2;
+        fr.setTitle("New Transaction");
+        pa.removeAll();
+        label1.setText("User ID:");
+        label2.setText("Book ID:");
+        label3.setText("Date Borrowed (DD/MM/YYYY):");
+        label4.setText("Date Due (DD/MM/YYYY):");
+        pa.add(label1);
+        pa.add(label2);
+        pa.add(label3);
+        pa.add(label4);
+        pa.add(te1);
+        te2.setText(book.getPrimaryKey());
+        pa.add(te2);
+        pa.add(te3);
+        pa.add(te4);
+        pa.add(submitButton);
+
+        fr.add(pa);
+        fr.setVisible(true);
+    }
+
+    // This goes through the input and tries to create book or shows error
     private String createBook() {
         try {
             String title, author, genre;
@@ -247,6 +306,7 @@ public class CreateInstanceGui extends DateManager {
         return("Book Added!");
     }
 
+    // This goes through the input and tries to create user or shows error
     private String createUser() {
         String fullName, username, password;
         fullName = te1.getText();
@@ -263,6 +323,7 @@ public class CreateInstanceGui extends DateManager {
         return("User Added!");
     }
 
+    // This goes through the input and tries to create transaction or shows error
     private String createTransaction() {
         try {
             String userID, bookID, dateBorrowed, dateDue;
@@ -282,6 +343,13 @@ public class CreateInstanceGui extends DateManager {
             return("Invalid Input!");
         }
         searchPage.refreshPage();
+        if (infoPage != null) {
+            if (infoPage.getType() == 0) {
+                infoPage.bookInfoPage();
+            } else {
+                infoPage.userInfoPage();
+            }
+        }
         fr.dispose();
         return("Transaction Added!");
     }

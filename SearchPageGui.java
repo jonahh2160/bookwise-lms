@@ -54,9 +54,9 @@ public class SearchPageGui {
         this.bookDatabase = bookDatabase;
         this.userDatabase = userDatabase;
         this.transactionDatabase = transactionDatabase;
-        infoPage = new InfoPageGui(bookDatabase, userDatabase, transactionDatabase, this);
         loginPage = new UserLoginGui(userDatabase, this);
         createPage = new CreateInstanceGui(bookDatabase, userDatabase, transactionDatabase, this);
+        infoPage = new InfoPageGui(bookDatabase, userDatabase, transactionDatabase, this,createPage);
         userLoggedIn = null;
 
         // Create the JFrame

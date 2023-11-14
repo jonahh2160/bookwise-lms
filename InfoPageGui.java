@@ -15,7 +15,7 @@ public class InfoPageGui {
     private DefaultTableModel transactionTableModel, infoTableModel;
     private JTable transactionTable, infoTable;
     private JScrollPane scrollPane, infoScrollPane;
-    private JButton editButton, closeButton;
+    private JButton editButton, closeButton, transactionButton;
     private JLabel infoLabel, transactionLabel;
     private ManagementPageGui managementPage;
     final int tableX = 20;
@@ -26,13 +26,14 @@ public class InfoPageGui {
     final int infoY = 50;
     final int infoWidth = 480;
     final int infoHeight = 37;
-    final String[] transactionColumnNames = {"User","Book","Date Borrowed","Date Due","Date Returned","ID"};
+    final String[] transactionColumnNames = {"User","Book","Borrowed","Due","Returned","ID"};
     final String[] bookColumnNames = {"Title","Author","Genre","ID","Available"};
     final String[] userColumnNames = {"Name","Username","ID","Status","Balance"};
     private String[] columnNames = bookColumnNames;
     private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
     private int currentType = 0;
     private SearchPageGui searchPage;
+    private CreateInstanceGui createPage;
     private Book book;
     private User user;
     // Colors
@@ -40,9 +41,11 @@ public class InfoPageGui {
     private Color darkNavyColor = new Color(24,23,43);
     private Color goldColor = new Color(208,201,46);
 
-    public InfoPageGui(BookDatabase bookDatabase, UserDatabase userDatabase, TransactionDatabase transactionDatabase, SearchPageGui searchPage) {
+    public InfoPageGui(BookDatabase bookDatabase, UserDatabase userDatabase, TransactionDatabase transactionDatabase, SearchPageGui searchPage, CreateInstanceGui createPage) {
         this.transactionDatabase = transactionDatabase;
         this.searchPage = searchPage;
+        this.createPage = createPage;
+        InfoPageGui infoPage = this;
         managementPage = new ManagementPageGui(bookDatabase, userDatabase, transactionDatabase, this,searchPage);
         frame = new JFrame("Info Page");
         frame.setSize(640,480);
@@ -103,6 +106,9 @@ public class InfoPageGui {
         editButton = new JButton("Edit");
         editButton.setSize(100,30);
         editButton.setLocation(infoX + infoWidth+10,infoY);
+        transactionButton = new JButton("Add");
+        transactionButton.setSize(100,30);
+        transactionButton.setLocation(510,390-40);
 
         //Lables
         infoLabel = new JLabel("");
@@ -131,6 +137,17 @@ public class InfoPageGui {
                     managementPage.changeUserInfo(user);
                 }
                 editButton.setEnabled(true);
+            }
+        });
+
+        // add transaction button logic
+        transactionButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (currentType == 0) {
+                    createPage.createTransactionPage(book,infoPage);
+                } else {
+                    createPage.createTransactionPage(user,infoPage);
+                }
             }
         });
 
@@ -248,6 +265,7 @@ public class InfoPageGui {
             infoPanel.add(transactionLabel);
             infoPanel.add(scrollPane);
             infoPanel.add(editButton);
+            infoPanel.add(transactionButton);
         }
 
         // Add buttons
@@ -285,6 +303,7 @@ public class InfoPageGui {
         // Add edit button
         if (searchPage.getUser() != null && searchPage.getUser().getPerms() > 0) {
             infoPanel.add(editButton);
+            infoPanel.add(transactionButton);
         }
 
         // Add close button
