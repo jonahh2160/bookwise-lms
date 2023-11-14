@@ -29,7 +29,9 @@ public class ManagementPageGui extends DateManager {
         int availability = 0;
         String[] available = {"Available","Unavailable","Cancel"};
 
-        String[] responses = { "Title", "Author", "Genre","Year","Availability", "Cancel" };
+        String[] responses = { "Title", "Author", "Genre","Year","Availability", "Delete", "Cancel" };
+        String[] deleteResponse = {"Yes","Cancel"};
+        int deleteResult = 1;
         int answer = JOptionPane.showOptionDialog(
                 null,
                 "Which field would you like to edit?",
@@ -56,9 +58,17 @@ public class ManagementPageGui extends DateManager {
             if (availability == 0) {book.setAvailability(true);} else if (availability == 1) {
                 book.setAvailability(false);
             }
+        } else if (answer == 5) {
+            deleteResult = JOptionPane.showOptionDialog(null,"Are your sure you want to delete this Book?",
+                "User Management", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, deleteResponse,
+                responses[1]);
+            if (deleteResult == 0) {
+                bookDatabase.removeEntry(book.getPrimaryKey());
+                infoPage.getFrame().dispose();
+            }
         }
 
-        infoPage.bookInfoPage(book);
+        if (deleteResult != 0) {infoPage.bookInfoPage(book);}
         searchPage.refreshPage();
     }
 
@@ -71,8 +81,9 @@ public class ManagementPageGui extends DateManager {
         String password = user.getPassword();
         int perms = user.getPerms();
         String[] memberLevel = { "Member", "Librarian", "Cancel" };
-
-        String[] responses = { "Name", "Username", "Password", "Perms", "Cancel" };
+        String[] deleteResponse = {"Yes","Cancel"};
+        int deleteResult = 1;
+        String[] responses = { "Name", "Username", "Password", "Perms", "Delete", "Cancel" };
         int answer = JOptionPane.showOptionDialog( // TODO need to fix this bug by instantiating an istance to refer for
                                                    // closing methods
                 null,
@@ -95,10 +106,18 @@ public class ManagementPageGui extends DateManager {
                     "Permission Management", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
                     memberLevel, memberLevel[0]);
             if (perms < 2) {user.setPerms(perms);}
+        } else if (answer == 4) {
+            deleteResult = JOptionPane.showOptionDialog(null,"Are your sure you want to delete this User?",
+                "User Management", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, deleteResponse,
+                responses[1]);
+            if (deleteResult == 0) {
+                userDatabase.removeEntry(user.getPrimaryKey());
+                infoPage.getFrame().dispose();
+            }
         }
 
         // Refresh the info page
-        infoPage.userInfoPage(user);
+        if (deleteResult != 0) {infoPage.userInfoPage(user);}
         searchPage.refreshPage();
     }
 
@@ -114,6 +133,7 @@ public class ManagementPageGui extends DateManager {
         String[] responses2 = { "Date Borrowed", "Date Due", "Date Returned", "Delete", "Cancel" };
         String[] responses;
         String[] deleteResponse = {"Yes","Cancel"};
+        int deleteResult = 1;
         if (transaction.getStatus() == false) {
             responses = responses1;
         } else {
@@ -140,11 +160,12 @@ public class ManagementPageGui extends DateManager {
                 if (checkDate(dateReturned) != 0) {transaction.completeTransaction(dateReturned);} else {JOptionPane.showMessageDialog(infoPage.getFrame(),"Invalid Date!");}
             }
         } else if (answer == 3) {
-            int result = JOptionPane.showOptionDialog(null,"Are your sure you want to delete this Transaction?",
+            deleteResult = JOptionPane.showOptionDialog(null,"Are your sure you want to delete this Transaction?",
                 "User Management", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, deleteResponse,
                 responses[1]);
-            if (result == 0) {
-                
+            if (deleteResult == 0) {
+                transactionDatabase.removeEntry(transaction.getPrimaryKey());
+                infoPage.getFrame().dispose();
             }
         }
 
