@@ -118,18 +118,18 @@ public class SearchPageGui {
 
         // Book/User buttons
         bookButton = new JButton("↻ Books");
-        bookButton.setSize(cellWidth * 1+14, cellHeight);
-        bookButton.setLocation(tableX + tableWidth - (cellWidth * 1)-14, tableY - (cellHeight));
+        bookButton.setSize(cellWidth * 1 + 14, cellHeight);
+        bookButton.setLocation(tableX + tableWidth - (cellWidth * 1) - 14, tableY - (cellHeight));
         bookButton.setVisible(false);
         bookButton.setForeground(darkNavyColor);
         userButton = new JButton("↻ Users");
-        userButton.setSize(cellWidth * 1+14, cellHeight);
-        userButton.setLocation(tableX + tableWidth - (cellWidth * 1)-14, tableY - (cellHeight));
+        userButton.setSize(cellWidth * 1 + 14, cellHeight);
+        userButton.setLocation(tableX + tableWidth - (cellWidth * 1) - 14, tableY - (cellHeight));
         userButton.setEnabled(false);
         userButton.setForeground(darkNavyColor);
-        sortButton = new JButton("↻ Sorting Title");
-        sortButton.setSize(cellWidth*2-6,cellHeight);
-        sortButton.setLocation(tableX+tableWidth-(cellWidth*3)-8,tableY-(cellHeight));
+        sortButton = new JButton("Sorting by Title");
+        sortButton.setSize(cellWidth * 2 - 6, cellHeight);
+        sortButton.setLocation(tableX + tableWidth - (cellWidth * 3) - 8, tableY - (cellHeight));
         loginButton = new JButton("Login");
         loginButton.setSize(cellWidth, cellHeight * 2);
         loginButton.setLocation(960 - cellWidth - 30, 540 - (cellHeight * 2) - 50);
@@ -277,7 +277,7 @@ public class SearchPageGui {
 
         // Search bar
         JTextField searchField = new JTextField("");
-        searchField.setSize(tableWidth - cellWidth*3-8, cellHeight);
+        searchField.setSize(tableWidth - cellWidth * 3 - 8, cellHeight);
         searchField.setLocation(tableX, tableY - (cellHeight));
         searchField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
