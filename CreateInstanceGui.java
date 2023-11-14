@@ -251,8 +251,11 @@ public class CreateInstanceGui extends DateManager {
         pa.add(label4);
         te1.setText(user.getPrimaryKey());
         pa.add(te1);
+        te2.setText("");
         pa.add(te2);
+        te3.setText("");
         pa.add(te3);
+        te4.setText("");
         pa.add(te4);
         pa.add(submitButton);
 
@@ -274,10 +277,13 @@ public class CreateInstanceGui extends DateManager {
         pa.add(label2);
         pa.add(label3);
         pa.add(label4);
+        te1.setText("");
         pa.add(te1);
         te2.setText(book.getPrimaryKey());
         pa.add(te2);
+        te3.setText("");
         pa.add(te3);
+        te4.setText("");
         pa.add(te4);
         pa.add(submitButton);
 
