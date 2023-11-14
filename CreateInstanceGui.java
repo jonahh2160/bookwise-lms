@@ -333,8 +333,10 @@ public class CreateInstanceGui extends DateManager {
             dateDue = te4.getText();
             User user = userDatabase.getEntry(userID);
             if (user == null) {return("Invalid User!");}
+            if (user.getActive() == false) {return("User is inactive!");}
             Book book = bookDatabase.getEntry(bookID);
             if (book == null) {return("Invalid Book!");}
+            if (book.getAvailability() == false) {return("Book is unavailable!");}
             if (checkDate(dateBorrowed) == 0 || checkDate(dateDue) == 0) {return("Invalid Date(s)!");}
             if (getDateDifference(dateBorrowed,dateDue) < 0) {return("Invalid Date(s)!");}
             Transaction transaction = new Transaction(user,book,dateBorrowed,dateDue);

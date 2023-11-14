@@ -205,7 +205,11 @@ public class InfoPageGui {
         infoTable.setValueAt(book.getAuthor(),0,1);
         infoTable.setValueAt(book.getGenre(),0,2);
         infoTable.setValueAt(book.getPrimaryKey(),0,3);
-        infoTable.setValueAt(String.valueOf(book.getAvailability()),0,4);
+        if (book.getAvailability()) {
+            infoTable.setValueAt("✓", 0, 4);
+        } else {
+            infoTable.setValueAt("✗", 0, 4);
+        }
         transactions.clear();
         transactions = transactionDatabase.getBookTransactions(book);
         getTransactionData(transactions);
@@ -220,7 +224,11 @@ public class InfoPageGui {
         infoTable.setValueAt(user.getFullName(),0,0);
         infoTable.setValueAt(user.getUsername(),0,1);
         infoTable.setValueAt(user.getPrimaryKey(),0,2);
-        infoTable.setValueAt(String.valueOf(user.getActive()),0,3);
+        if (user.getActive()) {
+            infoTable.setValueAt("✓ Active", 0, 3);
+        } else {
+            infoTable.setValueAt("✗ Inactive", 0, 3);
+        }
         double balance = user.getAccountBalance();
         String sign;
         if (balance < 0) {sign = "-";} else {sign = "";};

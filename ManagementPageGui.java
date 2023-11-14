@@ -60,7 +60,7 @@ public class ManagementPageGui extends DateManager {
             }
         } else if (answer == 5) {
             deleteResult = JOptionPane.showOptionDialog(null,"Are your sure you want to delete this Book?",
-                "User Management", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, deleteResponse,
+                "Delete Book", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, deleteResponse,
                 responses[1]);
             if (deleteResult == 0) {
                 bookDatabase.removeEntry(book.getPrimaryKey());
@@ -80,10 +80,12 @@ public class ManagementPageGui extends DateManager {
         String username = user.getUsername();
         String password = user.getPassword();
         int perms = user.getPerms();
+        int active;
         String[] memberLevel = { "Member", "Librarian", "Cancel" };
         String[] deleteResponse = {"Yes","Cancel"};
+        String[] activeOptions = {"Active","Inactive","Cancel"};
         int deleteResult = 1;
-        String[] responses = { "Name", "Username", "Password", "Perms", "Delete", "Cancel" };
+        String[] responses = { "Name", "Username", "Password", "Perms", "Status", "Delete", "Cancel" };
         int answer = JOptionPane.showOptionDialog( // TODO need to fix this bug by instantiating an istance to refer for
                                                    // closing methods
                 null,
@@ -107,8 +109,17 @@ public class ManagementPageGui extends DateManager {
                     memberLevel, memberLevel[0]);
             if (perms < 2) {user.setPerms(perms);}
         } else if (answer == 4) {
+            active = JOptionPane.showOptionDialog(
+                    null,
+                    "Select user status.",
+                    "User Status", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
+                    activeOptions, activeOptions[2]);
+            if (active == 0) {user.setActive(true);} else if (active == 1) {
+                user.setActive(false);
+            }
+        } else if (answer == 5) {
             deleteResult = JOptionPane.showOptionDialog(null,"Are your sure you want to delete this User?",
-                "User Management", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, deleteResponse,
+                "Delete User", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, deleteResponse,
                 responses[1]);
             if (deleteResult == 0) {
                 userDatabase.removeEntry(user.getPrimaryKey());
@@ -161,7 +172,7 @@ public class ManagementPageGui extends DateManager {
             }
         } else if (answer == 3) {
             deleteResult = JOptionPane.showOptionDialog(null,"Are your sure you want to delete this Transaction?",
-                "User Management", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, deleteResponse,
+                "Delete Transaction", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, deleteResponse,
                 responses[1]);
             if (deleteResult == 0) {
                 transactionDatabase.removeEntry(transaction.getPrimaryKey());
