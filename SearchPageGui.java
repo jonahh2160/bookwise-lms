@@ -100,6 +100,7 @@ public class SearchPageGui {
         table = new JTable(tableModel);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.getTableHeader().repaint();
+        table.getTableHeader().setReorderingAllowed(false);
         // table.setSelectionBackground(darkNavyColor);
         table.setGridColor(navyColor);
         // table.setSelectionForeground(Color.WHITE);
