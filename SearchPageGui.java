@@ -15,6 +15,7 @@ import java.io.IOException;
 
 public class SearchPageGui {
     private Searcher searcher;
+    private Sorter sorter;
     private BookDatabase bookDatabase;
     private UserDatabase userDatabase;
     private TransactionDatabase transactionDatabase;
@@ -27,12 +28,16 @@ public class SearchPageGui {
     private InfoPageGui infoPage;
     private UserLoginGui loginPage;
     private CreateInstanceGui createPage;
+    private JTextField searchField;
     final int tableX = 160;
     final int tableY = 100;
     final int tableWidth = 600;
     final int tableHeight = 384;
     final String[] bookColumnNames = { "Title", "Author", "Genre", "Year", "ID", "Available" };
     final String[] userColumnNames = { "Name", "Username", "ID", "Status" };
+    final String[] bookSortNames = {"Sorting by Title","Sorting by Author","Sorting by Year"};
+    final String[] userSortNames = {"Sorting by Name","Sorting by Username"};
+    private int sortIndex = 0;
     private String[] columnNames = bookColumnNames;
     private int cellWidth = tableWidth / columnNames.length;
     private User userLoggedIn;
@@ -53,6 +58,7 @@ public class SearchPageGui {
     public SearchPageGui(BookDatabase bookDatabase, UserDatabase userDatabase,
             TransactionDatabase transactionDatabase) {
         this.searcher = new Searcher(bookDatabase, userDatabase);
+        this.sorter = new Sorter();
         this.bookDatabase = bookDatabase;
         this.userDatabase = userDatabase;
         this.transactionDatabase = transactionDatabase;
@@ -128,7 +134,7 @@ public class SearchPageGui {
         userButton.setLocation(tableX + tableWidth - (cellWidth * 1) - 14, tableY - (cellHeight));
         userButton.setEnabled(false);
         userButton.setForeground(darkNavyColor);
-        sortButton = new JButton("Sorting by Title");
+        sortButton = new JButton(bookSortNames[0]);
         sortButton.setSize(cellWidth * 2 - 6, cellHeight);
         sortButton.setLocation(tableX + tableWidth - (cellWidth * 3) - 8, tableY - (cellHeight));
         loginButton = new JButton("Login");
@@ -145,8 +151,44 @@ public class SearchPageGui {
         accountButton.setLocation(960 - cellWidth - 30, 540 - (cellHeight * 2) - 50 - (cellHeight * 2) - 20);
         // accountButton.setBackground(goldColor);
         accountButton.setForeground(darkNavyColor);
-
         currentButton = userButton;
+
+        // Search bar
+        searchField = new JTextField("");
+        searchField.setSize(tableWidth - cellWidth * 3 - 8, cellHeight);
+        searchField.setLocation(tableX, tableY - (cellHeight));
+        searchField.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (currentButton == userButton) {
+                    getBookData(bookSearchAndSort(searchField.getText()), tableModel, table);
+                } else {
+                    getUserData(userSearchAndSort(searchField.getText()), tableModel, table);
+                }
+                return;
+            }
+        });
+
+        // sort button logic
+        sortButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (currentButton == userButton) {
+                    if (sortIndex < bookSortNames.length - 1) {
+                        sortIndex += 1;
+                    } else {sortIndex = 0;}
+                    sortButton.setText(bookSortNames[sortIndex]);
+                    refreshPage();
+                } else {
+                    if (sortIndex < userSortNames.length - 1) {
+                        sortIndex += 1;
+                    } else {sortIndex = 0;}
+                    sortButton.setText(userSortNames[sortIndex]);
+                    refreshPage();
+                }
+
+                refreshPage();
+                return;
+            }
+        });
 
     }
 
@@ -190,10 +232,10 @@ public class SearchPageGui {
         tableModel.setColumnCount(columnNames.length);
         // Refresh the data in the table
         if (currentButton == userButton) {
-            getBookData(bookDatabase.getArray(), tableModel, table);
+            getBookData(bookSearchAndSort(searchField.getText()), tableModel, table);
         }
         if (currentButton == bookButton) {
-            getUserData(userDatabase.getArray(), tableModel, table);
+            getUserData(userSearchAndSort(searchField.getText()), tableModel, table);
         }
         // Refresh column headers
         for (int i = 0; i < columnNames.length; i++) {
@@ -261,6 +303,13 @@ public class SearchPageGui {
     private ArrayList<Book> bookSearchAndSort(String searchTerm) {
         ArrayList<Book> books = new ArrayList<Book>();
         books = searcher.searchBook(searchTerm);
+        if (sortIndex == 0) {
+            books = sorter.titleSorter(books);
+        } else if (sortIndex == 1) {
+            books = sorter.authorSorter(books);
+        } else if (sortIndex == 2) {
+            books = sorter.yearSorter(books);
+        }
         return (books);
     }
 
@@ -268,6 +317,11 @@ public class SearchPageGui {
     private ArrayList<User> userSearchAndSort(String searchTerm) {
         ArrayList<User> users = new ArrayList<User>();
         users = searcher.searchUser(searchTerm);
+        if (sortIndex == 0) {
+            users = sorter.lastNameSorter(users);
+        } else if (sortIndex == 1) {
+            users = sorter.usernameSorter(users);
+        }
         return (users);
     }
 
@@ -276,20 +330,6 @@ public class SearchPageGui {
         // Refresh the page
         refreshPage();
 
-        // Search bar
-        JTextField searchField = new JTextField("");
-        searchField.setSize(tableWidth - cellWidth * 3 - 8, cellHeight);
-        searchField.setLocation(tableX, tableY - (cellHeight));
-        searchField.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (currentButton == userButton) {
-                    getBookData(bookSearchAndSort(searchField.getText()), tableModel, table);
-                } else {
-                    getUserData(userSearchAndSort(searchField.getText()), tableModel, table);
-                }
-                return;
-            }
-        });
         bookPanel.add(searchField);
 
         // Logic for clicking on a table cell
@@ -314,6 +354,8 @@ public class SearchPageGui {
                 bookButton.setVisible(true);
                 currentButton = bookButton;
                 columnNames = userColumnNames;
+                sortIndex = 0;
+                sortButton.setText(userSortNames[sortIndex]);
                 refreshPage();
                 return;
             }
@@ -324,6 +366,8 @@ public class SearchPageGui {
                 bookButton.setVisible(false);
                 currentButton = userButton;
                 columnNames = bookColumnNames;
+                sortIndex = 0;
+                sortButton.setText(bookSortNames[sortIndex]);
                 refreshPage();
                 return;
             }

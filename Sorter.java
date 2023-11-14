@@ -10,12 +10,12 @@ public class Sorter {
    Comparator<Book> titleComparator = (t1, t2) -> t1.getTitle().toLowerCase().compareTo(t2.getTitle().toLowerCase());
    Comparator<Book> authorComparator = (a1, a2) -> a1.getAuthor().toLowerCase().compareTo(a2.getAuthor().toLowerCase());
    Comparator<Book> genreComparator = (g1, g2) -> g1.getGenre().toLowerCase().compareTo(g2.getGenre().toLowerCase());
-   Comparator<Book> primaryKeyBookComparator = (k1, k2) -> k1.getPrimaryKey().toLowerCase()
-         .compareTo(k2.getPrimaryKey().toLowerCase());
+   Comparator<Book> primaryKeyBookComparator = (k1, k2) -> k1.getPrimaryKey().toLowerCase().compareTo(k2.getPrimaryKey().toLowerCase());
+   Comparator<Book> yearComparator = (y1,y2) -> Integer.compare(y1.getYear(),y2.getYear());
 
    // User comparator objects using lambda expressions to compare object properties
-   Comparator<User> fullNameComparator = (f1, f2) -> f1.getFullName().toLowerCase()
-         .compareTo(f2.getFullName().toLowerCase());
+   Comparator<User> fullNameComparator = (f1, f2) -> f1.getLastName().toLowerCase()
+         .compareTo(f2.getLastName().toLowerCase());
    Comparator<User> usernameComparator = (n1, n2) -> n1.getUsername().toLowerCase()
          .compareTo(n2.getUsername().toLowerCase());
    Comparator<User> primaryKeyUserComparator = (p1, p2) -> p1.getPrimaryKey().toLowerCase()
@@ -63,8 +63,16 @@ public class Sorter {
       return listOfBooks;
    }
 
+   // Method to order a list of books by year
+   public ArrayList<Book> yearSorter(ArrayList<Book> listOfBooks) {
+
+      listOfBooks.sort(yearComparator);
+
+      return listOfBooks;
+   }
+
    // Method to order a list of users alphabetically by their Full Name
-   public ArrayList<User> fullNameSorter(ArrayList<User> listOfBooks) {
+   public ArrayList<User> lastNameSorter(ArrayList<User> listOfBooks) {
 
       listOfBooks.sort(fullNameComparator);
 
