@@ -7,6 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.table.*;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class SearchPageGui {
     private Searcher searcher;
@@ -38,6 +42,9 @@ public class SearchPageGui {
     private Color darkNavyColor = new Color(24, 23, 43);
     private Color goldColor = new Color(208, 201, 46);
     private Color grayColor = new Color(150, 150, 150);
+    // Images
+    private BufferedImage lmsImage, searchImage;
+    private JLabel lmsLabel, searchText;
 
     // Constructor that initializes the frame, panel, table model, scroll pane,
     // table, and buttons
@@ -62,6 +69,22 @@ public class SearchPageGui {
         bookPanel = new JPanel();
         bookPanel.setLayout(null);
         bookPanel.setBackground(navyColor);
+
+        // Creating the images
+        try {
+            lmsImage = ImageIO.read(this.getClass().getResource("lmsicon.png"));
+        } catch (IOException ex) {
+            System.out.println("!!!!!!!!!!!!! ERROR: Can't find images!");
+            // TODO: Handle exception in some way
+            // What to do if you can't find files?
+        }
+        lmsLabel = new JLabel(new ImageIcon(lmsImage));
+        lmsLabel.setSize(136, 231);
+        lmsLabel.setLocation(10, 130);
+        searchText = new JLabel("🔍 Search:");
+        searchText.setSize(200, 40);
+        searchText.setLocation(tableX, tableY - 52);
+        searchText.setForeground(Color.WHITE);
 
         // Creating the table
         tableModel = new DefaultTableModel() {
@@ -329,6 +352,10 @@ public class SearchPageGui {
         bookPanel.add(loginButton);
         bookPanel.add(accountButton);
         bookPanel.add(manageButton);
+
+        // Images
+        bookPanel.add(lmsLabel);
+        bookPanel.add(searchText);
 
         // Add this panel to the frame
         frame.add(bookPanel);
