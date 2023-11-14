@@ -47,7 +47,7 @@ public class SearchPageGui {
         this.bookDatabase = bookDatabase;
         this.userDatabase = userDatabase;
         this.transactionDatabase = transactionDatabase;
-        infoPage = new InfoPageGui(transactionDatabase, this);
+        infoPage = new InfoPageGui(bookDatabase, userDatabase, transactionDatabase, this);
         loginPage = new UserLoginGui(userDatabase, this);
         createPage = new CreateInstanceGui(bookDatabase,userDatabase,transactionDatabase,this);
         userLoggedIn = null;

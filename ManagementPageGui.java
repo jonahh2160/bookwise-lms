@@ -5,11 +5,17 @@ import java.awt.event.ActionListener;
 public class ManagementPageGui extends DateManager {
     private InfoPageGui infoPage;
     private SearchPageGui searchPage;
+    private BookDatabase bookDatabase;
+    private UserDatabase userDatabase;
+    private TransactionDatabase transactionDatabase;
 
     // Constructor
-    public ManagementPageGui(InfoPageGui infoPage, SearchPageGui searchPage) {
+    public ManagementPageGui(BookDatabase bookDatabase, UserDatabase userDatabase, TransactionDatabase transactionDatabase, InfoPageGui infoPage, SearchPageGui searchPage) {
         this.infoPage = infoPage;
         this.searchPage = searchPage;
+        this.bookDatabase = bookDatabase;
+        this.userDatabase = userDatabase;
+        this.transactionDatabase = transactionDatabase;
     }
 
     // Method to assign action event for the edit button in the case of editing the
