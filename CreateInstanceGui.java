@@ -10,11 +10,12 @@ import javax.swing.table.*;
 public class CreateInstanceGui extends DateManager {
     private BookDatabase bookDatabase;
     private UserDatabase userDatabase;
+    private SearchWindow searchWindow;
     private TransactionDatabase transactionDatabase;
     private SearchPageGui searchPage; 
     private JFrame frame, fr;
     private JPanel panel, pa;
-    private JButton bookButton, userButton, transactionButton, submitButton;
+    private JButton bookButton, userButton, transactionButton, submitButton, bookSearchButton, userSearchButton;
     private JComboBox borrowDateBox, dueDateBox, permissionBox;
     private JLabel label1,label2,label3,label4;
     private JTextField te1,te2,te3,te4;
@@ -38,6 +39,7 @@ public class CreateInstanceGui extends DateManager {
         this.bookDatabase = bookDatabase;
         this.userDatabase = userDatabase;
         this.transactionDatabase = transactionDatabase;
+        this.searchWindow = new SearchWindow(this,bookDatabase,userDatabase);
 
         // Create the frame
         frame = new JFrame("Manage");
@@ -76,6 +78,14 @@ public class CreateInstanceGui extends DateManager {
         submitButton = new JButton("SUBMIT");
         submitButton.setSize(buttonWidth,buttonHeight);
         submitButton.setLocation((frameWidth/2)-(buttonWidth/2),frameHeight-100);
+
+        // search buttons
+        bookSearchButton = new JButton("🔍");
+        bookSearchButton.setSize(50,30);
+        bookSearchButton.setLocation(componentX+150,componentY[1]+30);
+        userSearchButton = new JButton("🔍");
+        userSearchButton.setSize(50,30);
+        userSearchButton.setLocation(componentX+150,componentY[0]+30);
         
         // Combo boxes
         String[] permissions = {"Member","Administrator"};
@@ -133,6 +143,16 @@ public class CreateInstanceGui extends DateManager {
                 createTransactionPage();
             }
         });
+        bookSearchButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                searchWindow.searchWindow(0);
+            }
+        });
+        userSearchButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                searchWindow.searchWindow(1);
+            }
+        });
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String result;
@@ -181,6 +201,8 @@ public class CreateInstanceGui extends DateManager {
         te2.setText("");
         te3.setText("");
         te4.setText("");
+        te1.setSize(200,30);
+        te2.setSize(200,30);
         pa.add(te1);
         pa.add(te2);
         pa.add(te3);
@@ -209,6 +231,8 @@ public class CreateInstanceGui extends DateManager {
         te2.setText("");
         te3.setText("");
         te4.setText("");
+        te1.setSize(200,30);
+        te2.setSize(200,30);
         pa.add(te1);
         pa.add(te2);
         pa.add(te3);
@@ -227,8 +251,8 @@ public class CreateInstanceGui extends DateManager {
         pa.removeAll();
         label1.setText("User ID:");
         label2.setText("Book ID:");
-        label3.setText("Date Borrowed (DD/MM/YYYY):");
-        label4.setText("Date Due (DD/MM/YYYY):");
+        label3.setText("Date Borrowed (MM/DD/YYYY):");
+        label4.setText("Date Due (MM/DD/YYYY):");
         pa.add(label1);
         pa.add(label2);
         pa.add(label3);
@@ -237,11 +261,15 @@ public class CreateInstanceGui extends DateManager {
         te2.setText("");
         te3.setText("");
         te4.setText("");
+        te1.setSize(200-50,30);
+        te2.setSize(200-50,30);
         pa.add(te1);
         pa.add(te2);
         pa.add(te3);
         pa.add(te4);
         pa.add(submitButton);
+        pa.add(bookSearchButton);
+        pa.add(userSearchButton);
 
         fr.add(pa);
         fr.setVisible(true);
@@ -255,12 +283,14 @@ public class CreateInstanceGui extends DateManager {
         pa.removeAll();
         label1.setText("User ID:");
         label2.setText("Book ID:");
-        label3.setText("Date Borrowed (DD/MM/YYYY):");
-        label4.setText("Date Due (DD/MM/YYYY):");
+        label3.setText("Date Borrowed (MM/DD/YYYY):");
+        label4.setText("Date Due (MM/DD/YYYY):");
         pa.add(label1);
         pa.add(label2);
         pa.add(label3);
         pa.add(label4);
+        te1.setSize(200-50,30);
+        te2.setSize(200-50,30);
         te1.setText(user.getPrimaryKey());
         pa.add(te1);
         te2.setText("");
@@ -270,6 +300,8 @@ public class CreateInstanceGui extends DateManager {
         te4.setText("");
         pa.add(te4);
         pa.add(submitButton);
+        pa.add(bookSearchButton);
+        pa.add(userSearchButton);
 
         fr.add(pa);
         fr.setVisible(true);
@@ -289,6 +321,8 @@ public class CreateInstanceGui extends DateManager {
         pa.add(label2);
         pa.add(label3);
         pa.add(label4);
+        te1.setSize(200-50,30);
+        te2.setSize(200-50,30);
         te1.setText("");
         pa.add(te1);
         te2.setText(book.getPrimaryKey());
@@ -298,6 +332,8 @@ public class CreateInstanceGui extends DateManager {
         te4.setText("");
         pa.add(te4);
         pa.add(submitButton);
+        pa.add(bookSearchButton);
+        pa.add(userSearchButton);
 
         fr.add(pa);
         fr.setVisible(true);
@@ -372,6 +408,13 @@ public class CreateInstanceGui extends DateManager {
         }
         fr.dispose();
         return("Transaction Added!");
+    }
+
+    public void setTe1(String text) {
+        te1.setText(text);
+    }
+    public void setTe2(String text) {
+        te2.setText(text);
     }
 
 }

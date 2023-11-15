@@ -72,7 +72,9 @@ public class DateManager {
         int month = GetMonth(dateString);
         int year = GetYear(dateString);
         if (month > 1) {
-            date += daysInMonth[month];
+            for (int i=month-1;i>0;i-=1) {
+                date += daysInMonth[month-1];
+            }
         }
         date += day;
         date += year * 365;
@@ -95,7 +97,7 @@ public class DateManager {
         if (day < 1 || month < 1 || month > 12 || year < 0) {
             return(0);
         }
-        if (day > daysInMonth[month]) {
+        if (day > daysInMonth[month-1]) {
             return(0);
         }
         return(1);
