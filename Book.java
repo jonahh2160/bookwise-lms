@@ -4,7 +4,7 @@
 public class Book {
     // Declaration of variables (attributes)
     public String primaryKey;
-    private String title, author, publisher, genre;
+    private String title, author, genre;
     private boolean availablity;
     private int year;
 
@@ -24,10 +24,6 @@ public class Book {
 
     public String getAuthor() {
         return author;
-    }
-
-    public String getPublisher() {
-        return publisher;
     }
 
     public String getGenre() {
@@ -53,10 +49,6 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
     }
 
     public void setGenre(String genre) {

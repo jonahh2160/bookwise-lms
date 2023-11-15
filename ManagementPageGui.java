@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class ManagementPageGui extends DateManager {
     private InfoPageGui infoPage;
@@ -8,13 +9,16 @@ public class ManagementPageGui extends DateManager {
     private BookDatabase bookDatabase;
     private UserDatabase userDatabase;
     private TransactionDatabase transactionDatabase;
+    private DatabaseManager databaseManager;
 
     // Constructor
-    public ManagementPageGui(BookDatabase bookDatabase, UserDatabase userDatabase, TransactionDatabase transactionDatabase, InfoPageGui infoPage, SearchPageGui searchPage) {
+    public ManagementPageGui(BookDatabase bookDatabase, UserDatabase userDatabase, TransactionDatabase transactionDatabase,
+     InfoPageGui infoPage, SearchPageGui searchPage, DatabaseManager databaseManager) {
         this.infoPage = infoPage;
         this.searchPage = searchPage;
         this.bookDatabase = bookDatabase;
         this.userDatabase = userDatabase;
+        this.databaseManager = databaseManager;
         this.transactionDatabase = transactionDatabase;
     }
 
@@ -69,6 +73,11 @@ public class ManagementPageGui extends DateManager {
         }
 
         if (deleteResult != 0) {infoPage.bookInfoPage(book);}
+        try {
+            databaseManager.saveRecords();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "ERROR: Could not save to database!");
+        }
         searchPage.refreshPage();
     }
 
@@ -129,6 +138,11 @@ public class ManagementPageGui extends DateManager {
 
         // Refresh the info page
         if (deleteResult != 0) {infoPage.userInfoPage(user);}
+        try {
+            databaseManager.saveRecords();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "ERROR: Could not save to database!");
+        }
         searchPage.refreshPage();
     }
 
@@ -186,6 +200,11 @@ public class ManagementPageGui extends DateManager {
             infoPage.bookInfoPage();
         } else {
             infoPage.userInfoPage();
+        }
+        try {
+            databaseManager.saveRecords();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "ERROR: Could not save to database!");
         }
         searchPage.refreshPage();
     }

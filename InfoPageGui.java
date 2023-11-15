@@ -41,12 +41,13 @@ public class InfoPageGui {
     private Color darkNavyColor = new Color(24,23,43);
     private Color goldColor = new Color(208,201,46);
 
-    public InfoPageGui(BookDatabase bookDatabase, UserDatabase userDatabase, TransactionDatabase transactionDatabase, SearchPageGui searchPage, CreateInstanceGui createPage) {
+    public InfoPageGui(BookDatabase bookDatabase, UserDatabase userDatabase, TransactionDatabase transactionDatabase,
+     SearchPageGui searchPage, CreateInstanceGui createPage, DatabaseManager databaseManager) {
         this.transactionDatabase = transactionDatabase;
         this.searchPage = searchPage;
         this.createPage = createPage;
         InfoPageGui infoPage = this;
-        managementPage = new ManagementPageGui(bookDatabase, userDatabase, transactionDatabase, this,searchPage);
+        managementPage = new ManagementPageGui(bookDatabase, userDatabase, transactionDatabase, this,searchPage,databaseManager);
         frame = new JFrame("Info Page");
         frame.setSize(640,480);
         frame.setLocationRelativeTo(null);

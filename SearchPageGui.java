@@ -56,15 +56,15 @@ public class SearchPageGui {
     // Constructor that initializes the frame, panel, table model, scroll pane,
     // table, and buttons
     public SearchPageGui(BookDatabase bookDatabase, UserDatabase userDatabase,
-            TransactionDatabase transactionDatabase) {
+            TransactionDatabase transactionDatabase, DatabaseManager databaseManager) {
         this.searcher = new Searcher(bookDatabase, userDatabase);
         this.sorter = new Sorter();
         this.bookDatabase = bookDatabase;
         this.userDatabase = userDatabase;
         this.transactionDatabase = transactionDatabase;
         loginPage = new UserLoginGui(userDatabase, this);
-        createPage = new CreateInstanceGui(bookDatabase, userDatabase, transactionDatabase, this);
-        infoPage = new InfoPageGui(bookDatabase, userDatabase, transactionDatabase, this, createPage);
+        createPage = new CreateInstanceGui(bookDatabase, userDatabase, transactionDatabase, this,databaseManager);
+        infoPage = new InfoPageGui(bookDatabase, userDatabase, transactionDatabase, this, createPage, databaseManager);
         userLoggedIn = null;
 
         // Create the JFrame
@@ -320,7 +320,7 @@ public class SearchPageGui {
         ArrayList<User> users = new ArrayList<User>();
         users = searcher.searchUser(searchTerm);
         if (sortIndex == 0) {
-            users = sorter.lastNameSorter(users);
+            users = sorter.nameSorter(users);
         } else if (sortIndex == 1) {
             users = sorter.usernameSorter(users);
         }
@@ -359,7 +359,7 @@ public class SearchPageGui {
                 sortIndex = 0;
                 sortButton.setText(userSortNames[sortIndex]);
                 refreshPage();
-                return;
+                //return;
             }
         });
         bookButton.addActionListener(new ActionListener() {

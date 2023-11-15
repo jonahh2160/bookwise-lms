@@ -4,8 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.table.*;
+import javax.xml.crypto.Data;
 
 public class CreateInstanceGui extends DateManager {
     private BookDatabase bookDatabase;
@@ -13,6 +15,7 @@ public class CreateInstanceGui extends DateManager {
     private SearchWindow searchWindow;
     private TransactionDatabase transactionDatabase;
     private SearchPageGui searchPage; 
+    private DatabaseManager databaseManager;
     private JFrame frame, fr;
     private JPanel panel, pa;
     private JButton bookButton, userButton, transactionButton, submitButton, bookSearchButton, userSearchButton;
@@ -34,11 +37,13 @@ public class CreateInstanceGui extends DateManager {
     private Color navyColor = new Color(34, 32, 52);
     private Color darkNavyColor = new Color(24, 23, 43);
 
-    public CreateInstanceGui(BookDatabase bookDatabase, UserDatabase userDatabase, TransactionDatabase transactionDatabase, SearchPageGui searchPage) {
+    public CreateInstanceGui(BookDatabase bookDatabase, UserDatabase userDatabase, TransactionDatabase transactionDatabase,
+     SearchPageGui searchPage, DatabaseManager databaseManager) {
         this.searchPage = searchPage;
         this.bookDatabase = bookDatabase;
         this.userDatabase = userDatabase;
         this.transactionDatabase = transactionDatabase;
+        this.databaseManager = databaseManager;
         this.searchWindow = new SearchWindow(this,bookDatabase,userDatabase);
 
         // Create the frame
@@ -233,6 +238,7 @@ public class CreateInstanceGui extends DateManager {
         te4.setText("");
         te1.setSize(200,30);
         te2.setSize(200,30);
+        permissionBox.setSelectedIndex(0);
         pa.add(te1);
         pa.add(te2);
         pa.add(te3);
@@ -357,6 +363,11 @@ public class CreateInstanceGui extends DateManager {
         }
         searchPage.refreshPage();
         fr.dispose();
+        try {
+            databaseManager.saveRecords();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(fr, "ERROR: Could not save to database!");
+        }
         return("Book Added!");
     }
 
@@ -374,6 +385,11 @@ public class CreateInstanceGui extends DateManager {
         userDatabase.addEntry(user);
         searchPage.refreshPage();
         fr.dispose();
+        try {
+            databaseManager.saveRecords();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(fr, "ERROR: Could not save to database!");
+        }
         return("User Added!");
     }
 
@@ -407,6 +423,11 @@ public class CreateInstanceGui extends DateManager {
             }
         }
         fr.dispose();
+        try {
+            databaseManager.saveRecords();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(fr, "ERROR: Could not save to database!");
+        }
         return("Transaction Added!");
     }
 

@@ -25,9 +25,6 @@ public class BookDatabase extends Table<Book> {
         if (author != null) {
             book.setAuthor(author);
         }
-        if (publisher != null) {
-            book.setPublisher(publisher);
-        }
         if (genre != null) {
             book.setGenre(genre);
         }
