@@ -66,6 +66,7 @@ public class InfoPageGui {
         };
         infoTable = new JTable(infoTableModel);
         infoTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        infoTable.getTableHeader().setReorderingAllowed(false);
         infoTable.getTableHeader().setBackground(darkNavyColor);
         infoTable.getTableHeader().setForeground(Color.WHITE);
         // Creating the scroll pane for info
@@ -84,6 +85,7 @@ public class InfoPageGui {
         };
         transactionTable = new JTable(transactionTableModel);
         transactionTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        transactionTable.getTableHeader().setReorderingAllowed(false);
         transactionTableModel.setColumnCount(transactionColumnNames.length);
         for (int i=0;i<transactionColumnNames.length;i++) {
             transactionTable.getColumnModel().getColumn(i).setHeaderValue(transactionColumnNames[i]);
