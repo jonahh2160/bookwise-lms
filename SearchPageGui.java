@@ -35,7 +35,7 @@ public class SearchPageGui {
     final int tableHeight = 384;
     final String[] bookColumnNames = { "Title", "Author", "Genre", "Year", "ID", "Available" };
     final String[] userColumnNames = { "Name", "Username", "ID", "Status" };
-    final String[] bookSortNames = {"Sorting by Title","Sorting by Author","Sorting by Year"};
+    final String[] bookSortNames = {"Sorting by Title","Sorting by Author","Sorting by Year","Sorting by Available"};
     final String[] userSortNames = {"Sorting by Name","Sorting by Username"};
     private int sortIndex = 0;
     private String[] columnNames = bookColumnNames;
@@ -309,6 +309,8 @@ public class SearchPageGui {
             books = sorter.authorSorter(books);
         } else if (sortIndex == 2) {
             books = sorter.yearSorter(books);
+        } else if (sortIndex == 3) {
+            books = sorter.availabilitySorter(books);
         }
         return (books);
     }

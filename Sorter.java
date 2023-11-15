@@ -3,6 +3,7 @@
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.*;
 
 public class Sorter {
 
@@ -12,6 +13,7 @@ public class Sorter {
    Comparator<Book> genreComparator = (g1, g2) -> g1.getGenre().toLowerCase().compareTo(g2.getGenre().toLowerCase());
    Comparator<Book> primaryKeyBookComparator = (k1, k2) -> k1.getPrimaryKey().toLowerCase().compareTo(k2.getPrimaryKey().toLowerCase());
    Comparator<Book> yearComparator = (y1,y2) -> Integer.compare(y1.getYear(),y2.getYear());
+   Comparator<Book> availabilityComparator = (a1, a2) -> Boolean.compare(a1.getAvailability(),a2.getAvailability());
 
    // User comparator objects using lambda expressions to compare object properties
    Comparator<User> fullNameComparator = (f1, f2) -> f1.getLastName().toLowerCase()
@@ -68,6 +70,14 @@ public class Sorter {
 
       listOfBooks.sort(yearComparator);
 
+      return listOfBooks;
+   }
+
+   // Method to order a list of books by year
+   public ArrayList<Book> availabilitySorter(ArrayList<Book> listOfBooks) {
+
+      listOfBooks.sort(availabilityComparator);
+      Collections.reverse(listOfBooks);
       return listOfBooks;
    }
 
