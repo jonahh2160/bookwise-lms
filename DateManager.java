@@ -4,7 +4,7 @@
 public class DateManager {
     // This integer array keeps track of how many days is in each month for
     // calculations later
-    public int[] daysInMonth = { -1, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    public int[] daysInMonth = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
     // Input date string of format ("month/day/year") returning int value for month
     public int GetMonth(String dateString) {
@@ -72,11 +72,8 @@ public class DateManager {
         int month = GetMonth(dateString);
         int year = GetYear(dateString);
         if (month > 1) {
-            date += daysInMonth[month - 1];
-        } else {
-            date += daysInMonth[13];
+            date += daysInMonth[month];
         }
-        ;
         date += day;
         date += year * 365;
 

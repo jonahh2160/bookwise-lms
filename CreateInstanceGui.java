@@ -271,8 +271,8 @@ public class CreateInstanceGui extends DateManager {
         pa.removeAll();
         label1.setText("User ID:");
         label2.setText("Book ID:");
-        label3.setText("Date Borrowed (DD/MM/YYYY):");
-        label4.setText("Date Due (DD/MM/YYYY):");
+        label3.setText("Date Borrowed (MM/DD/YYYY):");
+        label4.setText("Date Due (MM/DD/YYYY):");
         pa.add(label1);
         pa.add(label2);
         pa.add(label3);
