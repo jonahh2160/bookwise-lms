@@ -167,7 +167,7 @@ public class ManagementPageGui extends DateManager {
                 dateReturned = JOptionPane.showInputDialog("What would you like to change the returned date to?",dateReturned);
                 if (checkDate(dateReturned) != 0) {transaction.setDateReturned(dateReturned);} else {JOptionPane.showMessageDialog(infoPage.getFrame(),"Invalid Date!");}
             } else {
-                dateReturned = JOptionPane.showInputDialog("Input the returned date.","DD/MM/YYYY");
+                dateReturned = JOptionPane.showInputDialog("Input the returned date.","MM/DD/YYYY");
                 if (checkDate(dateReturned) != 0) {transaction.completeTransaction(dateReturned);} else {JOptionPane.showMessageDialog(infoPage.getFrame(),"Invalid Date!");}
             }
         } else if (answer == 3) {
