@@ -1,7 +1,6 @@
 // JH 11/1
 // Small class that handles user logins
 
-// TODO: In the main method, be able to set a loggedIn boolean to true
 public class UserLogin {
     UserDatabase userDatabase;
 
