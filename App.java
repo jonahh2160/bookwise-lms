@@ -1,7 +1,9 @@
 import java.io.*;
 
+import javax.swing.JOptionPane;
+
 public class App {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         BookDatabase bookDatabase = new BookDatabase();
         UserDatabase userDatabase = new UserDatabase();
         TransactionDatabase transactionDatabase = new TransactionDatabase();
@@ -9,8 +11,12 @@ public class App {
 
         SearchPageGui mainPageGui = new SearchPageGui(bookDatabase, userDatabase, transactionDatabase,databaseManager);
 
-        databaseManager.openSavedRecords();
-        databaseManager.saveRecords();
+        try {
+            databaseManager.openSavedRecords();
+            databaseManager.saveRecords();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Could not access records file :(");
+        }
 
         mainPageGui.searchPage();
     }
