@@ -1,13 +1,16 @@
+
 //IG 11/15
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class DatabaseManager {
-    
+
     static Scanner scn = new Scanner(System.in);
     private ArrayList<Book> bookArray = new ArrayList<Book>();
     private ArrayList<User> userArray = new ArrayList<User>();
@@ -15,19 +18,22 @@ public class DatabaseManager {
     private BookDatabase bookDatabase;
     private UserDatabase userDatabase;
     private TransactionDatabase transactionDatabase;
+    private URL filePath = getClass().getClassLoader().getResource("records.txt");
+    private File records = new File(filePath.getFile());
 
-    public DatabaseManager(BookDatabase bookDatabase, UserDatabase userDatabase, TransactionDatabase transactionDatabase) {
+    public DatabaseManager(BookDatabase bookDatabase, UserDatabase userDatabase,
+            TransactionDatabase transactionDatabase) {
         this.bookDatabase = bookDatabase;
         this.userDatabase = userDatabase;
         this.transactionDatabase = transactionDatabase;
     }
 
     public void saveRecords() throws IOException {
-        FileOutputStream fout = new FileOutputStream("records.txt");
+        FileOutputStream fout = new FileOutputStream(records);
         PrintWriter out = new PrintWriter(fout);
-        
-        //save books
-        for (int i = 0; i < bookDatabase.getSize();i++) {
+
+        // save books
+        for (int i = 0; i < bookDatabase.getSize(); i++) {
             // Book
             out.print("[BOOK] ");
             // Title
@@ -43,8 +49,8 @@ public class DatabaseManager {
             // Primary Key
             out.println(bookDatabase.getEntry(i).getPrimaryKey() + " ");
         }
-        //save users
-        for (int i = 0; i < userDatabase.getSize();i++) {
+        // save users
+        for (int i = 0; i < userDatabase.getSize(); i++) {
             // User
             out.print("[USER] ");
             // Name
@@ -62,8 +68,8 @@ public class DatabaseManager {
             // Primary Key
             out.println(userDatabase.getEntry(i).getPrimaryKey() + " ");
         }
-        //save transactions
-        for (int i = 0; i < transactionDatabase.getSize();i++) {
+        // save transactions
+        for (int i = 0; i < transactionDatabase.getSize(); i++) {
             // Transaction
             out.print("[TRANSACTION] ");
             // Book
@@ -86,13 +92,13 @@ public class DatabaseManager {
         out.close();
     }
 
-    public void openSavedRecords() throws IOException { // Written for you. Do Not Change.
-        FileInputStream fileInput = new FileInputStream("records.txt");
+    public void openSavedRecords() throws IOException {
+        FileInputStream fileInput = new FileInputStream(records);
         Scanner fileSCN = new Scanner(fileInput);
         bookArray.clear();
         userArray.clear();
         transactionArray.clear();
-        
+
         while (fileSCN.hasNext()) {
             String type = fileSCN.next();
             if (type.equals("[BOOK]")) {
@@ -105,7 +111,7 @@ public class DatabaseManager {
                 availability = fileSCN.nextBoolean();
                 year = fileSCN.nextInt();
                 bookID = fileSCN.next();
-                Book book = new Book(title,author,genre,year);
+                Book book = new Book(title, author, genre, year);
                 bookDatabase.addEntry(book);
                 book.setPrimaryKey(bookID);
                 book.setAvailability(availability);
@@ -142,9 +148,11 @@ public class DatabaseManager {
                 status = fileSCN.nextBoolean();
                 if (status == true) {
                     dateReturned = addSpacesToString(fileSCN.next());
-                } else {dateReturned = "";}
+                } else {
+                    dateReturned = "";
+                }
                 transactionID = fileSCN.next();
-                Transaction transaction = new Transaction(user,book,dateBorrowed,dateDue);
+                Transaction transaction = new Transaction(user, book, dateBorrowed, dateDue);
                 transactionDatabase.addEntry(transaction);
                 transaction.setPrimaryKey(transactionID);
                 if (status == true) {
@@ -159,27 +167,27 @@ public class DatabaseManager {
     private String removeSpacesFromString(String string) {
         char c = 0;
         String newString = "";
-        for (int i=0;i<string.length();i++) {
+        for (int i = 0; i < string.length(); i++) {
             c = string.charAt(i);
             if (c == 32) {
                 c = 95;
             }
             newString += c;
         }
-        return(newString);
+        return (newString);
     }
 
     private String addSpacesToString(String string) {
         char c = 0;
         String newString = "";
-        for (int i=0;i<string.length();i++) {
+        for (int i = 0; i < string.length(); i++) {
             c = string.charAt(i);
             if (c == 95) {
                 c = 32;
             }
             newString += c;
         }
-        return(newString);
+        return (newString);
     }
 
 }
