@@ -1,6 +1,7 @@
 [BOOK] Legend Marie_Lu Young_Adult true 2011 6179638 
 [BOOK] Fahrenheit_451 Ray_Bradbury Dystopian false 1953 9712548 
 [BOOK] Moby_Dick Herman_Melville Fiction true 1851 2397178 
+[USER] Example_Admin admin 1234 1 0.0 true 0000000 
 [USER] Jonah_Hampton tempest 1234 1 0.0 true 0767002 
 [USER] Isaac_Gunderson jpgundi stupid12 1 0.0 true 5838920 
 [USER] Michael_Toon mtoon 1234 1 0.0 true 9436920 
