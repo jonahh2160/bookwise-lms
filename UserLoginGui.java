@@ -12,7 +12,7 @@ public class UserLoginGui {
     private UserLogin userLogin;
 
     // Objects required for creating the log in page
-    private JFrame fr = new JFrame("Library Management System - Log In");
+    private JFrame fr = new JFrame("Log In");
     private JPanel pa;
     private JTextField teUser;
     private JPasswordField tePass;

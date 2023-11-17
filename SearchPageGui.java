@@ -35,8 +35,9 @@ public class SearchPageGui {
     final int tableHeight = 384;
     final String[] bookColumnNames = { "Title", "Author", "Genre", "Year", "ID", "Available" };
     final String[] userColumnNames = { "Name", "Username", "ID", "Status" };
-    final String[] bookSortNames = {"Sorting by Title","Sorting by Author","Sorting by Year","Sorting by Available"};
-    final String[] userSortNames = {"Sorting by Name","Sorting by Username"};
+    final String[] bookSortNames = { "Sorting by Title", "Sorting by Author", "Sorting by Year",
+            "Sorting by Available" };
+    final String[] userSortNames = { "Sorting by Name", "Sorting by Username" };
     private int sortIndex = 0;
     private String[] columnNames = bookColumnNames;
     private int cellWidth = tableWidth / columnNames.length;
@@ -63,12 +64,12 @@ public class SearchPageGui {
         this.userDatabase = userDatabase;
         this.transactionDatabase = transactionDatabase;
         loginPage = new UserLoginGui(userDatabase, this);
-        createPage = new CreateInstanceGui(bookDatabase, userDatabase, transactionDatabase, this,databaseManager);
+        createPage = new CreateInstanceGui(bookDatabase, userDatabase, transactionDatabase, this, databaseManager);
         infoPage = new InfoPageGui(bookDatabase, userDatabase, transactionDatabase, this, createPage, databaseManager);
         userLoggedIn = null;
 
         // Create the JFrame
-        frame = new JFrame("Library Management System");
+        frame = new JFrame("BookWise LMS");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(960, 540);
         frame.setLocationRelativeTo(null);
@@ -174,13 +175,17 @@ public class SearchPageGui {
                 if (currentButton == userButton) {
                     if (sortIndex < bookSortNames.length - 1) {
                         sortIndex += 1;
-                    } else {sortIndex = 0;}
+                    } else {
+                        sortIndex = 0;
+                    }
                     sortButton.setText(bookSortNames[sortIndex]);
                     refreshPage();
                 } else {
                     if (sortIndex < userSortNames.length - 1) {
                         sortIndex += 1;
-                    } else {sortIndex = 0;}
+                    } else {
+                        sortIndex = 0;
+                    }
                     sortButton.setText(userSortNames[sortIndex]);
                     refreshPage();
                 }
@@ -359,7 +364,7 @@ public class SearchPageGui {
                 sortIndex = 0;
                 sortButton.setText(userSortNames[sortIndex]);
                 refreshPage();
-                //return;
+                // return;
             }
         });
         bookButton.addActionListener(new ActionListener() {
