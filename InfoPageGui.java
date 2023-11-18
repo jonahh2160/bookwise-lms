@@ -27,8 +27,8 @@ public class InfoPageGui {
     final int infoWidth = 480;
     final int infoHeight = 37;
     final String[] transactionColumnNames = {"User","Book","Borrowed","Due","Returned","ID"};
-    final String[] bookColumnNames = {"Title","Author","Genre","ID","Available"};
-    final String[] userColumnNames = {"Name","Username","ID","Status","Balance"};
+    final String[] bookColumnNames = {"Title","Author","Genre","Year","ID","Available"};
+    final String[] userColumnNames = {"Name","Username","ID","Status","Perms","Balance"};
     private String[] columnNames = bookColumnNames;
     private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
     private int currentType = 0;
@@ -204,14 +204,19 @@ public class InfoPageGui {
         infoLabel.setText("Book Info:");
         columnNames = bookColumnNames;
         refreshColumnNames();
+        infoTable.getColumnModel().getColumn(0).setPreferredWidth(140);
+        infoTable.getColumnModel().getColumn(1).setPreferredWidth(110);
+        infoTable.getColumnModel().getColumn(3).setPreferredWidth(50);
+        infoTable.getColumnModel().getColumn(5).setPreferredWidth(60);
         infoTable.setValueAt(book.getTitle(),0,0);
         infoTable.setValueAt(book.getAuthor(),0,1);
         infoTable.setValueAt(book.getGenre(),0,2);
-        infoTable.setValueAt(book.getPrimaryKey(),0,3);
+        infoTable.setValueAt(book.getYear(), 0, 3);
+        infoTable.setValueAt(book.getPrimaryKey(),0,4);
         if (book.getAvailability()) {
-            infoTable.setValueAt("✓", 0, 4);
+            infoTable.setValueAt("✓", 0, 5);
         } else {
-            infoTable.setValueAt("✗", 0, 4);
+            infoTable.setValueAt("✗", 0, 5);
         }
         transactions.clear();
         transactions = transactionDatabase.getBookTransactions(book);
@@ -224,6 +229,8 @@ public class InfoPageGui {
         infoLabel.setText("User Info:");
         columnNames = userColumnNames;
         refreshColumnNames();
+        infoTable.getColumnModel().getColumn(0).setPreferredWidth(140);
+        infoTable.getColumnModel().getColumn(1).setPreferredWidth(110);
         infoTable.setValueAt(user.getFullName(),0,0);
         infoTable.setValueAt(user.getUsername(),0,1);
         infoTable.setValueAt(user.getPrimaryKey(),0,2);
@@ -232,10 +239,13 @@ public class InfoPageGui {
         } else {
             infoTable.setValueAt("✗ Inactive", 0, 3);
         }
+        String perms = "";
+        if (user.getPerms() == 0) {perms = "Member";} else {perms = "Admin";}
+        infoTable.setValueAt(perms,0,4);
         double balance = user.getAccountBalance();
         String sign;
         if (balance < 0) {sign = "-";} else {sign = "";};
-        infoTable.setValueAt(sign + "$" + Math.abs(balance),0,4);
+        infoTable.setValueAt(sign + "$" + Math.abs(balance),0,5);
         transactions.clear();
         transactions = transactionDatabase.getUserTransactions(user);
         getTransactionData(transactions);

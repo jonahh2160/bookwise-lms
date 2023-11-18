@@ -116,7 +116,13 @@ public class ManagementPageGui extends DateManager {
                     "Which permission level would you like to assign?",
                     "Permission Management", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
                     memberLevel, memberLevel[0]);
-            if (perms < 2) {user.setPerms(perms);}
+            if (perms < 2) {
+                if (searchPage.getUser() != user) {
+                    user.setPerms(perms);
+                } else  {
+                    JOptionPane.showMessageDialog(null, "Can't change permissions of the current user!");
+                }
+            }
         } else if (answer == 4) {
             active = JOptionPane.showOptionDialog(
                     null,
@@ -131,8 +137,12 @@ public class ManagementPageGui extends DateManager {
                 "Delete User", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, deleteResponse,
                 responses[1]);
             if (deleteResult == 0) {
-                userDatabase.removeEntry(user.getPrimaryKey());
-                infoPage.getFrame().dispose();
+                if (searchPage.getUser() != user) {
+                    userDatabase.removeEntry(user.getPrimaryKey());
+                    infoPage.getFrame().dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null,"Can't delete the current user!");
+                }
             }
         }
 

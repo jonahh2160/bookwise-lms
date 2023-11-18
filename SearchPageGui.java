@@ -271,6 +271,10 @@ public class SearchPageGui {
         // Reset row count to clear the data
         tableModel.setRowCount(0);
         tableModel.setRowCount(database.size());
+        table.getColumnModel().getColumn(0).setPreferredWidth(140);
+        table.getColumnModel().getColumn(1).setPreferredWidth(110);
+        table.getColumnModel().getColumn(3).setPreferredWidth(50);
+        table.getColumnModel().getColumn(5).setPreferredWidth(60);
         // Input book data into the cells
         for (int i = 0; i < database.size(); i++) {
             table.setValueAt(database.get(i).getTitle(), i, 0);
@@ -291,6 +295,8 @@ public class SearchPageGui {
         // Reset row count to clear the data
         tableModel.setRowCount(0);
         tableModel.setRowCount(database.size());
+        table.getColumnModel().getColumn(0).setPreferredWidth(140);
+        table.getColumnModel().getColumn(1).setPreferredWidth(110);
         // Input user data into the cells
         for (int i = 0; i < database.size(); i++) {
             table.setValueAt(database.get(i).getFullName(), i, 0);
