@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.table.*;
@@ -21,7 +22,7 @@ public class CreateInstanceGui extends DateManager {
     private JButton bookButton, userButton, transactionButton, submitButton, bookSearchButton, userSearchButton;
     private JComboBox borrowDateBox, dueDateBox, permissionBox;
     private JLabel label1,label2,label3,label4;
-    private JTextField te1,te2,te3,te4;
+    private JTextField te1,te2,te3,te4, te5, te6;
     private int frameWidth = 640;
     private int frameHeight = 480;
     private int componentX = (frameWidth/2)-100;
@@ -132,6 +133,12 @@ public class CreateInstanceGui extends DateManager {
         te4 = new JTextField();
         te4.setSize(200,30);
         te4.setLocation(componentX,componentY[3]+30);
+        te5 = new JTextField();
+        te5.setSize(200,30);
+        te5.setLocation(componentX,componentY[2]+30);
+        te6 = new JTextField();
+        te6.setSize(200,30);
+        te6.setLocation(componentX,componentY[3]+30);
 
         // Button logic
         bookButton.addActionListener(new ActionListener() {
@@ -168,6 +175,22 @@ public class CreateInstanceGui extends DateManager {
                     result = createTransaction();
                 }
                 JOptionPane.showMessageDialog(fr, result);
+            }
+        });
+
+        //restricting string length for date boxes
+        te5.addKeyListener(new KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent e) {
+                if (te5.getText().length() >= 10) {
+                    e.consume();
+                }
+            }
+        });
+        te6.addKeyListener(new KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent e) {
+                if (te5.getText().length() >= 10) {
+                    e.consume();
+                }
             }
         });
     }
@@ -266,14 +289,14 @@ public class CreateInstanceGui extends DateManager {
         pa.add(label4);
         te1.setText("");
         te2.setText("");
-        te3.setText("");
-        te4.setText("");
+        te5.setText("");
+        te6.setText("");
         te1.setSize(200-50,30);
         te2.setSize(200-50,30);
         pa.add(te1);
         pa.add(te2);
-        pa.add(te3);
-        pa.add(te4);
+        pa.add(te5);
+        pa.add(te6);
         pa.add(submitButton);
         pa.add(bookSearchButton);
         pa.add(userSearchButton);
@@ -302,10 +325,10 @@ public class CreateInstanceGui extends DateManager {
         pa.add(te1);
         te2.setText("");
         pa.add(te2);
-        te3.setText("");
-        pa.add(te3);
-        te4.setText("");
-        pa.add(te4);
+        te5.setText("");
+        pa.add(te5);
+        te6.setText("");
+        pa.add(te6);
         pa.add(submitButton);
         pa.add(bookSearchButton);
         pa.add(userSearchButton);
@@ -334,10 +357,10 @@ public class CreateInstanceGui extends DateManager {
         pa.add(te1);
         te2.setText(book.getPrimaryKey());
         pa.add(te2);
-        te3.setText("");
-        pa.add(te3);
-        te4.setText("");
-        pa.add(te4);
+        te5.setText("");
+        pa.add(te5);
+        te6.setText("");
+        pa.add(te6);
         pa.add(submitButton);
         pa.add(bookSearchButton);
         pa.add(userSearchButton);
@@ -400,8 +423,8 @@ public class CreateInstanceGui extends DateManager {
             String userID, bookID, dateBorrowed, dateDue;
             userID = te1.getText();
             bookID = te2.getText();
-            dateBorrowed = te3.getText();
-            dateDue = te4.getText();
+            dateBorrowed = te5.getText();
+            dateDue = te6.getText();
             User user = userDatabase.getEntry(userID);
             if (user == null) {return("Invalid User!");}
             if (user.getActive() == false) {return("User is inactive!");}
