@@ -188,7 +188,7 @@ public class CreateInstanceGui extends DateManager {
         });
         te6.addKeyListener(new KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent e) {
-                if (te5.getText().length() >= 10) {
+                if (te6.getText().length() >= 10) {
                     e.consume();
                 }
             }
