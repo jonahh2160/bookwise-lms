@@ -89,12 +89,13 @@ public class ManagementPageGui extends DateManager {
         String username = user.getUsername();
         String password = user.getPassword();
         int perms = user.getPerms();
+        String balance = ("" + user.getAccountBalance());
         int active;
         String[] memberLevel = { "Member", "Librarian", "Cancel" };
         String[] deleteResponse = {"Yes","Cancel"};
         String[] activeOptions = {"Active","Inactive","Cancel"};
         int deleteResult = 1;
-        String[] responses = { "Name", "Username", "Password", "Perms", "Status", "Delete", "Cancel" };
+        String[] responses = { "Name", "Username", "Password", "Perms", "Balance", "Status", "Delete", "Cancel" };
         int answer = JOptionPane.showOptionDialog( // TODO need to fix this bug by instantiating an istance to refer for
                                                    // closing methods
                 null,
@@ -124,6 +125,13 @@ public class ManagementPageGui extends DateManager {
                 }
             }
         } else if (answer == 4) {
+            balance = JOptionPane.showInputDialog("What would you like to change the password to? ",balance);
+            try {
+                user.setAccountBalance(Double.parseDouble(balance));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,"Invalid balance!");
+            }
+        } else if (answer == 5) {
             active = JOptionPane.showOptionDialog(
                     null,
                     "Select user status.",
@@ -132,7 +140,7 @@ public class ManagementPageGui extends DateManager {
             if (active == 0) {user.setActive(true);} else if (active == 1) {
                 user.setActive(false);
             }
-        } else if (answer == 5) {
+        } else if (answer == 6) {
             deleteResult = JOptionPane.showOptionDialog(null,"Are your sure you want to delete this User?",
                 "Delete User", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, deleteResponse,
                 responses[1]);

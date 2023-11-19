@@ -37,7 +37,7 @@ public class SearchPageGui {
     final String[] userColumnNames = { "Name", "Username", "ID", "Status" };
     final String[] bookSortNames = { "Sorting by Title", "Sorting by Author", "Sorting by Year",
             "Sorting by Available" };
-    final String[] userSortNames = { "Sorting by Name", "Sorting by Username" };
+    final String[] userSortNames = { "Sorting by Name", "Sorting by Username", "Sorting by Status"};
     private int sortIndex = 0;
     private String[] columnNames = bookColumnNames;
     private int cellWidth = tableWidth / columnNames.length;
@@ -334,6 +334,8 @@ public class SearchPageGui {
             users = sorter.nameSorter(users);
         } else if (sortIndex == 1) {
             users = sorter.usernameSorter(users);
+        } else if (sortIndex == 2) {
+            users = sorter.statusSorter(users);
         }
         return (users);
     }

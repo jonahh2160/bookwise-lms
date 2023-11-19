@@ -121,6 +121,7 @@ public class CreateInstanceGui extends DateManager {
         // Textfields
         te1 = new JTextField();
         te1.setSize(200,30);
+        //te1.set
         te1.setLocation(componentX,componentY[0]+30);
         te2 = new JTextField();
         te2.setSize(200,30);

@@ -22,6 +22,7 @@ public class Sorter {
          .compareTo(n2.getUsername().toLowerCase());
    Comparator<User> primaryKeyUserComparator = (p1, p2) -> p1.getPrimaryKey().toLowerCase()
          .compareTo(p2.getPrimaryKey().toLowerCase());
+   Comparator<User> statusComparator = (a1, a2) -> Boolean.compare(a1.getActive(),a2.getActive());
 
    // Transaction comparator objs using lambda expression to compare obj properties
    Comparator<Transaction> dateDueComparator = (d1, d2) -> d1.getDateDue().toLowerCase()
@@ -69,7 +70,7 @@ public class Sorter {
    public ArrayList<Book> yearSorter(ArrayList<Book> listOfBooks) {
 
       listOfBooks.sort(yearComparator);
-
+      Collections.reverse(listOfBooks);
       return listOfBooks;
    }
 
@@ -102,6 +103,14 @@ public class Sorter {
 
       listOfBooks.sort(primaryKeyUserComparator);
 
+      return listOfBooks;
+   }
+
+   // Method to order a list of users by status
+   public ArrayList<User> statusSorter(ArrayList<User> listOfBooks) {
+
+      listOfBooks.sort(statusComparator);
+      Collections.reverse(listOfBooks);
       return listOfBooks;
    }
 
