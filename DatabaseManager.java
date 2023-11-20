@@ -18,8 +18,6 @@ public class DatabaseManager {
     private BookDatabase bookDatabase;
     private UserDatabase userDatabase;
     private TransactionDatabase transactionDatabase;
-    private URL filePath = getClass().getClassLoader().getResource("records.txt");
-    private File records = new File(filePath.getFile());
 
     public DatabaseManager(BookDatabase bookDatabase, UserDatabase userDatabase,
             TransactionDatabase transactionDatabase) {
@@ -29,7 +27,7 @@ public class DatabaseManager {
     }
 
     public void saveRecords() throws IOException {
-        FileOutputStream fout = new FileOutputStream(records);
+        FileOutputStream fout = new FileOutputStream("records.txt");
         PrintWriter out = new PrintWriter(fout);
 
         // save books
@@ -93,7 +91,7 @@ public class DatabaseManager {
     }
 
     public void openSavedRecords() throws IOException {
-        FileInputStream fileInput = new FileInputStream(records);
+        FileInputStream fileInput = new FileInputStream("records.txt");
         Scanner fileSCN = new Scanner(fileInput);
         bookArray.clear();
         userArray.clear();
