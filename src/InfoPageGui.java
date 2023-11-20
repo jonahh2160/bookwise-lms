@@ -1,4 +1,5 @@
 // IG 11/10
+// Creates GUI page that appears when clicking on record objects
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,30 +27,28 @@ public class InfoPageGui {
     final int infoY = 50;
     final int infoWidth = 480;
     final int infoHeight = 37;
-    final String[] transactionColumnNames = {"User","Book","Borrowed","Due","Returned","ID"};
-    final String[] bookColumnNames = {"Title","Author","Genre","Year","ID","Available"};
-    final String[] userColumnNames = {"Name","Username","ID","Status","Perms","Balance"};
+    final String[] transactionColumnNames = { "User", "Book", "Borrowed", "Due", "Returned", "ID" };
+    final String[] bookColumnNames = { "Title", "Author", "Genre", "Year", "ID", "Available" };
+    final String[] userColumnNames = { "Name", "Username", "ID", "Status", "Perms", "Balance" };
     private String[] columnNames = bookColumnNames;
     private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
     private int currentType = 0;
     private SearchPageGui searchPage;
-    private CreateInstanceGui createPage;
     private Book book;
     private User user;
     // Colors
-    private Color navyColor = new Color(34,32,52);
-    private Color darkNavyColor = new Color(24,23,43);
-    private Color goldColor = new Color(208,201,46);
+    private Color navyColor = new Color(34, 32, 52);
+    private Color darkNavyColor = new Color(24, 23, 43);
 
     public InfoPageGui(BookDatabase bookDatabase, UserDatabase userDatabase, TransactionDatabase transactionDatabase,
-     SearchPageGui searchPage, CreateInstanceGui createPage, DatabaseManager databaseManager) {
+            SearchPageGui searchPage, CreateInstanceGui createPage, DatabaseManager databaseManager) {
         this.transactionDatabase = transactionDatabase;
         this.searchPage = searchPage;
-        this.createPage = createPage;
         InfoPageGui infoPage = this;
-        managementPage = new ManagementPageGui(bookDatabase, userDatabase, transactionDatabase, this,searchPage,databaseManager);
+        managementPage = new ManagementPageGui(bookDatabase, userDatabase, transactionDatabase, this, searchPage,
+                databaseManager);
         frame = new JFrame("Info Page");
-        frame.setSize(640,480);
+        frame.setSize(640, 480);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         columnNames = bookColumnNames;
@@ -62,7 +61,7 @@ public class InfoPageGui {
         infoTableModel = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return(false);
+                return (false);
             }
         };
         infoTable = new JTable(infoTableModel);
@@ -74,21 +73,21 @@ public class InfoPageGui {
         infoScrollPane = new JScrollPane(infoTable);
         infoScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         infoScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-        infoScrollPane.setBounds(infoX,infoY,infoWidth,infoHeight);
+        infoScrollPane.setBounds(infoX, infoY, infoWidth, infoHeight);
         infoScrollPane.setVisible(true);
 
         // Creating the transaction table
         transactionTableModel = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return(false);
+                return (false);
             }
         };
         transactionTable = new JTable(transactionTableModel);
         transactionTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         transactionTable.getTableHeader().setReorderingAllowed(false);
         transactionTableModel.setColumnCount(transactionColumnNames.length);
-        for (int i=0;i<transactionColumnNames.length;i++) {
+        for (int i = 0; i < transactionColumnNames.length; i++) {
             transactionTable.getColumnModel().getColumn(i).setHeaderValue(transactionColumnNames[i]);
         }
         transactionTable.getTableHeader().repaint();
@@ -98,29 +97,29 @@ public class InfoPageGui {
         scrollPane = new JScrollPane(transactionTable);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setBounds(tableX,tableY,tableWidth,tableHeight);
+        scrollPane.setBounds(tableX, tableY, tableWidth, tableHeight);
         scrollPane.setVisible(true);
         scrollPane.getViewport().setBackground(darkNavyColor);
 
-        //Buttons
+        // Buttons
         closeButton = new JButton("Close");
-        closeButton.setSize(100,30);
-        closeButton.setLocation(510,390);
+        closeButton.setSize(100, 30);
+        closeButton.setLocation(510, 390);
         editButton = new JButton("Edit");
-        editButton.setSize(100,30);
-        editButton.setLocation(infoX + infoWidth+10,infoY);
+        editButton.setSize(100, 30);
+        editButton.setLocation(infoX + infoWidth + 10, infoY);
         transactionButton = new JButton("Add");
-        transactionButton.setSize(100,30);
-        transactionButton.setLocation(510,390-40);
+        transactionButton.setSize(100, 30);
+        transactionButton.setLocation(510, 390 - 40);
 
-        //Lables
+        // Lables
         infoLabel = new JLabel("");
-        infoLabel.setLocation(infoX,infoY-20);
-        infoLabel.setSize(100,20);
+        infoLabel.setLocation(infoX, infoY - 20);
+        infoLabel.setSize(100, 20);
         infoLabel.setForeground(Color.WHITE);
         transactionLabel = new JLabel("Transaction History:");
-        transactionLabel.setLocation(tableX,tableY-20);
-        transactionLabel.setSize(200,20);
+        transactionLabel.setLocation(tableX, tableY - 20);
+        transactionLabel.setSize(200, 20);
         transactionLabel.setForeground(Color.WHITE);
 
         // Close button logic
@@ -147,9 +146,9 @@ public class InfoPageGui {
         transactionButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (currentType == 0) {
-                    createPage.createTransactionPage(book,infoPage);
+                    createPage.createTransactionPage(book, infoPage);
                 } else {
-                    createPage.createTransactionPage(user,infoPage);
+                    createPage.createTransactionPage(user, infoPage);
                 }
             }
         });
@@ -158,7 +157,7 @@ public class InfoPageGui {
         transactionTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 int row = transactionTable.rowAtPoint(e.getPoint());
-                String id = String.valueOf(transactionTable.getValueAt(row,5));
+                String id = String.valueOf(transactionTable.getValueAt(row, 5));
                 if (searchPage.getUser() != null && searchPage.getUser().getPerms() > 0) {
                     Transaction transaction = transactionDatabase.getEntry(id);
                     managementPage.changeTransactionInfo(transaction);
@@ -173,14 +172,14 @@ public class InfoPageGui {
         infoTableModel.setRowCount(1);
         infoTableModel.setColumnCount(0);
         infoTableModel.setColumnCount(columnNames.length);
-        for (int i = 0;i<columnNames.length;i++) {
+        for (int i = 0; i < columnNames.length; i++) {
             infoTable.getColumnModel().getColumn(i).setHeaderValue(columnNames[i]);
         }
         infoTable.getTableHeader().repaint();
     }
 
     public void refreshTransactions() {
-         transactions.clear();
+        transactions.clear();
         if (currentType == 0) {
             transactions = transactionDatabase.getBookTransactions(book);
             getTransactionData(transactions);
@@ -194,8 +193,9 @@ public class InfoPageGui {
     public int getType() {
         return (currentType);
     }
+
     public JFrame getFrame() {
-        return(frame);
+        return (frame);
     }
 
     // Gets the book's info and stores it in table
@@ -208,11 +208,11 @@ public class InfoPageGui {
         infoTable.getColumnModel().getColumn(1).setPreferredWidth(110);
         infoTable.getColumnModel().getColumn(3).setPreferredWidth(50);
         infoTable.getColumnModel().getColumn(5).setPreferredWidth(60);
-        infoTable.setValueAt(book.getTitle(),0,0);
-        infoTable.setValueAt(book.getAuthor(),0,1);
-        infoTable.setValueAt(book.getGenre(),0,2);
+        infoTable.setValueAt(book.getTitle(), 0, 0);
+        infoTable.setValueAt(book.getAuthor(), 0, 1);
+        infoTable.setValueAt(book.getGenre(), 0, 2);
         infoTable.setValueAt(book.getYear(), 0, 3);
-        infoTable.setValueAt(book.getPrimaryKey(),0,4);
+        infoTable.setValueAt(book.getPrimaryKey(), 0, 4);
         if (book.getAvailability()) {
             infoTable.setValueAt("✓", 0, 5);
         } else {
@@ -231,21 +231,30 @@ public class InfoPageGui {
         refreshColumnNames();
         infoTable.getColumnModel().getColumn(0).setPreferredWidth(140);
         infoTable.getColumnModel().getColumn(1).setPreferredWidth(110);
-        infoTable.setValueAt(user.getFullName(),0,0);
-        infoTable.setValueAt(user.getUsername(),0,1);
-        infoTable.setValueAt(user.getPrimaryKey(),0,2);
+        infoTable.setValueAt(user.getFullName(), 0, 0);
+        infoTable.setValueAt(user.getUsername(), 0, 1);
+        infoTable.setValueAt(user.getPrimaryKey(), 0, 2);
         if (user.getActive()) {
             infoTable.setValueAt("✓ Active", 0, 3);
         } else {
             infoTable.setValueAt("✗ Inactive", 0, 3);
         }
         String perms = "";
-        if (user.getPerms() == 0) {perms = "Member";} else {perms = "Admin";}
-        infoTable.setValueAt(perms,0,4);
+        if (user.getPerms() == 0) {
+            perms = "Member";
+        } else {
+            perms = "Admin";
+        }
+        infoTable.setValueAt(perms, 0, 4);
         double balance = user.getAccountBalance();
         String sign;
-        if (balance < 0) {sign = "-";} else {sign = "";};
-        infoTable.setValueAt(sign + "$" + Math.abs(balance),0,5);
+        if (balance < 0) {
+            sign = "-";
+        } else {
+            sign = "";
+        }
+        ;
+        infoTable.setValueAt(sign + "$" + Math.abs(balance), 0, 5);
         transactions.clear();
         transactions = transactionDatabase.getUserTransactions(user);
         getTransactionData(transactions);
@@ -257,13 +266,13 @@ public class InfoPageGui {
         transactionTableModel.setRowCount(0);
         transactionTableModel.setRowCount(database.size());
         // Input book data into the cells
-        for(int i = 0; i < database.size();i++) {
-            transactionTable.setValueAt(database.get(i).getUser().getUsername(),i,0);
-            transactionTable.setValueAt(database.get(i).getBook().getTitle(),i,1);
-            transactionTable.setValueAt(database.get(i).getDateBorrowed(),i,2);
-            transactionTable.setValueAt(database.get(i).getDateDue(),i,3);
-            transactionTable.setValueAt(database.get(i).getDateReturned(),i,4);
-            transactionTable.setValueAt(database.get(i).getPrimaryKey(),i,5);
+        for (int i = 0; i < database.size(); i++) {
+            transactionTable.setValueAt(database.get(i).getUser().getUsername(), i, 0);
+            transactionTable.setValueAt(database.get(i).getBook().getTitle(), i, 1);
+            transactionTable.setValueAt(database.get(i).getDateBorrowed(), i, 2);
+            transactionTable.setValueAt(database.get(i).getDateDue(), i, 3);
+            transactionTable.setValueAt(database.get(i).getDateReturned(), i, 4);
+            transactionTable.setValueAt(database.get(i).getPrimaryKey(), i, 5);
         }
     }
 
@@ -278,8 +287,6 @@ public class InfoPageGui {
 
         // Add Info Pane
         infoPanel.add(infoScrollPane);
-
-        
 
         // Add transaction window and edit button
         if (searchPage.getUser() != null && searchPage.getUser().getPerms() > 0) {
@@ -299,7 +306,8 @@ public class InfoPageGui {
         frame.setVisible(true);
     }
 
-    // This method calls the book info page with the book it already has (for refreshing)
+    // This method calls the book info page with the book it already has (for
+    // refreshing)
     public void bookInfoPage() {
         bookInfoPage(book);
     }
@@ -337,7 +345,8 @@ public class InfoPageGui {
         frame.setVisible(true);
     }
 
-    // This method calls the user info page with the user it already has (for refreshing)
+    // This method calls the user info page with the user it already has (for
+    // refreshing)
     public void userInfoPage() {
         userInfoPage(user);
     }

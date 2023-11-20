@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import javax.swing.table.*;
 
 public class SearchWindow {
-    private CreateInstanceGui createPage;
     private Searcher searcher;
-    private Sorter sorter;
     private BookDatabase bookDatabase;
     private UserDatabase userDatabase;
     private JFrame frame;
@@ -23,8 +21,7 @@ public class SearchWindow {
     private int frameWidth = 500;
     private int frameHeight = 400;
     private int searchHeight = 25;
-    private String[] bookColumnNames = {"Title","Author","ID","Availability"};
-    private String[] userColumnNames = {"Name","Username","ID","Status"};
+    private String[] bookColumnNames = { "Title", "Author", "ID", "Availability" };
     private String[] columnNames = bookColumnNames;
     private int currentType = 0;
     // Colors
@@ -32,15 +29,13 @@ public class SearchWindow {
     private Color darkNavyColor = new Color(24, 23, 43);
 
     // Constructor
-    public SearchWindow(CreateInstanceGui createPage,BookDatabase bookDatabase,UserDatabase userDatabase) {
-        this.createPage = createPage;
-        this.searcher = new Searcher(bookDatabase,userDatabase);
+    public SearchWindow(CreateInstanceGui createPage, BookDatabase bookDatabase, UserDatabase userDatabase) {
+        this.searcher = new Searcher(bookDatabase, userDatabase);
         this.bookDatabase = bookDatabase;
         this.userDatabase = userDatabase;
-        this.sorter = new Sorter();
         frame = new JFrame("Search Book");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(frameWidth,frameHeight);
+        frame.setSize(frameWidth, frameHeight);
         frame.setLocationRelativeTo(null);
 
         panel = new JPanel();
@@ -51,14 +46,14 @@ public class SearchWindow {
         tableModel = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return(false);
+                return (false);
             }
         };
         table = new JTable(tableModel);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.getTableHeader().setReorderingAllowed(false);
         tableModel.setColumnCount(columnNames.length);
-        for (int i=0;i<columnNames.length;i++) {
+        for (int i = 0; i < columnNames.length; i++) {
             table.getColumnModel().getColumn(i).setHeaderValue(columnNames[i]);
         }
         table.getTableHeader().repaint();
@@ -68,37 +63,37 @@ public class SearchWindow {
         scrollPane = new JScrollPane(table);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setBounds(10,35+searchHeight,frameWidth-35,frameHeight-135);
+        scrollPane.setBounds(10, 35 + searchHeight, frameWidth - 35, frameHeight - 135);
         scrollPane.setVisible(true);
         scrollPane.getViewport().setBackground(darkNavyColor);
 
         // Search label
         searchLabel = new JLabel("🔍 Search:");
         searchLabel.setSize(200, 35);
-        searchLabel.setLocation(10,10);
+        searchLabel.setLocation(10, 10);
         searchLabel.setForeground(Color.WHITE);
 
         // Search bar
         searchField = new JTextField("");
-        searchField.setSize(frameWidth-35, searchHeight);
-        searchField.setLocation(10,35);
+        searchField.setSize(frameWidth - 35, searchHeight);
+        searchField.setLocation(10, 35);
         searchField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 refreshPage();
                 return;
             }
         });
-        
+
         // Logic for clicking on a transaction cell
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 int row = table.rowAtPoint(e.getPoint());
                 String id;
                 if (currentType == 0) {
-                    id = String.valueOf(table.getValueAt(row,2));
+                    id = String.valueOf(table.getValueAt(row, 2));
                     createPage.setTe2(id);
                 } else {
-                    id = String.valueOf(table.getValueAt(row,2));
+                    id = String.valueOf(table.getValueAt(row, 2));
                     createPage.setTe1(id);
                 }
                 frame.dispose();
@@ -175,7 +170,6 @@ public class SearchWindow {
         panel.add(searchField);
         panel.add(scrollPane);
         panel.add(searchLabel);
-
 
         frame.add(panel);
         frame.setVisible(true);

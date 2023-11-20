@@ -1,4 +1,5 @@
 // IG 10/18
+// Subclass with overriden methods for ArrayList of Transactions
 
 import java.util.ArrayList;
 
@@ -57,22 +58,22 @@ public class TransactionDatabase extends Table<Transaction> {
     // Returns a list of transactions affiliated with a given book
     public ArrayList<Transaction> getBookTransactions(Book book) {
         ArrayList<Transaction> bookTransactions = new ArrayList<Transaction>();
-        for (int i=0;i<database.size();i++) {
+        for (int i = 0; i < database.size(); i++) {
             if (database.get(i).getBook() == book) {
                 bookTransactions.add(database.get(i));
             }
         }
-        return(bookTransactions);
+        return (bookTransactions);
     }
 
     // Returns a list of transactions affiliated with a given user
     public ArrayList<Transaction> getUserTransactions(User user) {
         ArrayList<Transaction> userTransactions = new ArrayList<Transaction>();
-        for (int i=0;i<database.size();i++) {
+        for (int i = 0; i < database.size(); i++) {
             if (database.get(i).getUser() == user) {
                 userTransactions.add(database.get(i));
             }
         }
-        return(userTransactions);
+        return (userTransactions);
     }
 }

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import javax.swing.table.*;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.net.URL;
 import java.io.IOException;
 
@@ -18,7 +17,6 @@ public class SearchPageGui {
     private Sorter sorter;
     private BookDatabase bookDatabase;
     private UserDatabase userDatabase;
-    private TransactionDatabase transactionDatabase;
     private JFrame frame;
     private JPanel bookPanel;
     private DefaultTableModel tableModel;
@@ -37,7 +35,7 @@ public class SearchPageGui {
     final String[] userColumnNames = { "Name", "Username", "ID", "Status" };
     final String[] bookSortNames = { "Sorting by Title", "Sorting by Author", "Sorting by Year",
             "Sorting by Available" };
-    final String[] userSortNames = { "Sorting by Name", "Sorting by Username", "Sorting by Status"};
+    final String[] userSortNames = { "Sorting by Name", "Sorting by Username", "Sorting by Status" };
     private int sortIndex = 0;
     private String[] columnNames = bookColumnNames;
     private int cellWidth = tableWidth / columnNames.length;
@@ -48,9 +46,8 @@ public class SearchPageGui {
     private Color navyColor = new Color(34, 32, 52);
     private Color darkNavyColor = new Color(24, 23, 43);
     private Color goldColor = new Color(208, 201, 46);
-    private Color grayColor = new Color(150, 150, 150);
     // Images
-    private BufferedImage lmsImage, searchImage;
+    private BufferedImage lmsImage;
     private JLabel lmsLabel, searchText;
     private URL imgPath;
 
@@ -62,7 +59,6 @@ public class SearchPageGui {
         this.sorter = new Sorter();
         this.bookDatabase = bookDatabase;
         this.userDatabase = userDatabase;
-        this.transactionDatabase = transactionDatabase;
         loginPage = new UserLoginGui(userDatabase, this);
         createPage = new CreateInstanceGui(bookDatabase, userDatabase, transactionDatabase, this, databaseManager);
         infoPage = new InfoPageGui(bookDatabase, userDatabase, transactionDatabase, this, createPage, databaseManager);

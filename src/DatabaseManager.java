@@ -1,10 +1,9 @@
+// IG 11/15
+// Methods that handle saving/opening/etc. of records.txt
 
-//IG 11/15
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
-import java.net.URL;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;

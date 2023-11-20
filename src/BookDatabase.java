@@ -1,4 +1,5 @@
 // JH 10/26
+// Subclass with overriden methods for ArrayList of Books
 
 import java.util.ArrayList;
 

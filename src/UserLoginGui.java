@@ -38,9 +38,7 @@ public class UserLoginGui {
     final int laErrorY = buY + 20;
 
     // Colors for program
-    private Color navyColor = new Color(34, 32, 52);
     private Color darkNavyColor = new Color(24, 23, 43);
-    private Color goldColor = new Color(208, 201, 46);
 
     // Contructor to setup window and objects
     public UserLoginGui(UserDatabase userDatabase, SearchPageGui searchPageGui) {
