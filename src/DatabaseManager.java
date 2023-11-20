@@ -27,7 +27,7 @@ public class DatabaseManager {
     }
 
     public void saveRecords() throws IOException {
-        FileOutputStream fout = new FileOutputStream("records.txt");
+        FileOutputStream fout = new FileOutputStream("lib/records.txt");
         PrintWriter out = new PrintWriter(fout);
 
         // save books
@@ -91,7 +91,7 @@ public class DatabaseManager {
     }
 
     public void openSavedRecords() throws IOException {
-        FileInputStream fileInput = new FileInputStream("records.txt");
+        FileInputStream fileInput = new FileInputStream("lib/records.txt");
         Scanner fileSCN = new Scanner(fileInput);
         bookArray.clear();
         userArray.clear();
