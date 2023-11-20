@@ -1,5 +1,5 @@
-// MT 11/1
-// Sorts a database of books, users, or transactions to display to later be displayed
+// MT 11/31
+// Sorts a database of books, users, or transactions to later be displayed
 
 import java.util.ArrayList;
 import java.util.Comparator;
