@@ -387,6 +387,7 @@ public class CreateInstanceGui extends DateManager {
         }
         searchPage.refreshPage();
         fr.dispose();
+        // Attempt to save to records file
         try {
             databaseManager.saveRecords();
         } catch (IOException e) {
@@ -409,6 +410,7 @@ public class CreateInstanceGui extends DateManager {
         userDatabase.addEntry(user);
         searchPage.refreshPage();
         fr.dispose();
+        // Attempt to save to records file
         try {
             databaseManager.saveRecords();
         } catch (IOException e) {
@@ -459,6 +461,7 @@ public class CreateInstanceGui extends DateManager {
             }
         }
         fr.dispose();
+        // Attempt to save to records file
         try {
             databaseManager.saveRecords();
         } catch (IOException e) {

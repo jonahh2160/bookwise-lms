@@ -25,6 +25,7 @@ public class DatabaseManager {
         this.transactionDatabase = transactionDatabase;
     }
 
+    // Loop through books/users/transactions and save them to records file
     public void saveRecords() throws IOException {
         FileOutputStream fout = new FileOutputStream("lib/records.txt");
         PrintWriter out = new PrintWriter(fout);
@@ -89,6 +90,7 @@ public class DatabaseManager {
         out.close();
     }
 
+    // Load records from records file
     public void openSavedRecords() throws IOException {
         FileInputStream fileInput = new FileInputStream("lib/records.txt");
         Scanner fileSCN = new Scanner(fileInput);

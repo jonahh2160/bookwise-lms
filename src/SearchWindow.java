@@ -1,4 +1,5 @@
 //IG 11/15
+// This opens a tiny search window similar to searchpage
 
 import javax.swing.*;
 import java.awt.*;

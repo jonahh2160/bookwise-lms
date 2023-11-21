@@ -383,6 +383,7 @@ public class SearchPageGui {
                 return;
             }
         });
+        // Login button logic
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (loginButton.getText().equals("Login")) {
@@ -399,11 +400,13 @@ public class SearchPageGui {
                 }
             }
         });
+        // Account button logic
         accountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 infoPage.userInfoPage(userLoggedIn);
             }
         });
+        // Manage button logic
         manageButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 createPage.createInstancePage();

@@ -312,6 +312,7 @@ public class InfoPageGui {
         bookInfoPage(book);
     }
 
+    // Opens a user info page
     public void userInfoPage(User user) {
         this.user = user;
         currentType = 1;
