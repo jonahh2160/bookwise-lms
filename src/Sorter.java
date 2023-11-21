@@ -24,7 +24,7 @@ public class Sorter {
          .compareTo(p2.getPrimaryKey().toLowerCase());
    Comparator<User> statusComparator = (a1, a2) -> Boolean.compare(a1.getActive(),a2.getActive());
 
-   // Transaction comparator objs using lambda expression to compare obj properties
+   // Transaction comparator objects using lambda expression to compare objects properties
    Comparator<Transaction> dateDueComparator = (d1, d2) -> d1.getDateDue().toLowerCase()
          .compareTo(d2.getDateDue().toLowerCase());
    Comparator<Transaction> primaryKeyTransactionComparator = (v1, v2) -> v1.getPrimaryKey().toLowerCase()
@@ -74,7 +74,7 @@ public class Sorter {
       return listOfBooks;
    }
 
-   // Method to order a list of books by year
+   // Method to order a list of books by availability
    public ArrayList<Book> availabilitySorter(ArrayList<Book> listOfBooks) {
 
       listOfBooks.sort(availabilityComparator);
