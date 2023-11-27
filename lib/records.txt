@@ -1,8 +1,25 @@
 [BOOK] Legend Marie_Lu Young_Adult true 2011 6179638 
 [BOOK] Fahrenheit_451 Ray_Bradbury Dystopian false 1953 9712548 
 [BOOK] Moby_Dick Herman_Melville Fiction true 1851 2397178 
+[BOOK] The_Da_Vinci_Code Dan_Brown Thriller true 2006 3488556 
+[BOOK] Twilight Stephanie_Meyer Young_Adult false 2005 0712896 
+[BOOK] To_Kill_a_Mockingbird Harper_Lee Literary_Fiction true 1960 6804311 
+[BOOK] A_Tale_of_Two_Cities Charles_Dickens Historical_Fiction true 1859 1078122 
+[BOOK] The_Hobbit J._R._R._Tolkien Fantasy false 1937 1601608 
+[BOOK] Anne_of_Green_Gables Lucy_Maud_Montgomery Childrens true 1908 6159119 
+[BOOK] Watership_Down Richard_Adams Fantasy true 1972 5531782 
+[BOOK] Charlotte's_Web E._B._White Children's true 1952 9492940 
+[BOOK] War_and_Peace Leo_Tolstoy Historical true 1869 6138320 
+[BOOK] Gone_with_the_Wind Margaret_Mitchell Historical true 1936 5345702 
+[BOOK] The_Great_Gatsby F._Scott_Fitzgerald Tragedy true 1925 8926015 
+[BOOK] Dune Frank_Herbert Sci-Fi true 1965 1179953 
+[BOOK] Matilda Roald_Dahl Children's true 1988 9820085 
 [USER] Example_Admin admin admin 1 0.0 true 0000000 
-[USER] Jonah_Hampton tempest amazingdigitalcircus 1 0.0 true 0767002 
-[USER] Isaac_Gunderson jpgundi stupid12 1 0.0 true 5838920 
-[USER] Michael_Toon mtoon 1234 1 0.0 true 9436920 
+[USER] Jonah_Hampton tempest amazingdigitalcircus 0 0.0 true 0767002 
+[USER] Isaac_Gunderson jpgundi stupid12 0 0.0 true 5838920 
+[USER] Michael_Toon mtoon 1234 0 0.0 true 9436920 
+[USER] Finley_Johnson fjohnson 1234 0 0.0 true 9452728 
+[USER] Jason_Owens jowens 1234 0 0.0 true 9081575 
 [TRANSACTION] 9712548 0767002 11/15/2023 11/29/2023 false 0629332 
+[TRANSACTION] 1601608 9452728 11/26/2023 12/03/2023 false 9635980 
+[TRANSACTION] 0712896 9081575 11/26/2023 12/05/2023 false 3822884 
