@@ -1,15 +1,8 @@
-# 325BroSquad
+# bookwise-lms
 
-We are creating a Library Management System that a real library could theoretically use.
-This is for a class assignment in CSC 325.
-
-We are Isaac, Jonah, and Michael.
-
-**We are Bro Squad.**
+We are created a small Library Management System in Java that a real library could theoretically use. This project was initiated to aid in learning programming.
 
 ## Links
-
-*This GitHub repo: <https://github.com/jonahh2160/325-bro-squad>*
 
 *User Manual: <https://docs.google.com/document/d/1dl9LgGQfh0ani2NHzFqDrymomIVN-ITc5UJi-CxbZ9c/edit?usp=sharing>*
 
