@@ -1,6 +1,8 @@
 # bookwise-lms
 
-We are created a small Library Management System in Java that a real library could theoretically use. This project was initiated to aid in learning programming.
+We are created a small Library Management System in Java that a real library could theoretically use.
+
+This project was initiated to aid in learning programming.
 
 ## Links
 
